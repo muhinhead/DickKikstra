@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="200.00009999999747" prefWidth="432.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dk.FXMLmainController">
+  <children>
+    <Button fx:id="button" layoutX="187.0" layoutY="127.0" onAction="#handleButtonAction" text="Login">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></Button>
+    <ComboBox id="" fx:id="userCB" editable="true" layoutX="138.0" layoutY="59.0" prefWidth="217.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="54.0" layoutY="62.0" text="User Name:" />
+    <Label layoutX="63.0" layoutY="92.0" text="Password:" />
+    <PasswordField fx:id="pwdField" layoutX="138.0" layoutY="92.0" prefWidth="217.0" />
+  </children>
+</AnchorPane>
