@@ -216,13 +216,13 @@ public class OpticStore extends Application {
 
     public void hideLoginAndShowDashboard() {
         Timeline fade = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 1.0)),
-                new KeyFrame(new Duration(1000), new EventHandler<ActionEvent>() {
+                new KeyFrame(new Duration(400), new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent t) {
                         loginPane.setVisible(false);
                         dashboardPane.setVisible(true);
                         Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 0.0)),
-                                new KeyFrame(new Duration(800), new KeyValue(rootPane.opacityProperty(), 1.0)));
+                                new KeyFrame(new Duration(400), new KeyValue(rootPane.opacityProperty(), 1.0)));
                         fadeIn.play();
                     }
                 }, new KeyValue(rootPane.opacityProperty(), 0.0)));
