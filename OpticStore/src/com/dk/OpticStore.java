@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author nick
+ * @author Nick Mukhin
  */
 public class OpticStore extends Application {
     
