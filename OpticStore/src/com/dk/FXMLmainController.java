@@ -29,6 +29,7 @@ public class FXMLmainController implements Initializable {
 
     private static Collection<User> users = null;
     public static User currentUser = null;
+    static PasswordField staticPwdField;
 
     @FXML
     private ComboBox userCB;
@@ -57,6 +58,7 @@ public class FXMLmainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        staticPwdField = pwdField;
         userCB.getItems().clear();
         new AutoCompleteComboBoxListener(userCB);
     }

@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="244.0" prefWidth="612.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.dk.FXMLDashboardController">
+<AnchorPane id="AnchorPane" prefHeight="730.0" prefWidth="1293.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dk.FXMLDashboardController">
   <children>
     <GridPane id="" fx:id="btnGrid" layoutX="106.0" layoutY="77.0">
       <columnConstraints>
@@ -19,6 +27,88 @@
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <HBox fx:id="logoutBox" layoutX="553.0" layoutY="188.0" prefHeight="56.0" prefWidth="53.0" />
+    <HBox fx:id="logoutBox" layoutX="545.0" layoutY="174.0" prefHeight="56.0" prefWidth="53.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <TabPane prefHeight="730.0" prefWidth="1206.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+            <Tab text="klant">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ScrollPane prefHeight="697.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="690.0" prefWidth="1200.0">
+                                 <children>
+                                    <GridPane layoutX="24.0" layoutY="15.0" prefHeight="437.0" prefWidth="305.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="15.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="107.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label contentDisplay="TOP" prefHeight="17.0" prefWidth="87.0" text="id klant" />
+                                          <Label text="aanhef" GridPane.rowIndex="1" />
+                                          <Label text="voorletters" GridPane.rowIndex="2" />
+                                          <Label text="tussenvoegsel" GridPane.rowIndex="3" />
+                                          <Label text="achternaam" GridPane.rowIndex="4" />
+                                          <Label text="adres" GridPane.rowIndex="5" />
+                                          <Label text="huisnummer" GridPane.rowIndex="6" />
+                                          <Label text="postcode" GridPane.rowIndex="7" />
+                                          <Label text="plaats" GridPane.rowIndex="8" />
+                                          <Label text="land" GridPane.rowIndex="9" />
+                                          <Label text="gebortedatum" GridPane.rowIndex="10" />
+                                          <Label text="telefon" GridPane.rowIndex="11" />
+                                          <Label text="mobile" GridPane.rowIndex="12" />
+                                          <Label text="e-mail" GridPane.rowIndex="13" />
+                                          <TextField GridPane.columnIndex="1" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                       </children>
+                                    </GridPane>
+                                    <VBox fx:id="searchClientBox" layoutX="335.0" layoutY="27.0" prefHeight="183.0" prefWidth="85.0" spacing="30.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="27.0" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                        <BorderPane fx:id="rightTablePane" prefHeight="661.0" prefWidth="767.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="12.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="oogmeting" />
+          <Tab disable="true" text="montuur" />
+            <Tab disable="true" text="glazen" />
+            <Tab disable="true" text="mailing" />
+            <Tab text="artikelbeheer" />
+        </tabs>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </TabPane>
   </children>
 </AnchorPane>

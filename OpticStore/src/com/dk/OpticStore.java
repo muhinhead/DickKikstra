@@ -198,7 +198,7 @@ public class OpticStore extends Application {
             FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("FXMLmain.fxml"));
             loginPane = (Parent) loginLoader.load();
             FXMLmainController loginController = loginLoader.getController();
-            
+
             rootPane.getChildren().add(dashboardPane);
             rootPane.getChildren().add(loginPane);
 
@@ -214,20 +214,55 @@ public class OpticStore extends Application {
         }
     }
 
-    public void hideLoginAndShowDashboard() {
+    public void swapLoginAndDashboard(final boolean showLogin) {
         Timeline fade = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 1.0)),
                 new KeyFrame(new Duration(400), new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent t) {
-                        loginPane.setVisible(false);
-                        dashboardPane.setVisible(true);
+                        loginPane.setVisible(showLogin);
+                        dashboardPane.setVisible(!showLogin);
                         Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 0.0)),
                                 new KeyFrame(new Duration(400), new KeyValue(rootPane.opacityProperty(), 1.0)));
                         fadeIn.play();
                     }
                 }, new KeyValue(rootPane.opacityProperty(), 0.0)));
         fade.play();
-        mainStage.setTitle("de oogkas");
+        mainStage.setTitle(showLogin?"Login":"de oogkas");
+    }
+    
+    
+    public void hideLoginAndShowDashboard() {
+        swapLoginAndDashboard(false);
+//        Timeline fade = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 1.0)),
+//                new KeyFrame(new Duration(400), new EventHandler<ActionEvent>() {
+//                    @Override
+//                    public void handle(ActionEvent t) {
+//                        loginPane.setVisible(false);
+//                        dashboardPane.setVisible(true);
+//                        Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 0.0)),
+//                                new KeyFrame(new Duration(400), new KeyValue(rootPane.opacityProperty(), 1.0)));
+//                        fadeIn.play();
+//                    }
+//                }, new KeyValue(rootPane.opacityProperty(), 0.0)));
+//        fade.play();
+//        mainStage.setTitle("de oogkas");
+    }
+
+    public void hideDashboardAndShowLogin() {
+        swapLoginAndDashboard(true);
+//        Timeline fade = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 1.0)),
+//                new KeyFrame(new Duration(1000), new EventHandler<ActionEvent>() {
+//                    @Override
+//                    public void handle(ActionEvent t) {
+//                        dashboardPane.setVisible(false);
+//                        loginPane.setVisible(true);
+//                        Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 0.0)),
+//                                new KeyFrame(new Duration(800), new KeyValue(rootPane.opacityProperty(), 1.0)));
+//                        fadeIn.play();
+//                    }
+//                }, new KeyValue(rootPane.opacityProperty(), 0.0)));
+//        fade.play();
+//        mainStage.setTitle("Login");
     }
     
     public void resize2(double ww, double hh) {
@@ -247,6 +282,20 @@ public class OpticStore extends Application {
             }
         });
         widthIncrease.play();
+    }
+
+    /**
+     * @return the loginWidth
+     */
+    public double getLoginWidth() {
+        return loginWidth;
+    }
+
+    /**
+     * @return the loginHeight
+     */
+    public double getLoginHeight() {
+        return loginHeight;
     }
 
     /**
