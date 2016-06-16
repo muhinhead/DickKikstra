@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -34,68 +35,81 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane prefHeight="697.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="690.0" prefWidth="1200.0">
-                                 <children>
-                                    <GridPane layoutX="24.0" layoutY="15.0" prefHeight="437.0" prefWidth="305.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="15.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="107.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
+                        <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <panes>
+                            <TitledPane animated="false" text="Search &amp; Enter">
+                                 <content>
+                                    <AnchorPane>
                                        <children>
-                                          <Label contentDisplay="TOP" prefHeight="17.0" prefWidth="87.0" text="id klant" />
-                                          <Label text="aanhef" GridPane.rowIndex="1" />
-                                          <Label text="voorletters" GridPane.rowIndex="2" />
-                                          <Label text="tussenvoegsel" GridPane.rowIndex="3" />
-                                          <Label text="achternaam" GridPane.rowIndex="4" />
-                                          <Label text="adres" GridPane.rowIndex="5" />
-                                          <Label text="huisnummer" GridPane.rowIndex="6" />
-                                          <Label text="postcode" GridPane.rowIndex="7" />
-                                          <Label text="plaats" GridPane.rowIndex="8" />
-                                          <Label text="land" GridPane.rowIndex="9" />
-                                          <Label text="gebortedatum" GridPane.rowIndex="10" />
-                                          <Label text="telefon" GridPane.rowIndex="11" />
-                                          <Label text="mobile" GridPane.rowIndex="12" />
-                                          <Label text="e-mail" GridPane.rowIndex="13" />
-                                          <TextField GridPane.columnIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                          <ScrollPane prefHeight="697.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <content>
+                                              <AnchorPane fx:id="innerAnchorPane" minHeight="600.0" minWidth="850.0" prefWidth="850.0">
+                                                   <children>
+                                                      <GridPane layoutX="24.0" layoutY="15.0" prefHeight="437.0" prefWidth="305.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="15.0">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="107.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                          <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Label contentDisplay="TOP" prefHeight="17.0" prefWidth="87.0" text="id klant" />
+                                                            <Label text="aanhef" GridPane.rowIndex="1" />
+                                                            <Label text="voorletters" GridPane.rowIndex="2" />
+                                                            <Label text="tussenvoegsel" GridPane.rowIndex="3" />
+                                                            <Label text="achternaam" GridPane.rowIndex="4" />
+                                                            <Label text="adres" GridPane.rowIndex="5" />
+                                                            <Label text="huisnummer" GridPane.rowIndex="6" />
+                                                            <Label text="postcode" GridPane.rowIndex="7" />
+                                                            <Label text="plaats" GridPane.rowIndex="8" />
+                                                            <Label text="land" GridPane.rowIndex="9" />
+                                                            <Label text="gebortedatum" GridPane.rowIndex="10" />
+                                                            <Label text="telefon" GridPane.rowIndex="11" />
+                                                            <Label text="mobile" GridPane.rowIndex="12" />
+                                                            <Label text="e-mail" GridPane.rowIndex="13" />
+                                                            <TextField fx:id="klantIDfield" GridPane.columnIndex="1" />
+                                                            <TextField fx:id="aanhefField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <TextField fx:id="voorlettersField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <TextField fx:id="tussenvoegselField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                            <TextField fx:id="achternaamField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                            <TextField fx:id="adresField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                            <TextField fx:id="huisnummerField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                            <TextField fx:id="postcodeField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                            <TextField fx:id="plaatsField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                                            <TextField fx:id="landField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                                            <TextField fx:id="gebortedatumField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                                            <TextField fx:id="telefonField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                                            <TextField fx:id="mobileField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                                            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                                         </children>
+                                                      </GridPane>
+                                                      <VBox fx:id="searchClientBox" layoutX="335.0" layoutY="27.0" prefHeight="183.0" prefWidth="85.0" spacing="30.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="27.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                            </content>
+                                          </ScrollPane>
                                        </children>
-                                    </GridPane>
-                                    <VBox fx:id="searchClientBox" layoutX="335.0" layoutY="27.0" prefHeight="183.0" prefWidth="85.0" spacing="30.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="27.0" />
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                        <BorderPane fx:id="rightTablePane" prefHeight="661.0" prefWidth="767.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="413.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="12.0" />
+                                    </AnchorPane>
+                                 </content>
+                              </TitledPane>
+                            <TitledPane animated="false" text="Details" />
+                              <TitledPane prefHeight="200.0" prefWidth="200.0" text="Purchases" />
+                          </panes>
+                        </Accordion>
                      </children>
                   </AnchorPane>
               </content>

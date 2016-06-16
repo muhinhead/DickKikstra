@@ -29,6 +29,8 @@ public class TableGridPanel extends BorderPane {
     private EventHandler<ActionEvent> editAction = null;
     private EventHandler<ActionEvent> delAction = null;
     private Vector[] tableBody;
+    private IMessageSender exchanger;
+    private String select;
 
     public TableGridPanel(Vector[] tableBody,
             EventHandler<ActionEvent> addAction, EventHandler<ActionEvent> editAction,
@@ -44,11 +46,31 @@ public class TableGridPanel extends BorderPane {
     public TableGridPanel(Vector[] tableBody) {
         this(tableBody, null, null, null);
     }
-    
+
     public TableGridPanel(IMessageSender exch, String select) throws RemoteException {
         this(exch.getTableBody(select), null, null, null);
+        exchanger = exch;
+        this.select = select;
     }
-    
+
+    public void reload() throws RemoteException {
+        if (exchanger != null && select != null) {
+            tableBody = exchanger.getTableBody(select);
+            buildData();
+        }
+    }
+    public void reload(String select) throws RemoteException {
+        if (exchanger != null && select != null) {
+            this.select = select;
+            tableBody = exchanger.getTableBody(select);
+            buildData();
+        }
+    }
+
+    public void unselect() {
+        tableView.getSelectionModel().clearSelection();
+    }
+
     public void setActions(EventHandler<ActionEvent> addAction, EventHandler<ActionEvent> editAction,
             EventHandler<ActionEvent> delAction) {
         BorderPane rightPanel = new BorderPane();
@@ -82,6 +104,7 @@ public class TableGridPanel extends BorderPane {
         ObservableList<Object> data = FXCollections.observableArrayList();
         Vector headers = getTableBody()[0];
         Vector lines = getTableBody()[1];
+        getTableView().getColumns().clear();
         for (int c = 0; c < headers.size(); c++) {
             final int j = c;
             TableColumn col = new TableColumn((String) headers.get(c));
@@ -96,8 +119,8 @@ public class TableGridPanel extends BorderPane {
         for (int l = 0; l < lines.size(); l++) {
             ObservableList<String> row = FXCollections.observableArrayList();
             for (int c = 0; c < headers.size(); c++) {
-                String ceil = (String) ((Vector) lines.get(l)).get(c);                
-                row.add(rpad(ceil,headers.get(c).toString().length()));
+                String ceil = (String) ((Vector) lines.get(l)).get(c);
+                row.add(rpad(ceil, headers.get(c).toString().length()));
             }
             data.add(row);
         }
@@ -109,20 +132,22 @@ public class TableGridPanel extends BorderPane {
     }
 
     private static String rpad(String c, int l) {
-        if(c.length()<l) {
+        if (c.length() < l) {
             StringBuilder sb = new StringBuilder(c);
-            for(int i=c.length(); i<l; i++) {
-                sb.append(" ");
+            for (int i = c.length(); i < l; i++) {
+                sb.append(' ');
             }
+            sb.append(" ");
             return sb.toString();
         }
         return c;
     }
-    
+
     public void fillBySelect(IMessageSender exch, String select) throws RemoteException {
         tableBody = exch.getTableBody(select);
         buildData();
     }
+
     /**
      * @return the tableBody
      */

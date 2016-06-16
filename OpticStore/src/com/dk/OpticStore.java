@@ -182,9 +182,15 @@ public class OpticStore extends Application {
 
     public static void logAndShowErrorMessage(String msg) {
         log(msg);
-        Dialogs.showErrorDialog(mainApp.mainStage, msg, "Error", "Oops!");
+        Dialogs.showErrorDialog(mainApp.mainStage, msg, "Fout", "Helaas!");
     }
 
+    public static boolean yesOrNoDialog(String msg) {
+        Dialogs.DialogResponse ans = Dialogs.showConfirmDialog(mainApp.mainStage, msg,
+                null, "Aandacht", Dialogs.DialogOptions.YES_NO);
+        return ans == Dialogs.DialogResponse.YES;
+    }
+    
     @Override
     public void start(Stage stage) throws Exception {
         mainApp = this;
@@ -238,7 +244,7 @@ public class OpticStore extends Application {
     
     
     public void hideLoginAndShowDashboard() {
-        resize2(1500.0, 800.0);
+        resize2(1200.0, 750.0);
         swapLoginAndDashboard(false);
     }
 
