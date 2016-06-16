@@ -1,5 +1,7 @@
 package com.dk.util;
 
+import com.dk.remote.IMessageSender;
+import java.rmi.RemoteException;
 import java.util.Vector;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -26,7 +28,7 @@ public class TableGridPanel extends BorderPane {
     private EventHandler<ActionEvent> addAction = null;
     private EventHandler<ActionEvent> editAction = null;
     private EventHandler<ActionEvent> delAction = null;
-    private final Vector[] tableBody;
+    private Vector[] tableBody;
 
     public TableGridPanel(Vector[] tableBody,
             EventHandler<ActionEvent> addAction, EventHandler<ActionEvent> editAction,
@@ -42,7 +44,11 @@ public class TableGridPanel extends BorderPane {
     public TableGridPanel(Vector[] tableBody) {
         this(tableBody, null, null, null);
     }
-
+    
+    public TableGridPanel(IMessageSender exch, String select) throws RemoteException {
+        this(exch.getTableBody(select), null, null, null);
+    }
+    
     public void setActions(EventHandler<ActionEvent> addAction, EventHandler<ActionEvent> editAction,
             EventHandler<ActionEvent> delAction) {
         BorderPane rightPanel = new BorderPane();
@@ -85,18 +91,38 @@ public class TableGridPanel extends BorderPane {
                 }
             });
             getTableView().getColumns().add(col);
+            //col.setPercentageWidth(1.0/headers.size());
         }
         for (int l = 0; l < lines.size(); l++) {
             ObservableList<String> row = FXCollections.observableArrayList();
             for (int c = 0; c < headers.size(); c++) {
-                String ceil = (String) ((Vector) lines.get(l)).get(c);
-                row.add(ceil);
+                String ceil = (String) ((Vector) lines.get(l)).get(c);                
+                row.add(rpad(ceil,headers.get(c).toString().length()));
             }
             data.add(row);
         }
         getTableView().setItems(data);
+//        for (Object obj : getTableView().getColumns()) {
+//            TableColumn col = (TableColumn) obj;
+//            col.setPrefWidth(100.0/headers.size());
+//        }
     }
 
+    private static String rpad(String c, int l) {
+        if(c.length()<l) {
+            StringBuilder sb = new StringBuilder(c);
+            for(int i=c.length(); i<l; i++) {
+                sb.append(" ");
+            }
+            return sb.toString();
+        }
+        return c;
+    }
+    
+    public void fillBySelect(IMessageSender exch, String select) throws RemoteException {
+        tableBody = exch.getTableBody(select);
+        buildData();
+    }
     /**
      * @return the tableBody
      */

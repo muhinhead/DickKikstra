@@ -50,7 +50,7 @@ public class FXMLmainController implements Initializable {
             Dialogs.showErrorDialog(OpticStore.mainStage, "Access denied!", "Error", "Oops!");
             //Platform.exit();
         } else {
-            OpticStore.mainApp.resize2(1100.0, 800.0);
+            //OpticStore.mainApp.resize2(1100.0, 800.0);
             OpticStore.mainApp.hideLoginAndShowDashboard();
         }
     }

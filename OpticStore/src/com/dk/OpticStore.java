@@ -46,6 +46,12 @@ public class OpticStore extends Application {
     private static final String APPNAME = "OpticStore";
     private static Properties props;
     private static final String PROPERTYFILENAME = APPNAME + ".config";
+    public static final String KLANTLIST = "select "
+            + "klant_id \"id klant\","
+            + "aanhef \"aanhef\","
+            + "voorletters \"voorletters\","
+            + "tussenvoegsel \"tussenvoegsel\","
+            + "achternaam \"achternaam\" from klant order by achternaam";
     private static Logger logger;
     private static FileHandler fh;
     private static IMessageSender exchanger;
@@ -232,41 +238,17 @@ public class OpticStore extends Application {
     
     
     public void hideLoginAndShowDashboard() {
+        resize2(1500.0, 800.0);
         swapLoginAndDashboard(false);
-//        Timeline fade = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 1.0)),
-//                new KeyFrame(new Duration(400), new EventHandler<ActionEvent>() {
-//                    @Override
-//                    public void handle(ActionEvent t) {
-//                        loginPane.setVisible(false);
-//                        dashboardPane.setVisible(true);
-//                        Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 0.0)),
-//                                new KeyFrame(new Duration(400), new KeyValue(rootPane.opacityProperty(), 1.0)));
-//                        fadeIn.play();
-//                    }
-//                }, new KeyValue(rootPane.opacityProperty(), 0.0)));
-//        fade.play();
-//        mainStage.setTitle("de oogkas");
     }
 
     public void hideDashboardAndShowLogin() {
+        mainApp.resize2(mainApp.getLoginWidth(), mainApp.getLoginHeight());
         swapLoginAndDashboard(true);
-//        Timeline fade = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 1.0)),
-//                new KeyFrame(new Duration(1000), new EventHandler<ActionEvent>() {
-//                    @Override
-//                    public void handle(ActionEvent t) {
-//                        dashboardPane.setVisible(false);
-//                        loginPane.setVisible(true);
-//                        Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 0.0)),
-//                                new KeyFrame(new Duration(800), new KeyValue(rootPane.opacityProperty(), 1.0)));
-//                        fadeIn.play();
-//                    }
-//                }, new KeyValue(rootPane.opacityProperty(), 0.0)));
-//        fade.play();
-//        mainStage.setTitle("Login");
     }
     
     public void resize2(double ww, double hh) {
-        resize(OpticStore.mainStage.getWidth(), OpticStore.mainStage.getHeight(), ww, hh);
+        resize(mainStage.getWidth(), mainStage.getHeight(), ww, hh);
     }
 
     public static void resize(double w, final double h, double ww, final double hh) {
