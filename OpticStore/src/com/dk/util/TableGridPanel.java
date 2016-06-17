@@ -59,6 +59,7 @@ public class TableGridPanel extends BorderPane {
             buildData();
         }
     }
+
     public void reload(String select) throws RemoteException {
         if (exchanger != null && select != null) {
             this.select = select;
@@ -129,6 +130,20 @@ public class TableGridPanel extends BorderPane {
 //            TableColumn col = (TableColumn) obj;
 //            col.setPrefWidth(100.0/headers.size());
 //        }
+    }
+
+    public void scrollToID(int id) {
+        ObservableList itms = getTableView().getItems();
+        int r = 0;
+        for (Object itm : itms) {
+            ObservableList<String> row = (ObservableList<String>) itm;
+            if (id == Integer.parseInt(row.get(0).trim())) {
+                getTableView().scrollTo(r);
+                getTableView().getSelectionModel().select(r);
+                break;
+            }
+            r++;
+        }
     }
 
     private static String rpad(String c, int l) {

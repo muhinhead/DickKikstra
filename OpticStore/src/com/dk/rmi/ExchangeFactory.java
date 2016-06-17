@@ -38,7 +38,7 @@ public class ExchangeFactory {
                 exchanger = createJDBCexchanger(dbDriver, connectString, dbUser, dbPassword);
                 //AIBclient.protocol = "jdbc";
             } catch (Exception ex) {
-                OpticStore.logAndShowErrorMessage(ex.getMessage());
+                OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
             }
 //        }
         return exchanger;

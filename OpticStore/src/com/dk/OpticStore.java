@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -51,7 +52,9 @@ public class OpticStore extends Application {
             + "aanhef \"aanhef\","
             + "voorletters \"voorletters\","
             + "tussenvoegsel \"tussenvoegsel\","
-            + "achternaam \"achternaam\" from klant order by achternaam";
+            + "achternaam \"achternaam\","
+            + "geboortedatum \"geboortedatum\" from klant order by klant_id";
+    static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private static Logger logger;
     private static FileHandler fh;
     private static IMessageSender exchanger;
@@ -150,7 +153,7 @@ public class OpticStore extends Application {
                         "-----------------------");
             }
         } catch (IOException e) {
-            logAndShowErrorMessage(e.getMessage() + new File(PROPERTYFILENAME).getAbsolutePath());
+            logAndShowErrorMessage(e.getLocalizedMessage() + new File(PROPERTYFILENAME).getAbsolutePath());
         }
     }
 

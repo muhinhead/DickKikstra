@@ -43,7 +43,7 @@
                                        <children>
                                           <ScrollPane prefHeight="697.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <content>
-                                              <AnchorPane fx:id="innerAnchorPane" minHeight="600.0" minWidth="850.0" prefWidth="850.0">
+                                              <AnchorPane fx:id="innerAnchorPane" minHeight="550.0" minWidth="1100.0" prefWidth="1100.0">
                                                    <children>
                                                       <GridPane layoutX="24.0" layoutY="15.0" prefHeight="437.0" prefWidth="305.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="15.0">
                                                         <columnConstraints>
@@ -77,11 +77,11 @@
                                                             <Label text="postcode" GridPane.rowIndex="7" />
                                                             <Label text="plaats" GridPane.rowIndex="8" />
                                                             <Label text="land" GridPane.rowIndex="9" />
-                                                            <Label text="gebortedatum" GridPane.rowIndex="10" />
-                                                            <Label text="telefon" GridPane.rowIndex="11" />
-                                                            <Label text="mobile" GridPane.rowIndex="12" />
+                                                            <Label text="geboortedatum" GridPane.rowIndex="10" />
+                                                            <Label text="telefoon" GridPane.rowIndex="11" />
+                                                            <Label text="mobiel" GridPane.rowIndex="12" />
                                                             <Label text="e-mail" GridPane.rowIndex="13" />
-                                                            <TextField fx:id="klantIDfield" GridPane.columnIndex="1" />
+                                                            <TextField fx:id="klantIDfield" maxWidth="70.0" promptText="123456" GridPane.columnIndex="1" />
                                                             <TextField fx:id="aanhefField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                             <TextField fx:id="voorlettersField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                             <TextField fx:id="tussenvoegselField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -91,10 +91,10 @@
                                                             <TextField fx:id="postcodeField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                                             <TextField fx:id="plaatsField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                                                             <TextField fx:id="landField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                                            <TextField fx:id="gebortedatumField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                                                             <TextField fx:id="telefonField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                                                             <TextField fx:id="mobileField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                                                            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                                            <TextField fx:id="emailField" promptText="mymail@mailserver.com" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                                            <TextField fx:id="gebortedatumField" promptText="2016-12-31" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                                                          </children>
                                                       </GridPane>
                                                       <VBox fx:id="searchClientBox" layoutX="335.0" layoutY="27.0" prefHeight="183.0" prefWidth="85.0" spacing="30.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="27.0" />
