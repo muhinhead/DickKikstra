@@ -8,41 +8,41 @@ import com.dk.orm.dbobject.Triggers;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class Dbversion extends DbObject  {
+public class Verkoop extends DbObject  {
     private static Triggers activeTriggers = null;
-    private Integer dbversionId = null;
-    private Integer versionId = null;
-    private String version = null;
+    private Integer verkoopId = null;
+    private Integer klantId = null;
+    private Date verkoopdatum = null;
 
-    public Dbversion(Connection connection) {
-        super(connection, "dbversion", "dbversion_id");
-        setColumnNames(new String[]{"dbversion_id", "version_id", "version"});
+    public Verkoop(Connection connection) {
+        super(connection, "verkoop", "verkoop_id");
+        setColumnNames(new String[]{"verkoop_id", "klant_id", "verkoopdatum"});
     }
 
-    public Dbversion(Connection connection, Integer dbversionId, Integer versionId, String version) {
-        super(connection, "dbversion", "dbversion_id");
-        setNew(dbversionId.intValue() <= 0);
-//        if (dbversionId.intValue() != 0) {
-            this.dbversionId = dbversionId;
+    public Verkoop(Connection connection, Integer verkoopId, Integer klantId, Date verkoopdatum) {
+        super(connection, "verkoop", "verkoop_id");
+        setNew(verkoopId.intValue() <= 0);
+//        if (verkoopId.intValue() != 0) {
+            this.verkoopId = verkoopId;
 //        }
-        this.versionId = versionId;
-        this.version = version;
+        this.klantId = klantId;
+        this.verkoopdatum = verkoopdatum;
     }
 
     public DbObject loadOnId(int id) throws SQLException, ForeignKeyViolationException {
-        Dbversion dbversion = null;
+        Verkoop verkoop = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String stmt = "SELECT dbversion_id,version_id,version FROM dbversion WHERE dbversion_id=" + id;
+        String stmt = "SELECT verkoop_id,klant_id,verkoopdatum FROM verkoop WHERE verkoop_id=" + id;
         try {
             ps = getConnection().prepareStatement(stmt);
             rs = ps.executeQuery();
             if (rs.next()) {
-                dbversion = new Dbversion(getConnection());
-                dbversion.setDbversionId(new Integer(rs.getInt(1)));
-                dbversion.setVersionId(new Integer(rs.getInt(2)));
-                dbversion.setVersion(rs.getString(3));
-                dbversion.setNew(false);
+                verkoop = new Verkoop(getConnection());
+                verkoop.setVerkoopId(new Integer(rs.getInt(1)));
+                verkoop.setKlantId(new Integer(rs.getInt(2)));
+                verkoop.setVerkoopdatum(rs.getDate(3));
+                verkoop.setNew(false);
             }
         } finally {
             try {
@@ -51,7 +51,7 @@ public class Dbversion extends DbObject  {
                 if (ps != null) ps.close();
             }
         }
-        return dbversion;
+        return verkoop;
     }
 
     protected void insert() throws SQLException, ForeignKeyViolationException {
@@ -60,27 +60,27 @@ public class Dbversion extends DbObject  {
          }
          PreparedStatement ps = null;
          String stmt =
-                "INSERT INTO dbversion ("+(getDbversionId().intValue()!=0?"dbversion_id,":"")+"version_id,version) values("+(getDbversionId().intValue()!=0?"?,":"")+"?,?)";
+                "INSERT INTO verkoop ("+(getVerkoopId().intValue()!=0?"verkoop_id,":"")+"klant_id,verkoopdatum) values("+(getVerkoopId().intValue()!=0?"?,":"")+"?,?)";
          try {
              ps = getConnection().prepareStatement(stmt);
              int n = 0;
-             if (getDbversionId().intValue()!=0) {
-                 ps.setObject(++n, getDbversionId());
+             if (getVerkoopId().intValue()!=0) {
+                 ps.setObject(++n, getVerkoopId());
              }
-             ps.setObject(++n, getVersionId());
-             ps.setObject(++n, getVersion());
+             ps.setObject(++n, getKlantId());
+             ps.setObject(++n, getVerkoopdatum());
              ps.execute();
          } finally {
              if (ps != null) ps.close();
          }
          ResultSet rs = null;
-         if (getDbversionId().intValue()==0) {
-             stmt = "SELECT max(dbversion_id) FROM dbversion";
+         if (getVerkoopId().intValue()==0) {
+             stmt = "SELECT max(verkoop_id) FROM verkoop";
              try {
                  ps = getConnection().prepareStatement(stmt);
                  rs = ps.executeQuery();
                  if (rs.next()) {
-                     setDbversionId(new Integer(rs.getInt(1)));
+                     setVerkoopId(new Integer(rs.getInt(1)));
                  }
              } finally {
                  try {
@@ -106,13 +106,13 @@ public class Dbversion extends DbObject  {
             }
             PreparedStatement ps = null;
             String stmt =
-                    "UPDATE dbversion " +
-                    "SET version_id = ?, version = ?" + 
-                    " WHERE dbversion_id = " + getDbversionId();
+                    "UPDATE verkoop " +
+                    "SET klant_id = ?, verkoopdatum = ?" + 
+                    " WHERE verkoop_id = " + getVerkoopId();
             try {
                 ps = getConnection().prepareStatement(stmt);
-                ps.setObject(1, getVersionId());
-                ps.setObject(2, getVersion());
+                ps.setObject(1, getKlantId());
+                ps.setObject(2, getVerkoopdatum());
                 ps.execute();
             } finally {
                 if (ps != null) ps.close();
@@ -125,31 +125,34 @@ public class Dbversion extends DbObject  {
     }
 
     public void delete() throws SQLException, ForeignKeyViolationException {
+        if (getTriggers() != null) {
+            getTriggers().beforeDelete(this);
+        }
         PreparedStatement ps = null;
         String stmt =
-                "DELETE FROM dbversion " +
-                "WHERE dbversion_id = " + getDbversionId();
+                "DELETE FROM verkoop " +
+                "WHERE verkoop_id = " + getVerkoopId();
         try {
             ps = getConnection().prepareStatement(stmt);
             ps.execute();
         } finally {
             if (ps != null) ps.close();
         }
-        setDbversionId(new Integer(-getDbversionId().intValue()));
+        setVerkoopId(new Integer(-getVerkoopId().intValue()));
         if (getTriggers() != null) {
             getTriggers().afterDelete(this);
         }
     }
 
     public boolean isDeleted() {
-        return (getDbversionId().intValue() < 0);
+        return (getVerkoopId().intValue() < 0);
     }
 
     public static DbObject[] load(Connection con,String whereCondition,String orderCondition) throws SQLException {
         ArrayList lst = new ArrayList();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String stmt = "SELECT dbversion_id,version_id,version FROM dbversion " +
+        String stmt = "SELECT verkoop_id,klant_id,verkoopdatum FROM verkoop " +
                 ((whereCondition != null && whereCondition.length() > 0) ?
                 " WHERE " + whereCondition : "") +
                 ((orderCondition != null && orderCondition.length() > 0) ?
@@ -159,7 +162,7 @@ public class Dbversion extends DbObject  {
             rs = ps.executeQuery();
             while (rs.next()) {
                 DbObject dbObj;
-                lst.add(dbObj=new Dbversion(con,new Integer(rs.getInt(1)),new Integer(rs.getInt(2)),rs.getString(3)));
+                lst.add(dbObj=new Verkoop(con,new Integer(rs.getInt(1)),new Integer(rs.getInt(2)),rs.getDate(3)));
                 dbObj.setNew(false);
             }
         } finally {
@@ -169,10 +172,10 @@ public class Dbversion extends DbObject  {
                 if (ps != null) ps.close();
             }
         }
-        Dbversion[] objects = new Dbversion[lst.size()];
+        Verkoop[] objects = new Verkoop[lst.size()];
         for (int i = 0; i < lst.size(); i++) {
-            Dbversion dbversion = (Dbversion) lst.get(i);
-            objects[i] = dbversion;
+            Verkoop verkoop = (Verkoop) lst.get(i);
+            objects[i] = verkoop;
         }
         return objects;
     }
@@ -184,7 +187,7 @@ public class Dbversion extends DbObject  {
         boolean ok = false;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String stmt = "SELECT dbversion_id FROM dbversion " +
+        String stmt = "SELECT verkoop_id FROM verkoop " +
                 ((whereCondition != null && whereCondition.length() > 0) ?
                 "WHERE " + whereCondition : "");
         try {
@@ -202,51 +205,54 @@ public class Dbversion extends DbObject  {
     }
 
     //public String toString() {
-    //    return getDbversionId() + getDelimiter();
+    //    return getVerkoopId() + getDelimiter();
     //}
 
     public Integer getPK_ID() {
-        return dbversionId;
+        return verkoopId;
     }
 
     public void setPK_ID(Integer id) throws ForeignKeyViolationException {
         boolean prevIsNew = isNew();
-        setDbversionId(id);
+        setVerkoopId(id);
         setNew(prevIsNew);
     }
 
-    public Integer getDbversionId() {
-        return dbversionId;
+    public Integer getVerkoopId() {
+        return verkoopId;
     }
 
-    public void setDbversionId(Integer dbversionId) throws ForeignKeyViolationException {
-        setWasChanged(this.dbversionId != null && this.dbversionId != dbversionId);
-        this.dbversionId = dbversionId;
-        setNew(dbversionId.intValue() == 0);
+    public void setVerkoopId(Integer verkoopId) throws ForeignKeyViolationException {
+        setWasChanged(this.verkoopId != null && this.verkoopId != verkoopId);
+        this.verkoopId = verkoopId;
+        setNew(verkoopId.intValue() == 0);
     }
 
-    public Integer getVersionId() {
-        return versionId;
+    public Integer getKlantId() {
+        return klantId;
     }
 
-    public void setVersionId(Integer versionId) throws SQLException, ForeignKeyViolationException {
-        setWasChanged(this.versionId != null && !this.versionId.equals(versionId));
-        this.versionId = versionId;
+    public void setKlantId(Integer klantId) throws SQLException, ForeignKeyViolationException {
+        if (klantId!=null && !Klant.exists(getConnection(),"klant_id = " + klantId)) {
+            throw new ForeignKeyViolationException("Can't set klant_id, foreign key violation: verkoop_klant_fk");
+        }
+        setWasChanged(this.klantId != null && !this.klantId.equals(klantId));
+        this.klantId = klantId;
     }
 
-    public String getVersion() {
-        return version;
+    public Date getVerkoopdatum() {
+        return verkoopdatum;
     }
 
-    public void setVersion(String version) throws SQLException, ForeignKeyViolationException {
-        setWasChanged(this.version != null && !this.version.equals(version));
-        this.version = version;
+    public void setVerkoopdatum(Date verkoopdatum) throws SQLException, ForeignKeyViolationException {
+        setWasChanged(this.verkoopdatum != null && !this.verkoopdatum.equals(verkoopdatum));
+        this.verkoopdatum = verkoopdatum;
     }
     public Object[] getAsRow() {
         Object[] columnValues = new Object[3];
-        columnValues[0] = getDbversionId();
-        columnValues[1] = getVersionId();
-        columnValues[2] = getVersion();
+        columnValues[0] = getVerkoopId();
+        columnValues[1] = getKlantId();
+        columnValues[2] = getVerkoopdatum();
         return columnValues;
     }
 
@@ -263,15 +269,15 @@ public class Dbversion extends DbObject  {
     public void fillFromString(String row) throws ForeignKeyViolationException, SQLException {
         String[] flds = splitStr(row, delimiter);
         try {
-            setDbversionId(Integer.parseInt(flds[0]));
+            setVerkoopId(Integer.parseInt(flds[0]));
         } catch(NumberFormatException ne) {
-            setDbversionId(null);
+            setVerkoopId(null);
         }
         try {
-            setVersionId(Integer.parseInt(flds[1]));
+            setKlantId(Integer.parseInt(flds[1]));
         } catch(NumberFormatException ne) {
-            setVersionId(null);
+            setKlantId(null);
         }
-        setVersion(flds[2]);
+        setVerkoopdatum(toDate(flds[2]));
     }
 }
