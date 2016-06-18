@@ -5,7 +5,6 @@
  */
 package com.dk;
 
-import com.dk.orm.Dbversion;
 import com.dk.remote.IMessageSender;
 import com.dk.rmi.DbConnection;
 import com.dk.rmi.ExchangeFactory;

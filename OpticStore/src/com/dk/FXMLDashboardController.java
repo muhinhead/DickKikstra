@@ -5,7 +5,10 @@
  */
 package com.dk;
 
+import com.dk.orm.Brilvoorschrift;
 import com.dk.orm.Klant;
+import com.dk.orm.Verkoop;
+import com.dk.orm.dbobject.DbObject;
 import com.dk.orm.dbobject.ForeignKeyViolationException;
 import com.dk.util.FXutils;
 import com.dk.util.TableGridPanel;
@@ -16,17 +19,17 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 //import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -76,6 +79,80 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private TextField emailField;
 
+    @FXML
+    private VBox detailsVbox;
+
+    @FXML
+    private Label klntIdLabel;
+    @FXML
+    private Label klntNameLabel;
+    @FXML
+    private Label klntAdresLabel;
+    @FXML
+    private Label klntPostCodePlaatsLabel;
+
+    @FXML
+    private Label klntteleFoonLabel;
+    @FXML
+    private Label klntMobielLabel;
+    @FXML
+    private Label klntEmailLabel;
+    @FXML
+    private Label klntVerkoolDatumLabel;
+
+    @FXML
+    private Label odSphLabel;
+    @FXML
+    private Label odCylLabel;
+    @FXML
+    private Label odAsLabel;
+    @FXML
+    private Label odAddLabel;
+    @FXML
+    private Label odNabijLabel;
+    @FXML
+    private Label odPrLabel;
+    @FXML
+    private Label odBasisLabel;
+    @FXML
+    private Label odVisLabel;
+    @FXML
+    private Label odPdDnLabel;
+    @FXML
+    private Label odLhLabel;
+    @FXML
+    private Label odHaLabel;
+    @FXML
+    private Label odIodLabel;
+
+    @FXML
+    private Label osSphLabel;
+    @FXML
+    private Label osCylLabel;
+    @FXML
+    private Label osAsLabel;
+    @FXML
+    private Label osAddLabel;
+    @FXML
+    private Label osNabijLabel;
+    @FXML
+    private Label osPrLabel;
+    @FXML
+    private Label osBasisLabel;
+    @FXML
+    private Label osVisLabel;
+    @FXML
+    private Label osPdDnLabel;
+    @FXML
+    private Label osLhLabel;
+    @FXML
+    private Label osHaLabel;
+    @FXML
+    private Label osIodLabel;
+
+    @FXML
+    private Label brilvoorschriftLabel;
+
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
     private int selectedKlantID = 0;
@@ -98,6 +175,17 @@ public class FXMLDashboardController implements Initializable {
             }
         }
 
+        for (Label lbl : new Label[]{klntIdLabel, klntNameLabel, klntAdresLabel,
+            klntPostCodePlaatsLabel, klntteleFoonLabel, klntMobielLabel,
+            klntEmailLabel, klntVerkoolDatumLabel,
+            odSphLabel, odCylLabel, odAsLabel, odAddLabel, odNabijLabel, odPrLabel, odBasisLabel,
+            odVisLabel, odPdDnLabel, odLhLabel, odHaLabel, odIodLabel,
+            osSphLabel, osCylLabel, osAsLabel, osAddLabel, osNabijLabel, osPrLabel, osBasisLabel,
+            osVisLabel, osPdDnLabel, osLhLabel, osHaLabel, osIodLabel
+        }) {
+            lbl.setText("");
+        }
+
         klantIDfield.setDisable(false);
         if (withDeselect) {
             klantGrid.unselect();
@@ -106,7 +194,7 @@ public class FXMLDashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        brilvoorschriftLabel.setStyle("-fx-background-color: gray;");
         Node logoutNode = FXutils.createButton(getClass(), "exit.png", new Runnable() {
             @Override
             public void run() {
@@ -119,7 +207,6 @@ public class FXMLDashboardController implements Initializable {
         Node searchClientNode = FXutils.createButton(getClass(), "search.png", new Runnable() {
             @Override
             public void run() {
-                //TODO: 
                 String newSelect = addWhereCondition();
                 try {
                     klantGrid.reload(newSelect);
@@ -128,7 +215,6 @@ public class FXMLDashboardController implements Initializable {
                 }
             }
         });
-        //searchClientNode.setDisable(true);
         searchClientBox.getChildren().add(searchClientNode);
         Node clearClientNode = FXutils.createButton(getClass(), "clear.png", new Runnable() {
             @Override
@@ -153,6 +239,7 @@ public class FXMLDashboardController implements Initializable {
                             try {
                                 klantGrid.reload(OpticStore.KLANTLIST);
                                 klantGrid.scrollToID(newKlant_id);
+                                loadKlantFrom(selectedKlantID);
                             } catch (RemoteException ex) {
                                 OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
                             }
@@ -163,17 +250,12 @@ public class FXMLDashboardController implements Initializable {
                 }
             }
         });
-        //newClientNode.setDisable(true);
+
         searchClientBox.getChildren().add(newClientNode);
         editClientNode = FXutils.createButton(getClass(), "edituser.png", new Runnable() {
             @Override
             public void run() {
-                try {
-                    //TODO:
-                    loadKlantFrom(selectedKlantID);
-                } catch (RemoteException ex) {
-                    OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
-                }
+                loadKlantFrom(selectedKlantID);
             }
         });
         editClientNode.setDisable(true);
@@ -202,6 +284,14 @@ public class FXMLDashboardController implements Initializable {
 
         try {
             klantGrid = new TableGridPanel(OpticStore.getExchanger(), OpticStore.KLANTLIST);
+            klantGrid.getTableView().setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                        loadKlantFrom(selectedKlantID);
+                    }
+                }
+            });
             innerAnchorPane.setTopAnchor(klantGrid, 10.0);
             innerAnchorPane.setLeftAnchor(klantGrid, 400.0);
             innerAnchorPane.setRightAnchor(klantGrid, 0.0);
@@ -224,7 +314,6 @@ public class FXMLDashboardController implements Initializable {
                 }
             }
         });
-
     }
 
     private void fillKlantFromEdits(Klant klant) throws SQLException, ForeignKeyViolationException, ParseException {
@@ -260,10 +349,12 @@ public class FXMLDashboardController implements Initializable {
         if (achternaamField.getText().isEmpty()) {
             achternaamField.setPromptText(FILL_THIS_FIELD);
             achternaamField.requestFocus();
+            return false;
         }
         if (emailField.getText().isEmpty()) {
             emailField.setPromptText(FILL_THIS_FIELD);
             emailField.requestFocus();
+            return false;
         }
         return true;
     }
@@ -387,7 +478,7 @@ public class FXMLDashboardController implements Initializable {
                 if (isThere) {
                     sb.append(" and ");
                 }
-                sb.append("UPPER(telefon) like '" + telefonField.getText().toUpperCase() + "%'");
+                sb.append("UPPER(telefoon) like '" + telefonField.getText().toUpperCase() + "%'");
                 isThere = true;
             }
             if (!mobileField.getText().isEmpty()) {
@@ -411,32 +502,95 @@ public class FXMLDashboardController implements Initializable {
         }
     }
 
-    private void loadKlantFrom(int selectedKlantID) throws RemoteException {
-        clearKlantForm(false);
-        Klant klant = (Klant) OpticStore.getExchanger().loadDbObjectOnID(Klant.class, selectedKlantID);
-        if (klant != null) {
-            klantIDfield.setDisable(true);
-            klantIDfield.setText(klant.getKlantId().toString());
-            aanhefField.setText(klant.getAanhef() == null ? "" : klant.getAanhef());
-            voorlettersField.setText(klant.getVoorletters() == null ? "" : klant.getVoorletters());
-            tussenvoegselField.setText(klant.getTussenvoegsel() == null ? "" : klant.getTussenvoegsel());
-            achternaamField.setText(klant.getAchternaam() == null ? "" : klant.getAchternaam());
-            adresField.setText(klant.getAdres() == null ? "" : klant.getAdres());
-            huisnummerField.setText(klant.getHuisnummer() == null ? "" : klant.getHuisnummer());
-            postcodeField.setText(klant.getPostcode() == null ? "" : klant.getPostcode());
-            plaatsField.setText(klant.getPlaats() == null ? "" : klant.getPlaats());
-            landField.setText(klant.getLand() == null ? "" : klant.getLand());
-            if (klant.getGeboortedatum() != null) {
-                gebortedatumField.setText(klant.getGeboortedatum().toString());
+    private void loadKlantFrom(int selectedKlantID) {
+        try {
+            clearKlantForm(false);
+            Klant klant = (Klant) OpticStore.getExchanger().loadDbObjectOnID(Klant.class, selectedKlantID);
+            if (klant != null) {
+                klantIDfield.setDisable(true);
+                String klid;
+                klantIDfield.setText(klid = klant.getKlantId().toString());
+                aanhefField.setText(klant.getAanhef() == null ? "" : klant.getAanhef());
+                voorlettersField.setText(klant.getVoorletters() == null ? "" : klant.getVoorletters());
+                tussenvoegselField.setText(klant.getTussenvoegsel() == null ? "" : klant.getTussenvoegsel());
+                achternaamField.setText(klant.getAchternaam() == null ? "" : klant.getAchternaam());
+                adresField.setText(klant.getAdres() == null ? "" : klant.getAdres());
+                huisnummerField.setText(klant.getHuisnummer() == null ? "" : klant.getHuisnummer());
+                postcodeField.setText(klant.getPostcode() == null ? "" : klant.getPostcode());
+                plaatsField.setText(klant.getPlaats() == null ? "" : klant.getPlaats());
+                landField.setText(klant.getLand() == null ? "" : klant.getLand());
+                if (klant.getGeboortedatum() != null) {
+                    gebortedatumField.setText(klant.getGeboortedatum().toString());
+                }
+                String tlfn;
+                telefonField.setText(tlfn = klant.getTelefoon() == null ? "" : klant.getTelefoon());
+                String mbl;
+                mobileField.setText(mbl = klant.getMobiel() == null ? "" : klant.getMobiel());
+                String eml;
+                emailField.setText(eml = klant.getEmail() == null ? "" : klant.getEmail());
+                String postPlaats = (klant.getPostcode() == null ? "" : (klant.getPostcode() + " "))
+                        + (klant.getPlaats() == null ? "" : klant.getPlaats());
+                klntIdLabel.setText(klid);
+                klntNameLabel.setText(klant.getAanhef() + " " + klant.getVoorletters()
+                        + " " + klant.getTussenvoegsel() + " " + klant.getAchternaam());
+                klntAdresLabel.setText(klant.getAdres() + " " + klant.getHuisnummer());
+                klntteleFoonLabel.setText("telefoon:" + tlfn);
+                klntMobielLabel.setText("mobiel:" + mbl);
+                klntEmailLabel.setText("e-mail:" + eml);
+                klntPostCodePlaatsLabel.setText(postPlaats);
+                klntVerkoolDatumLabel.setText(getLastSellDate(klant.getKlantId()));
+                loadLastBrilvoorschrift(klant.getKlantId());
             }
-            telefonField.setText(klant.getTelefoon() == null ? "" : klant.getTelefoon());
-            mobileField.setText(klant.getMobiel() == null ? "" : klant.getMobiel());
-            emailField.setText(klant.getEmail() == null ? "" : klant.getEmail());
+        } catch (RemoteException ex) {
+            OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
         }
     }
 
     private void enableLoadKlantOperations(boolean enable) {
         editClientNode.setDisable(!enable);
         delClientNode.setDisable(!enable);
+    }
+
+    private String getLastSellDate(Integer klantId) throws RemoteException {
+        DbObject[] recs = OpticStore.getExchanger().getDbObjects(Verkoop.class, "klant_id=" + klantId, "verkoopdatum desc");
+        if (recs.length > 0) {
+            Verkoop vk = (Verkoop) recs[0];
+            Date dt = vk.getVerkoopdatum();
+            return dt == null ? "" : OpticStore.dateFormat.format(dt);
+        }
+        return "geen verkoop";
+    }
+
+    private void loadLastBrilvoorschrift(Integer klantId) throws RemoteException {
+        DbObject[] recs = OpticStore.getExchanger().getDbObjects(Brilvoorschrift.class, "klant_id=" + klantId, "datum_refractie desc");
+        if (recs.length > 0) {
+            Brilvoorschrift bs = (Brilvoorschrift) recs[0];
+            Date dt = bs.getDatumRefractie();
+            odSphLabel.setText(bs.getOdSph().toString());
+            odCylLabel.setText(bs.getOdCyl().toString());
+            odAsLabel.setText(bs.getOdAs().toString());
+            odAddLabel.setText(bs.getOdAdd().toString());
+            odNabijLabel.setText(bs.getOdNabil().toString());
+            odPrLabel.setText(bs.getOdPr().toString());
+            odBasisLabel.setText(bs.getOdBasis().toString());
+            odVisLabel.setText(bs.getOdVis().toString());
+            odPdDnLabel.setText(bs.getOdPddn());
+            odLhLabel.setText(bs.getOdLh().toString());
+            odHaLabel.setText(bs.getOdHa().toString());
+            odIodLabel.setText(bs.getOdIod().toString());
+
+            osSphLabel.setText(bs.getOsSph().toString());
+            osCylLabel.setText(bs.getOsCyl().toString());
+            osAsLabel.setText(bs.getOsAs().toString());
+            osAddLabel.setText(bs.getOsAdd().toString());
+            osNabijLabel.setText(bs.getOsNabil().toString());
+            osPrLabel.setText(bs.getOsPr().toString());
+            osBasisLabel.setText(bs.getOsBasis().toString());
+            osVisLabel.setText(bs.getOsVis().toString());
+            osPdDnLabel.setText(bs.getOsPddn());
+            osLhLabel.setText(bs.getOsLh().toString());
+            osHaLabel.setText(bs.getOsHa().toString());
+            osIodLabel.setText(bs.getOsIod().toString());
+        }
     }
 }

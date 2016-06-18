@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -37,7 +38,7 @@
                      <children>
                         <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <panes>
-                            <TitledPane animated="false" text="Search &amp; Enter">
+                            <TitledPane animated="false" text="zoeken en bewerken">
                                  <content>
                                     <AnchorPane>
                                        <children>
@@ -106,8 +107,126 @@
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                            <TitledPane animated="false" text="Details" />
-                              <TitledPane prefHeight="200.0" prefWidth="200.0" text="Purchases" />
+                            <TitledPane animated="false" text="bijzonderheden">
+                                 <content>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <ScrollPane layoutX="20.4" layoutY="20.4" prefHeight="620.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <VBox fx:id="detailsVbox" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="320.0" prefWidth="1200.0">
+                                                   <children>
+                                                      <GridPane>
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="100.99999809265137" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.0000076293945" minWidth="10.0" prefWidth="176.00000190734863" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="628.9999694824219" minWidth="10.0" prefWidth="192.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="478.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Label fx:id="klntIdLabel" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                                                            <Label fx:id="klntNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <Label fx:id="klntAdresLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <Label fx:id="klntPostCodePlaatsLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                            <Label fx:id="klntteleFoonLabel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                            <Label fx:id="klntMobielLabel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                            <Label fx:id="klntEmailLabel" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                            <Label fx:id="klntVerkoolDatumLabel" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                         </children>
+                                                      </GridPane>
+                                                      <Label fx:id="brilvoorschriftLabel" maxWidth="1.7976931348623157E308" text="              brilvoorschrift" textAlignment="CENTER" textFill="WHITE" />
+                                                      <GridPane>
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Label text="Sph" GridPane.columnIndex="1" />
+                                                            <Label text="OD" GridPane.rowIndex="1" />
+                                                            <Label text="OS" GridPane.rowIndex="2" />
+                                                            <Label text="Cyl" GridPane.columnIndex="2" />
+                                                            <Label text="As" GridPane.columnIndex="3" />
+                                                            <Label text="Add" GridPane.columnIndex="4" />
+                                                            <Label text="Nabij" GridPane.columnIndex="5" />
+                                                            <Label text="Pr" GridPane.columnIndex="6" />
+                                                            <Label text="Basis" GridPane.columnIndex="7" />
+                                                            <Label text="Vis" GridPane.columnIndex="8" />
+                                                            <Label text="PD D/N" GridPane.columnIndex="9" />
+                                                            <Label text="LH" GridPane.columnIndex="10" />
+                                                            <Label text="HA" GridPane.columnIndex="11" />
+                                                            <Label text="IOD" GridPane.columnIndex="12" />
+                                                            <Label fx:id="odSphLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odCylLabel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odAsLabel" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odAddLabel" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odNabijLabel" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odPrLabel" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odBasisLabel" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odVisLabel" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odPdDnLabel" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odLhLabel" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odHaLabel" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odIodLabel" GridPane.columnIndex="12" GridPane.rowIndex="1" />
+                                                            <Label fx:id="osSphLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osCylLabel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osAsLabel" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osAddLabel" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osNabijLabel" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osPrLabel" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osBasisLabel" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osVisLabel" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osPdDnLabel" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osLhLabel" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osHaLabel" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osIodLabel" GridPane.columnIndex="12" GridPane.rowIndex="2" />
+                                                         </children>
+                                                      </GridPane>
+                                                      <GridPane alignment="TOP_RIGHT">
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="266.0" text="oogmeting door" textAlignment="RIGHT" />
+                                                            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="271.0" text="datum refractie" textAlignment="RIGHT" GridPane.columnIndex="1" />
+                                                            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="264.0" text="2016-06-18" GridPane.columnIndex="2" />
+                                                            <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="anamnese" GridPane.columnIndex="3" />
+                                                         </children>
+                                                      </GridPane>
+                                                   </children>
+                                                </VBox>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </content></TitledPane>
+                              <TitledPane prefHeight="200.0" prefWidth="200.0" text="verkoop" />
                           </panes>
                         </Accordion>
                      </children>
