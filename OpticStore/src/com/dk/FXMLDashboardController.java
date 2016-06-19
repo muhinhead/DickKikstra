@@ -26,10 +26,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 //import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -40,6 +42,7 @@ import javafx.scene.layout.VBox;
 public class FXMLDashboardController implements Initializable {
 
     private static final String FILL_THIS_FIELD = "dit veld invullen";
+    private static final String graylabelStyle = "-fx-background-color: gray;";
     @FXML
     private HBox logoutBox;
 
@@ -149,9 +152,66 @@ public class FXMLDashboardController implements Initializable {
     private Label osHaLabel;
     @FXML
     private Label osIodLabel;
+    @FXML
+    private Label typeGlasLabel;
+    @FXML
+    private Label coatingLabel;
+    @FXML
+    private Label kleurglazenLabel;
 
     @FXML
     private Label brilvoorschriftLabel;
+
+    @FXML
+    private GridPane glazenGridPane;
+    @FXML
+    private Label leverancierLabel;
+    @FXML
+    private Label glazenLabel;
+    @FXML
+    private Label diameterLabel;
+    @FXML
+    private Label prijsGlasLabel;
+    @FXML
+    private Label btwLabel;
+    @FXML
+    private Label empty1Label;
+    @FXML
+    private Label empty2Label;
+    @FXML
+    private Label breedteLabel;
+    @FXML
+    private Label hoogteLabel;
+    @FXML
+    private Label neusmaatLabel;
+    @FXML
+    private Label merkLabel;
+    @FXML
+    private Label empty3Label;
+    @FXML
+    private Label modelLabel;
+    @FXML
+    private Label empty4Label;
+    @FXML
+    private Label kleurLabel;
+    @FXML
+    private Label empty5Label;
+    @FXML
+    private Label maatLabel;
+    @FXML
+    private Label empty6Label;
+    @FXML
+    private Label prijsMontuurLabel;
+    @FXML
+    private Label btw2Label;
+    @FXML
+    private Tab oogmetingTab;
+    @FXML
+    private Tab montuurTab;
+    @FXML
+    private Tab glazenTab;
+    @FXML
+    private Tab mailingTab;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
@@ -186,6 +246,11 @@ public class FXMLDashboardController implements Initializable {
             lbl.setText("");
         }
 
+        oogmetingTab.setDisable(true);
+        montuurTab.setDisable(true);
+        glazenTab.setDisable(true);
+        mailingTab.setDisable(true);
+
         klantIDfield.setDisable(false);
         if (withDeselect) {
             klantGrid.unselect();
@@ -194,7 +259,31 @@ public class FXMLDashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        brilvoorschriftLabel.setStyle("-fx-background-color: gray;");
+//        brilvoorschriftLabel.setStyle(graylabelStyle);
+//        leverancierLabel.setStyle(graylabelStyle);
+//        glazenLabel.setStyle(graylabelStyle);
+//        typeGlasLabel.setStyle(graylabelStyle);
+//        coatingLabel.setStyle(graylabelStyle);
+//        kleurglazenLabel.setStyle(graylabelStyle);
+//        diameterLabel.setStyle(graylabelStyle);
+//        prijsGlasLabel.setStyle(graylabelStyle);
+//        btwLabel.setStyle(graylabelStyle);
+//        empty1Label.setStyle(graylabelStyle);
+//        empty2Label.setStyle(graylabelStyle);
+//        breedteLabel.setStyle(graylabelStyle);
+//        hoogteLabel.setStyle(graylabelStyle);
+//        neusmaatLabel.setStyle(graylabelStyle);
+//        merkLabel.setStyle(graylabelStyle);
+//        empty3Label.setStyle(graylabelStyle);
+//        modelLabel.setStyle(graylabelStyle);
+//        empty4Label.setStyle(graylabelStyle);
+//        kleurLabel.setStyle(graylabelStyle);
+//        empty5Label.setStyle(graylabelStyle);
+//        maatLabel.setStyle(graylabelStyle);
+//        empty6Label.setStyle(graylabelStyle);
+//        prijsMontuurLabel.setStyle(graylabelStyle);
+//        btw2Label.setStyle(graylabelStyle);
+        //glazenGridPane.getChildren().get(0).setStyle("-fx-background-color: gray;");
         Node logoutNode = FXutils.createButton(getClass(), "exit.png", new Runnable() {
             @Override
             public void run() {
@@ -540,6 +629,11 @@ public class FXMLDashboardController implements Initializable {
                 klntPostCodePlaatsLabel.setText(postPlaats);
                 klntVerkoolDatumLabel.setText(getLastSellDate(klant.getKlantId()));
                 loadLastBrilvoorschrift(klant.getKlantId());
+                oogmetingTab.setDisable(false);
+                montuurTab.setDisable(false);
+                glazenTab.setDisable(false);
+                mailingTab.setDisable(false);
+
             }
         } catch (RemoteException ex) {
             OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
