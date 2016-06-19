@@ -176,30 +176,30 @@
                                                             <Label text="LH" GridPane.columnIndex="10" />
                                                             <Label text="HA" GridPane.columnIndex="11" />
                                                             <Label text="IOD" GridPane.columnIndex="12" />
-                                                            <Label fx:id="odSphLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odCylLabel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odAsLabel" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odAddLabel" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odNabijLabel" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odPrLabel" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odBasisLabel" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odVisLabel" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odPdDnLabel" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odLhLabel" GridPane.columnIndex="10" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odHaLabel" GridPane.columnIndex="11" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odIodLabel" GridPane.columnIndex="12" GridPane.rowIndex="1" />
-                                                            <Label fx:id="osSphLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osCylLabel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osAsLabel" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osAddLabel" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osNabijLabel" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osPrLabel" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osBasisLabel" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osVisLabel" GridPane.columnIndex="8" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osPdDnLabel" GridPane.columnIndex="9" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osLhLabel" GridPane.columnIndex="10" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osHaLabel" GridPane.columnIndex="11" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osIodLabel" GridPane.columnIndex="12" GridPane.rowIndex="2" />
+                                                            <Label fx:id="odSphLabel" prefHeight="17.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odCylLabel" prefHeight="17.0" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odAsLabel" prefHeight="17.0" prefWidth="137.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odAddLabel" prefHeight="17.0" prefWidth="167.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odNabijLabel" prefHeight="17.0" prefWidth="118.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odPrLabel" prefHeight="17.0" prefWidth="151.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odBasisLabel" prefHeight="17.0" prefWidth="108.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odVisLabel" prefHeight="17.0" prefWidth="148.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odPdDnLabel" prefHeight="17.0" prefWidth="159.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odLhLabel" prefHeight="17.0" prefWidth="161.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odHaLabel" prefHeight="17.0" prefWidth="163.0" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                                                            <Label fx:id="odIodLabel" prefHeight="17.0" prefWidth="117.0" GridPane.columnIndex="12" GridPane.rowIndex="1" />
+                                                            <Label fx:id="osSphLabel" prefHeight="17.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osCylLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osAsLabel" prefHeight="17.0" prefWidth="144.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osAddLabel" prefHeight="17.0" prefWidth="106.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osNabijLabel" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osPrLabel" prefHeight="17.0" prefWidth="161.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osBasisLabel" prefHeight="17.0" prefWidth="184.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osVisLabel" prefHeight="17.0" prefWidth="166.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osPdDnLabel" prefHeight="17.0" prefWidth="147.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osLhLabel" prefHeight="17.0" prefWidth="118.0" GridPane.columnIndex="10" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osHaLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osIodLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="12" GridPane.rowIndex="2" />
                                                          </children>
                                                       </GridPane>
                                                       <GridPane alignment="TOP_RIGHT" prefHeight="44.0" prefWidth="1197.0">
@@ -246,32 +246,71 @@
                                                             <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
                                                          <children>
-                                                            <Label fx:id="glazenLabel" prefHeight="17.0" prefWidth="347.0" style="-fx-background-color: gray;" text="glazen" textFill="WHITE" />
-                                                            <Label fx:id="leverancierLabel" prefHeight="17.0" prefWidth="137.0" style="-fx-background-color: gray;" text="leverancier" textFill="WHITE" GridPane.columnIndex="1" />
-                                                            <Label fx:id="typeGlasLabel" prefHeight="17.0" prefWidth="131.0" style="-fx-background-color: gray;" text="type glas" textFill="WHITE" GridPane.columnIndex="2" />
-                                                            <Label fx:id="coatingLabel" prefHeight="17.0" prefWidth="144.0" style="-fx-background-color: gray;" text="coating" textFill="WHITE" GridPane.columnIndex="4" />
-                                                            <Label fx:id="kleurglazenLabel" prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: gray;" text="kleur glazen" textFill="WHITE" GridPane.columnIndex="5" />
-                                                            <Label fx:id="diameterLabel" prefHeight="17.0" prefWidth="134.0" style="-fx-background-color: gray;" text="diameter" textFill="WHITE" GridPane.columnIndex="7" />
-                                                            <Label fx:id="prijsGlasLabel" prefHeight="17.0" prefWidth="140.0" style="-fx-background-color: gray;" text="prijs glas" textFill="WHITE" GridPane.columnIndex="8" />
-                                                            <Label fx:id="btwLabel" prefHeight="17.0" prefWidth="210.0" style="-fx-background-color: gray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" />
-                                                            <Label fx:id="empty1Label" prefHeight="17.0" prefWidth="197.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" />
-                                                            <Label fx:id="empty2Label" prefHeight="17.0" prefWidth="147.0" style="-fx-background-color: gray;" GridPane.columnIndex="6" />
-                                                            <Label fx:id="breedteLabel" prefHeight="17.0" prefWidth="182.0" style="-fx-background-color: gray;" text="breedte" textFill="WHITE" GridPane.rowIndex="3" />
-                                                            <Label fx:id="hoogteLabel" prefHeight="17.0" prefWidth="148.0" style="-fx-background-color: gray;" text="hoogte" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                            <Label fx:id="neusmaatLabel" prefHeight="17.0" prefWidth="143.0" style="-fx-background-color: gray;" text="neusmaat" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                                                            <Label text="rechts" GridPane.rowIndex="1" />
-                                                            <Label text="links" GridPane.rowIndex="2" />
+                                                            <Label prefHeight="17.0" prefWidth="347.0" style="-fx-background-color: gray;" text="glazen" textFill="WHITE" />
+                                                            <Label prefHeight="17.0" prefWidth="137.0" style="-fx-background-color: gray;" text="leverancier" textFill="WHITE" GridPane.columnIndex="1" />
+                                                            <Label prefHeight="17.0" prefWidth="131.0" style="-fx-background-color: gray;" text="type glas" textFill="WHITE" GridPane.columnIndex="2" />
+                                                            <Label prefHeight="17.0" prefWidth="144.0" style="-fx-background-color: gray;" text="coating" textFill="WHITE" GridPane.columnIndex="4" />
+                                                            <Label prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: gray;" text="kleur glazen" textFill="WHITE" GridPane.columnIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="134.0" style="-fx-background-color: gray;" text="diameter" textFill="WHITE" GridPane.columnIndex="7" />
+                                                            <Label prefHeight="17.0" prefWidth="140.0" style="-fx-background-color: gray;" text="prijs glas" textFill="WHITE" GridPane.columnIndex="8" />
+                                                            <Label prefHeight="17.0" prefWidth="210.0" style="-fx-background-color: gray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" />
+                                                            <Label prefHeight="17.0" prefWidth="197.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" />
+                                                            <Label prefHeight="17.0" prefWidth="147.0" style="-fx-background-color: gray;" GridPane.columnIndex="6" />
+                                                            <Label prefHeight="17.0" prefWidth="182.0" style="-fx-background-color: gray;" text="breedte" textFill="WHITE" GridPane.rowIndex="3" />
+                                                            <Label prefHeight="17.0" prefWidth="148.0" style="-fx-background-color: gray;" text="hoogte" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                            <Label prefHeight="17.0" prefWidth="143.0" style="-fx-background-color: gray;" text="neusmaat" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                                            <Label prefHeight="17.0" prefWidth="159.0" text="rechts" GridPane.rowIndex="1" />
+                                                            <Label prefHeight="17.0" prefWidth="156.0" text="links" GridPane.rowIndex="2" />
                                                             <Label fx:id="montuurgegevensLabel" text="montuurgegevens" GridPane.rowIndex="4" />
-                                                            <Label fx:id="merkLabel" prefHeight="17.0" prefWidth="155.0" style="-fx-background-color: gray;" text="merk" textFill="WHITE" GridPane.rowIndex="5" />
-                                                            <Label fx:id="empty3Label" prefHeight="17.0" prefWidth="181.0" style="-fx-background-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                            <Label fx:id="modelLabel" prefHeight="17.0" prefWidth="153.0" style="-fx-background-color: gray;" text="model" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                                            <Label fx:id="empty4Label" prefHeight="17.0" prefWidth="181.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                                                            <Label fx:id="kleurLabel" prefHeight="17.0" prefWidth="146.0" style="-fx-background-color: gray;" text="kleur" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                                                            <Label fx:id="empty5Label" prefHeight="17.0" prefWidth="223.0" style="-fx-background-color: gray;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                                                            <Label fx:id="maatLabel" prefHeight="17.0" prefWidth="147.0" style="-fx-background-color: gray;" text="maat" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-                                                            <Label fx:id="empty6Label" prefHeight="17.0" prefWidth="149.0" style="-fx-background-color: gray;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-                                                            <Label fx:id="prijsMontuurLabel" prefHeight="17.0" prefWidth="158.0" style="-fx-background-color: gray;" text="prijs montuur" textFill="WHITE" GridPane.columnIndex="8" GridPane.rowIndex="5" />
-                                                            <Label fx:id="btw2Label" prefHeight="17.0" prefWidth="203.0" style="-fx-background-color: gray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="155.0" style="-fx-background-color: gray;" text="merk" textFill="WHITE" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="181.0" style="-fx-background-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="153.0" style="-fx-background-color: gray;" text="model" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="181.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="146.0" style="-fx-background-color: gray;" text="kleur" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="223.0" style="-fx-background-color: gray;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="147.0" style="-fx-background-color: gray;" text="maat" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="149.0" style="-fx-background-color: gray;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="158.0" style="-fx-background-color: gray;" text="prijs montuur" textFill="WHITE" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="203.0" style="-fx-background-color: gray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                                                            <Label prefHeight="17.0" prefWidth="183.0" style="-fx-background-color: gray;" text="diversen" textFill="WHITE" GridPane.rowIndex="7" />
+                                                            <Label prefHeight="17.0" prefWidth="219.0" style="-fx-background-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                            <Label prefHeight="17.0" prefWidth="185.0" style="-fx-background-color: gray;" text="soort glas" textFill="WHITE" GridPane.rowIndex="8" />
+                                                            <Label prefHeight="17.0" prefWidth="183.0" style="-fx-background-color: gray;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                                            <Label prefHeight="17.0" prefWidth="252.0" style="-fx-background-color: gray;" text="montuur type" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                                                            <Label prefHeight="17.0" prefWidth="151.0" style="-fx-background-color: gray;" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+                                                            <Label prefHeight="17.0" prefWidth="157.0" style="-fx-background-color: gray;" text="materiaal" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+                                                            <Label fx:id="r_leverancierLabel" prefHeight="17.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <Label fx:id="l_leverancierLabel" prefHeight="17.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <Label fx:id="r_typeglasLabel" prefHeight="17.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                            <Label fx:id="l_typeglasLabel" prefHeight="17.0" prefWidth="218.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                            <Label fx:id="r_coatingLabel" prefHeight="17.0" prefWidth="190.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                            <Label fx:id="l_coatingLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                                            <Label fx:id="r_kleurglazenLabel" prefHeight="17.0" prefWidth="186.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                                            <Label fx:id="l_kleurglazenLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                                            <Label fx:id="r_diameterLabel" prefHeight="17.0" prefWidth="132.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                                            <Label fx:id="l_diameterLabel" prefHeight="17.0" prefWidth="147.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                                            <Label fx:id="r_prijsglasLabel" prefHeight="17.0" prefWidth="135.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                                            <Label fx:id="l_prijsglasLabel" prefHeight="17.0" prefWidth="185.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                                                            <Label fx:id="r_btwLabel" prefHeight="17.0" prefWidth="140.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                                            <Label fx:id="l_btwLabel" prefHeight="17.0" prefWidth="129.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                                                            <Label fx:id="breedteLabel" prefHeight="17.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                            <Label fx:id="hoogteLabel" prefHeight="17.0" prefWidth="182.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                            <Label fx:id="neusmaatLabel" prefHeight="17.0" prefWidth="208.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                                            <Label fx:id="merkLabel" prefHeight="17.0" prefWidth="159.0" GridPane.rowIndex="6" />
+                                                            <Label fx:id="modelLabel" prefHeight="17.0" prefWidth="224.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                                            <Label fx:id="diversenLabel" prefHeight="17.0" prefWidth="197.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                                            <Label fx:id="soortglasLabel" prefHeight="17.0" prefWidth="163.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                                            <Label fx:id="montuurtypeLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+                                                            <Label fx:id="materiaalLabel" prefHeight="17.0" prefWidth="154.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+                                                            <Label fx:id="kleurLabel" prefHeight="17.0" prefWidth="193.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                                                            <Label fx:id="maatLabel" prefHeight="17.0" prefWidth="228.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                                                            <Label fx:id="prijsmontuurLabel" prefHeight="17.0" prefWidth="148.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+                                                            <Label fx:id="btwLabel" prefHeight="17.0" prefWidth="108.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                                                            <Label text="korting" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+                                                            <Label text="totaal" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+                                                            <Label fx:id="kortingLabel" prefHeight="17.0" prefWidth="181.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
+                                                            <Label fx:id="totaalLabel" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="8" GridPane.rowIndex="10" />
+                                                            <Label fx:id="totaalBtwLabel" prefHeight="17.0" prefWidth="131.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
                                                          </children>
                                                       </GridPane>
                                                    </children>

@@ -153,31 +153,17 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private Label osIodLabel;
     @FXML
-    private Label typeGlasLabel;
+    private Tab oogmetingTab;
     @FXML
-    private Label coatingLabel;
+    private Tab montuurTab;
     @FXML
-    private Label kleurglazenLabel;
-
+    private Tab glazenTab;
     @FXML
-    private Label brilvoorschriftLabel;
-
+    private Tab mailingTab;
     @FXML
-    private GridPane glazenGridPane;
+    private Label r_leverancierLabel;
     @FXML
-    private Label leverancierLabel;
-    @FXML
-    private Label glazenLabel;
-    @FXML
-    private Label diameterLabel;
-    @FXML
-    private Label prijsGlasLabel;
-    @FXML
-    private Label btwLabel;
-    @FXML
-    private Label empty1Label;
-    @FXML
-    private Label empty2Label;
+    private Label l_leverancierLabel;
     @FXML
     private Label breedteLabel;
     @FXML
@@ -187,32 +173,54 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private Label merkLabel;
     @FXML
-    private Label empty3Label;
-    @FXML
     private Label modelLabel;
     @FXML
-    private Label empty4Label;
+    private Label diversenLabel;
+    @FXML
+    private Label soortglasLabel;
+    @FXML
+    private Label montuurtypeLabel;
+    @FXML
+    private Label materiaalLabel;
     @FXML
     private Label kleurLabel;
     @FXML
-    private Label empty5Label;
-    @FXML
     private Label maatLabel;
     @FXML
-    private Label empty6Label;
+    private Label prijsmontuurLabel;
     @FXML
-    private Label prijsMontuurLabel;
+    private Label btwLabel;
     @FXML
-    private Label btw2Label;
+    private Label kortingLabel;
     @FXML
-    private Tab oogmetingTab;
+    private Label totaalLabel;
     @FXML
-    private Tab montuurTab;
+    private Label totaalBtwLabel;
     @FXML
-    private Tab glazenTab;
+    private Label r_typeglasLabel;
     @FXML
-    private Tab mailingTab;
-
+    private Label l_typeglasLabel;
+    @FXML
+    private Label r_coatingLabel;
+    @FXML
+    private Label l_coatingLabel;
+    @FXML
+    private Label r_kleurglazenLabel;
+    @FXML
+    private Label l_kleurglazenLabel;
+    @FXML
+    private Label r_diameterLabel;
+    @FXML
+    private Label l_diameterLabel;
+    @FXML
+    private Label r_prijsglasLabel;
+    @FXML
+    private Label l_prijsglasLabel;
+    @FXML
+    private Label r_btwLabel;
+    @FXML
+    private Label l_btwLabel;
+    
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
     private int selectedKlantID = 0;
