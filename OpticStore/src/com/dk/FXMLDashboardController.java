@@ -220,7 +220,7 @@ public class FXMLDashboardController implements Initializable {
     private Label r_btwLabel;
     @FXML
     private Label l_btwLabel;
-    
+
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
     private int selectedKlantID = 0;
@@ -249,7 +249,14 @@ public class FXMLDashboardController implements Initializable {
             odSphLabel, odCylLabel, odAsLabel, odAddLabel, odNabijLabel, odPrLabel, odBasisLabel,
             odVisLabel, odPdDnLabel, odLhLabel, odHaLabel, odIodLabel,
             osSphLabel, osCylLabel, osAsLabel, osAddLabel, osNabijLabel, osPrLabel, osBasisLabel,
-            osVisLabel, osPdDnLabel, osLhLabel, osHaLabel, osIodLabel
+            osVisLabel, osPdDnLabel, osLhLabel, osHaLabel, osIodLabel,
+            r_leverancierLabel, l_leverancierLabel, r_typeglasLabel, l_typeglasLabel,
+            r_coatingLabel, l_coatingLabel, r_kleurglazenLabel, l_kleurglazenLabel,
+            r_diameterLabel, l_diameterLabel, r_prijsglasLabel, l_prijsglasLabel,
+            r_btwLabel, l_btwLabel, merkLabel, modelLabel,
+            kleurLabel, maatLabel, prijsmontuurLabel, btwLabel,
+            soortglasLabel, montuurtypeLabel, materiaalLabel,kortingLabel,
+            totaalBtwLabel,totaalLabel
         }) {
             lbl.setText("");
         }
@@ -267,31 +274,6 @@ public class FXMLDashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        brilvoorschriftLabel.setStyle(graylabelStyle);
-//        leverancierLabel.setStyle(graylabelStyle);
-//        glazenLabel.setStyle(graylabelStyle);
-//        typeGlasLabel.setStyle(graylabelStyle);
-//        coatingLabel.setStyle(graylabelStyle);
-//        kleurglazenLabel.setStyle(graylabelStyle);
-//        diameterLabel.setStyle(graylabelStyle);
-//        prijsGlasLabel.setStyle(graylabelStyle);
-//        btwLabel.setStyle(graylabelStyle);
-//        empty1Label.setStyle(graylabelStyle);
-//        empty2Label.setStyle(graylabelStyle);
-//        breedteLabel.setStyle(graylabelStyle);
-//        hoogteLabel.setStyle(graylabelStyle);
-//        neusmaatLabel.setStyle(graylabelStyle);
-//        merkLabel.setStyle(graylabelStyle);
-//        empty3Label.setStyle(graylabelStyle);
-//        modelLabel.setStyle(graylabelStyle);
-//        empty4Label.setStyle(graylabelStyle);
-//        kleurLabel.setStyle(graylabelStyle);
-//        empty5Label.setStyle(graylabelStyle);
-//        maatLabel.setStyle(graylabelStyle);
-//        empty6Label.setStyle(graylabelStyle);
-//        prijsMontuurLabel.setStyle(graylabelStyle);
-//        btw2Label.setStyle(graylabelStyle);
-        //glazenGridPane.getChildren().get(0).setStyle("-fx-background-color: gray;");
         Node logoutNode = FXutils.createButton(getClass(), "exit.png", new Runnable() {
             @Override
             public void run() {
@@ -657,10 +639,42 @@ public class FXMLDashboardController implements Initializable {
         DbObject[] recs = OpticStore.getExchanger().getDbObjects(Verkoop.class, "klant_id=" + klantId, "verkoopdatum desc");
         if (recs.length > 0) {
             Verkoop vk = (Verkoop) recs[0];
+            fillLastVerkoop(vk);
             Date dt = vk.getVerkoopdatum();
             return dt == null ? "" : OpticStore.dateFormat.format(dt);
         }
         return "geen verkoop";
+    }
+
+    private void fillLastVerkoop(Verkoop vk) {
+        if (vk != null) {
+            r_leverancierLabel.setText(vk.getRLeverancier());
+            l_leverancierLabel.setText(vk.getLReverancier());
+            r_typeglasLabel.setText(vk.getRTypeGlas());
+            l_typeglasLabel.setText(vk.getLTypeGlas());
+            r_coatingLabel.setText(vk.getRCoating());
+            l_coatingLabel.setText(vk.getLCoating());
+            r_kleurglazenLabel.setText(vk.getRKleurGlazen());
+            l_kleurglazenLabel.setText(vk.getLKleurGlazen());
+            r_diameterLabel.setText(vk.getRDiameter().toString());
+            l_diameterLabel.setText(vk.getLDiameter().toString());
+            r_prijsglasLabel.setText(vk.getRPrijsGlas().toString());
+            l_prijsglasLabel.setText(vk.getLPrijsGlas().toString());
+            r_btwLabel.setText(vk.getRBtw().toString());
+            l_btwLabel.setText(vk.getLBtw().toString());
+            merkLabel.setText(vk.getMontuurMerk());
+            modelLabel.setText(vk.getMontuurModel());
+            kleurLabel.setText(vk.getMontuurKleur());
+            maatLabel.setText(vk.getMontuurMaat());
+            prijsmontuurLabel.setText(vk.getMontuurPrijs().toString());
+            btwLabel.setText(vk.getMontuurBtw().toString());
+            soortglasLabel.setText(vk.getSoortGlas());
+            montuurtypeLabel.setText(vk.getMontuurType());
+            materiaalLabel.setText(vk.getMateriaal());
+            kortingLabel.setText(vk.getKorting().toString());
+            totaalBtwLabel.setText(vk.getTotalBtw().toString());
+            totaalLabel.setText(vk.getTotaal().toString());
+        }
     }
 
     private void loadLastBrilvoorschrift(Integer klantId) throws RemoteException {
