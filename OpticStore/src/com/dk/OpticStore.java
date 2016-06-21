@@ -245,7 +245,10 @@ public class OpticStore extends Application {
                     }
                 }, new KeyValue(rootPane.opacityProperty(), 0.0)));
         fade.play();
-        mainStage.setTitle(showLogin?"Login":"de oogkas");
+        
+        mainStage.setTitle(showLogin?
+                //OpticStore.class.getProtectionDomain().getCodeSource().getLocation().getPath()//f.getAbsolutePath()/*
+                "Login" : "de oogkas");
     }
     
     

@@ -314,7 +314,10 @@ public class DbConnection {
         File sqlFile = new File(fname);
         boolean toclean = true;
         if (!sqlFile.exists()) {
-            fname = "../sql/" + fname;
+            String appPath = OpticStore.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            appPath = appPath.substring(0, appPath.lastIndexOf(File.separatorChar)+1);
+            fname = appPath + "sql/" + fname;
+            System.out.println("!!!DDL path:"+fname);            
             sqlFile = new File(fname);
             toclean = false;
         }
