@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 //import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -49,6 +50,7 @@ public class FXMLDashboardController implements Initializable {
 
     private static final String FILL_THIS_FIELD = "dit veld invullen";
     private static final String graylabelStyle = "-fx-background-color: gray;";
+
     @FXML
     private HBox logoutBox;
 
@@ -124,6 +126,10 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private Label odBasisLabel;
     @FXML
+    private Label odPr1Label;
+    @FXML
+    private Label odBasis1Label;
+    @FXML
     private Label odVisLabel;
     @FXML
     private Label odPdDnLabel;
@@ -148,6 +154,10 @@ public class FXMLDashboardController implements Initializable {
     private Label osPrLabel;
     @FXML
     private Label osBasisLabel;
+    @FXML
+    private Label osPr1Label;
+    @FXML
+    private Label osBasis1Label;
     @FXML
     private Label osVisLabel;
     @FXML
@@ -228,13 +238,20 @@ public class FXMLDashboardController implements Initializable {
     private Label l_btwLabel;
     @FXML
     private Button anamneseButton;
+    @FXML
+    private TitledPane zoekenPane;
     
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
     private int selectedKlantID = 0;
     private Node editClientNode;
     private Node delClientNode;
+    private static TitledPane fisrtPane;
 
+    static void expandeFirst() {
+        fisrtPane.setExpanded(true);
+    }
+    
     private void clearKlantForm(boolean withDeselect) {
         if (searchFields == null) {
             searchFields = new TextField[]{
@@ -254,9 +271,11 @@ public class FXMLDashboardController implements Initializable {
         for (Label lbl : new Label[]{klntIdLabel, klntNameLabel, klntAdresLabel,
             klntPostCodePlaatsLabel, klntteleFoonLabel, klntMobielLabel,
             klntEmailLabel, klntVerkoolDatumLabel,
-            odSphLabel, odCylLabel, odAsLabel, odAddLabel, odNabijLabel, odPrLabel, odBasisLabel,
+            odSphLabel, odCylLabel, odAsLabel, odAddLabel, odNabijLabel, 
+            odPrLabel, odBasisLabel, odPr1Label, odBasis1Label,
             odVisLabel, odPdDnLabel, odLhLabel, odHaLabel, odIodLabel,
-            osSphLabel, osCylLabel, osAsLabel, osAddLabel, osNabijLabel, osPrLabel, osBasisLabel,
+            osSphLabel, osCylLabel, osAsLabel, osAddLabel, osNabijLabel, 
+            osPrLabel, osBasisLabel, osPr1Label, osBasis1Label,
             osVisLabel, osPdDnLabel, osLhLabel, osHaLabel, osIodLabel,
             r_leverancierLabel, l_leverancierLabel, r_typeglasLabel, l_typeglasLabel,
             r_coatingLabel, l_coatingLabel, r_kleurglazenLabel, l_kleurglazenLabel,
@@ -279,10 +298,13 @@ public class FXMLDashboardController implements Initializable {
         if (withDeselect) {
             klantGrid.unselect();
         }
+        
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        oogmetingTab.setDisable(true);
+        fisrtPane = zoekenPane;
         Node logoutNode = FXutils.createButton(getClass(), "exit.png", new Runnable() {
             @Override
             public void run() {
@@ -709,7 +731,8 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private void loadLastBrilvoorschrift(Integer klantId) throws RemoteException {
-        DbObject[] recs = OpticStore.getExchanger().getDbObjects(Brilvoorschrift.class, "klant_id=" + klantId, "datum_refractie desc");
+        DbObject[] recs = OpticStore.getExchanger().getDbObjects(Brilvoorschrift.class, 
+                "klant_id=" + klantId, "datum_refractie desc");
         if (recs.length > 0) {
             Brilvoorschrift bs = (Brilvoorschrift) recs[0];
             Date dt = bs.getDatumRefractie();
@@ -720,6 +743,8 @@ public class FXMLDashboardController implements Initializable {
             odNabijLabel.setText(bs.getOdNabil().toString());
             odPrLabel.setText(bs.getOdPr().toString());
             odBasisLabel.setText(bs.getOdBasis().toString());
+            odPr1Label.setText(bs.getOdPr1().toString());
+            odBasis1Label.setText(bs.getOdBasis1().toString());
             odVisLabel.setText(bs.getOdVis().toString());
             odPdDnLabel.setText(bs.getOdPddn());
             odLhLabel.setText(bs.getOdLh().toString());
@@ -733,6 +758,8 @@ public class FXMLDashboardController implements Initializable {
             osNabijLabel.setText(bs.getOsNabil().toString());
             osPrLabel.setText(bs.getOsPr().toString());
             osBasisLabel.setText(bs.getOsBasis().toString());
+            osPr1Label.setText(bs.getOsPr1().toString());
+            osBasis1Label.setText(bs.getOsBasis1().toString());
             osVisLabel.setText(bs.getOsVis().toString());
             osPdDnLabel.setText(bs.getOsPddn());
             osLhLabel.setText(bs.getOsLh().toString());

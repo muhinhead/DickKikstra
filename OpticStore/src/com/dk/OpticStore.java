@@ -249,6 +249,9 @@ public class OpticStore extends Application {
         mainStage.setTitle(showLogin?
                 //OpticStore.class.getProtectionDomain().getCodeSource().getLocation().getPath()//f.getAbsolutePath()/*
                 "Login" : "de oogkas");
+        if(!showLogin) {
+            FXMLDashboardController.expandeFirst();
+        }
     }
     
     

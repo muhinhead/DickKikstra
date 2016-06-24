@@ -71,7 +71,7 @@ public class DbClientDataSender implements IMessageSender {
             }
             return rows;
         } catch (Exception ex) {
-            throw new java.rmi.RemoteException(ex.getMessage());
+            throw new java.rmi.RemoteException(ex.getCause().getLocalizedMessage());
         } finally {
             try {
                 DbConnection.closeConnection(con);

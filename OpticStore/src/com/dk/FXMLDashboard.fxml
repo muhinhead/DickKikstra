@@ -38,7 +38,7 @@
                      <children>
                         <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <panes>
-                            <TitledPane animated="false" text="zoeken en bewerken">
+                            <TitledPane fx:id="zoekenPane" animated="false" text="zoeken en bewerken">
                                  <content>
                                     <AnchorPane>
                                        <children>
@@ -160,11 +160,13 @@
                                                             <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                           <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                           <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
                                                          <children>
                                                             <Label text="Sph" GridPane.columnIndex="1" />
                                                             <Label text="OD" GridPane.rowIndex="1" />
-                                                            <Label text="OS" GridPane.rowIndex="2" />
+                                                            <Label text="OS" GridPane.rowIndex="3" />
                                                             <Label text="Cyl" GridPane.columnIndex="2" />
                                                             <Label text="As" GridPane.columnIndex="3" />
                                                             <Label text="Add" GridPane.columnIndex="4" />
@@ -188,18 +190,22 @@
                                                             <Label fx:id="odLhLabel" prefHeight="17.0" prefWidth="161.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
                                                             <Label fx:id="odHaLabel" prefHeight="17.0" prefWidth="163.0" GridPane.columnIndex="11" GridPane.rowIndex="1" />
                                                             <Label fx:id="odIodLabel" prefHeight="17.0" prefWidth="117.0" GridPane.columnIndex="12" GridPane.rowIndex="1" />
-                                                            <Label fx:id="osSphLabel" prefHeight="17.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osCylLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osAsLabel" prefHeight="17.0" prefWidth="144.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osAddLabel" prefHeight="17.0" prefWidth="106.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osNabijLabel" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osPrLabel" prefHeight="17.0" prefWidth="161.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osBasisLabel" prefHeight="17.0" prefWidth="184.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osVisLabel" prefHeight="17.0" prefWidth="166.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osPdDnLabel" prefHeight="17.0" prefWidth="147.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osLhLabel" prefHeight="17.0" prefWidth="118.0" GridPane.columnIndex="10" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osHaLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="11" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osIodLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="12" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osSphLabel" prefHeight="17.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osCylLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osAsLabel" prefHeight="17.0" prefWidth="144.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osAddLabel" prefHeight="17.0" prefWidth="106.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osNabijLabel" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osPrLabel" prefHeight="17.0" prefWidth="161.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osBasisLabel" prefHeight="17.0" prefWidth="184.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osVisLabel" prefHeight="17.0" prefWidth="166.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osPdDnLabel" prefHeight="17.0" prefWidth="147.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osLhLabel" prefHeight="17.0" prefWidth="118.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osHaLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="11" GridPane.rowIndex="3" />
+                                                            <Label fx:id="osIodLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="12" GridPane.rowIndex="3" />
+                                                            <Label fx:id="odPr1Label" prefHeight="17.0" prefWidth="111.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                                            <Label fx:id="odBasis1Label" prefHeight="17.0" prefWidth="160.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                                            <Label fx:id="osPr1Label" prefHeight="17.0" prefWidth="142.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                                                            <Label fx:id="osBasis1Label" prefHeight="17.0" prefWidth="123.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
                                                          </children>
                                                       </GridPane>
                                                       <GridPane alignment="TOP_RIGHT" prefHeight="44.0" prefWidth="1197.0">
@@ -320,31 +326,120 @@
                                        </children>
                                     </AnchorPane>
                                  </content></TitledPane>
-                              <TitledPane prefHeight="200.0" prefWidth="200.0" text="verkoop">
-                                 <content>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <VBox layoutX="7.0" prefHeight="574.0" prefWidth="1148.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <AnchorPane fx:id="upperAnchorPane" prefHeight="200.0" prefWidth="200.0">
-                                                   <children>
-                                                      <ScrollPane prefHeight="197.0" prefWidth="1112.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="0.0" />
-                                                      <VBox layoutX="1084.0" layoutY="-2.0" prefHeight="199.0" prefWidth="69.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <AnchorPane prefHeight="401.0" prefWidth="1184.0" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </content></TitledPane>
                           </panes>
                         </Accordion>
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
-          <Tab fx:id="oogmetingTab" disable="true" text="oogmeting" />
+          <Tab fx:id="oogmetingTab" text="oogmeting">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ScrollPane layoutX="14.0" layoutY="14.0" prefHeight="607.0" prefWidth="1107.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <AnchorPane prefHeight="590.0" prefWidth="1095.0">
+                                 <children>
+                                    <VBox prefHeight="590.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label text="Sph" GridPane.columnIndex="1" />
+                                                <Label alignment="CENTER" prefHeight="17.0" prefWidth="91.0" text="OD" GridPane.rowIndex="1" />
+                                                <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="OS" GridPane.rowIndex="3" />
+                                                <Label text="Cyl" GridPane.columnIndex="2" />
+                                                <Label text="As" GridPane.columnIndex="3" />
+                                                <Label text="Add" GridPane.columnIndex="4" />
+                                                <Label text="Nabij" GridPane.columnIndex="5" />
+                                                <Label text="Pr" GridPane.columnIndex="6" />
+                                                <Label text="Basis" GridPane.columnIndex="7" />
+                                                <Label text="Vis" GridPane.columnIndex="8" />
+                                                <Label text="PD D/N" GridPane.columnIndex="9" />
+                                                <Label text="LH" GridPane.columnIndex="10" />
+                                                <Label text="HA" GridPane.columnIndex="11" />
+                                                <Label text="IOD" GridPane.columnIndex="12" />
+                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="12" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                                <TextField GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="11" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="12" GridPane.rowIndex="3" />
+                                                <TextField GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                                                <TextField GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                                             </children>
+                                          </GridPane>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="258.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="180.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="255.0" text="oogmeting door" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="255.0" text="datum refractie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="anamnese" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
           <Tab fx:id="montuurTab" disable="true" text="montuur" />
             <Tab fx:id="glazenTab" disable="true" text="glazen" />
             <Tab fx:id="mailingTab" disable="true" text="mailing" />
