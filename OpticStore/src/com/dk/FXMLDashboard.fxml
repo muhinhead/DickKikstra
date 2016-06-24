@@ -216,7 +216,7 @@
                                                             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="266.0" text="oogmeting door" textAlignment="RIGHT" />
                                                             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="271.0" text="datum refractie" textAlignment="RIGHT" GridPane.columnIndex="1" />
                                                             <Label contentDisplay="RIGHT" prefHeight="17.0" prefWidth="264.0" text="2016-06-18" GridPane.columnIndex="2" />
-                                                            <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="anamnese" GridPane.columnIndex="3" />
+                                                            <Button fx:id="anamneseButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAnamnesButton" text="anamnese" GridPane.columnIndex="3" />
                                                          </children>
                                                       </GridPane>
                                                       <GridPane fx:id="glazenGridPane">
@@ -320,7 +320,24 @@
                                        </children>
                                     </AnchorPane>
                                  </content></TitledPane>
-                              <TitledPane prefHeight="200.0" prefWidth="200.0" text="verkoop" />
+                              <TitledPane prefHeight="200.0" prefWidth="200.0" text="verkoop">
+                                 <content>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox layoutX="7.0" prefHeight="574.0" prefWidth="1148.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <AnchorPane fx:id="upperAnchorPane" prefHeight="200.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ScrollPane prefHeight="197.0" prefWidth="1112.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="0.0" />
+                                                      <VBox layoutX="1084.0" layoutY="-2.0" prefHeight="199.0" prefWidth="69.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="401.0" prefWidth="1184.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content></TitledPane>
                           </panes>
                         </Accordion>
                      </children>

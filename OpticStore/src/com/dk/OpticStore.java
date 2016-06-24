@@ -58,7 +58,7 @@ public class OpticStore extends Application {
     private static FileHandler fh;
     private static IMessageSender exchanger;
     private static Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-    private StackPane rootPane;
+    public StackPane rootPane;
     private Parent loginPane;
     private Parent dashboardPane;
     private double loginWidth;

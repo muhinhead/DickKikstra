@@ -23,8 +23,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 //import javafx.scene.control.DatePicker;
@@ -33,7 +37,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 /**
  *
@@ -220,7 +226,9 @@ public class FXMLDashboardController implements Initializable {
     private Label r_btwLabel;
     @FXML
     private Label l_btwLabel;
-
+    @FXML
+    private Button anamneseButton;
+    
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
     private int selectedKlantID = 0;
@@ -255,8 +263,8 @@ public class FXMLDashboardController implements Initializable {
             r_diameterLabel, l_diameterLabel, r_prijsglasLabel, l_prijsglasLabel,
             r_btwLabel, l_btwLabel, merkLabel, modelLabel,
             kleurLabel, maatLabel, prijsmontuurLabel, btwLabel,
-            soortglasLabel, montuurtypeLabel, materiaalLabel,kortingLabel,
-            totaalBtwLabel,totaalLabel
+            soortglasLabel, montuurtypeLabel, materiaalLabel, kortingLabel,
+            totaalBtwLabel, totaalLabel
         }) {
             lbl.setText("");
         }
@@ -265,6 +273,7 @@ public class FXMLDashboardController implements Initializable {
         montuurTab.setDisable(true);
         glazenTab.setDisable(true);
         mailingTab.setDisable(true);
+        anamneseButton.setDisable(true);
 
         klantIDfield.setDisable(false);
         if (withDeselect) {
@@ -393,6 +402,28 @@ public class FXMLDashboardController implements Initializable {
                 }
             }
         });
+    }
+
+    @FXML
+    private void handleAnamnesButton() {
+        try {
+            FXMLLoader compLoader = new FXMLLoader(getClass().getResource("AnamnesPane.fxml"));
+            Parent anamnesPane = (Parent) compLoader.load();
+            Callback<Void, Void> myCallback = new Callback<Void, Void>() {
+                @Override
+                public Void call(Void param) {
+                    return null;
+                }
+            };
+            Dialogs.DialogResponse resp
+                    = Dialogs.showCustomDialog(OpticStore.mainStage,
+                            (Pane) anamnesPane, "", "Anamnese", Dialogs.DialogOptions.OK, myCallback);
+            if (resp.equals(Dialogs.DialogResponse.OK)) {
+                //TODO: save text
+            }
+        } catch (Exception ex) {
+            OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
+        }
     }
 
     private void fillKlantFromEdits(Klant klant) throws SQLException, ForeignKeyViolationException, ParseException {
@@ -623,7 +654,7 @@ public class FXMLDashboardController implements Initializable {
                 montuurTab.setDisable(false);
                 glazenTab.setDisable(false);
                 mailingTab.setDisable(false);
-
+                anamneseButton.setDisable(false);
             }
         } catch (RemoteException ex) {
             OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
