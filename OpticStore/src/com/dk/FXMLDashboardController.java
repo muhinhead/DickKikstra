@@ -240,6 +240,8 @@ public class FXMLDashboardController implements Initializable {
     private Button anamneseButton;
     @FXML
     private TitledPane zoekenPane;
+    @FXML
+    private HBox navigationBox;
     
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
@@ -424,6 +426,56 @@ public class FXMLDashboardController implements Initializable {
                 }
             }
         });
+        
+        Node firstButton = FXutils.createButton(getClass(), "first.png", new Runnable() {
+            @Override
+            public void run() {
+               //TODO
+            }
+        });
+        Node prevButton = FXutils.createButton(getClass(), "prev.png", new Runnable() {
+            @Override
+            public void run() {
+               //TODO
+            }
+        });
+        Node nextButton = FXutils.createButton(getClass(), "next.png", new Runnable() {
+            @Override
+            public void run() {
+               //TODO
+            }
+        });
+        Node lastButton = FXutils.createButton(getClass(), "last.png", new Runnable() {
+            @Override
+            public void run() {
+               //TODO
+            }
+        });
+        Node addButton = FXutils.createButton(getClass(), "add.png", new Runnable() {
+            @Override
+            public void run() {
+               //TODO
+            }
+        });
+        Node okButton = FXutils.createButton(getClass(), "ok.png", new Runnable() {
+            @Override
+            public void run() {
+               //TODO
+            }
+        });
+        Node delButton = FXutils.createButton(getClass(), "delete.png", new Runnable() {
+            @Override
+            public void run() {
+               //TODO
+            }
+        });
+        navigationBox.getChildren().add(firstButton);
+        navigationBox.getChildren().add(prevButton);
+        navigationBox.getChildren().add(nextButton);
+        navigationBox.getChildren().add(lastButton);
+        navigationBox.getChildren().add(addButton);
+        navigationBox.getChildren().add(okButton);
+        navigationBox.getChildren().add(delButton);
     }
 
     @FXML

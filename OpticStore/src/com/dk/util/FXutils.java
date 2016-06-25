@@ -25,7 +25,7 @@ import javafx.util.Duration;
  */
 public class FXutils {
 
-    private static final double SCALE = 1.5; // коэффициент увеличения
+    private static final double SCALE = 1.3; // коэффициент увеличения
     private static final double DURATION = 300; // время анимации в мс
 
     public static Node createButton(Class cls, String iconName, final Runnable action, boolean withReflection) {
@@ -90,6 +90,6 @@ public class FXutils {
     }
 
     public static Node createButton(Class cls, String iconName, final Runnable action) {
-        return createButton(cls, iconName, action, true);
+        return createButton(cls, iconName, action, false);
     }
 }

@@ -142,7 +142,7 @@ public class DbConnection {
             OpticStore.log(e);
         }
         if (isFirstTime) {
-//            initLocalDB(connection);
+            initLocalDB(connection);
 //            fixLocalDB(connection);
             Timer timer = new Timer();
             timer.schedule(new ConnectionTouchTask(false), 1000, 30 * 1000);
@@ -187,7 +187,6 @@ public class DbConnection {
 //            }
 //        }
 //    }
-
     public static void sqlBatch(String sql, Connection connection, boolean tolog) {
         PreparedStatement ps = null;
         try {
@@ -213,11 +212,13 @@ public class DbConnection {
         PreparedStatement ps = null;
         for (int i = 0; i < sqls.length; i++) {
             try {
-                ps = connection.prepareStatement(sqls[i]);
-                ps.execute();
-                if (tolog) {
-                    OpticStore.log("STATEMENT [" + sqls[i].substring(0,
-                            sqls[i].length() > 60 ? 60 : sqls[i].length()) + "]... processed");
+                if (!sqls[i].isEmpty()) {
+                    ps = connection.prepareStatement(sqls[i]);
+                    ps.execute();
+                    if (tolog) {
+                        OpticStore.log("STATEMENT [" + sqls[i].substring(0,
+                                sqls[i].length() > 60 ? 60 : sqls[i].length()) + "]... processed");
+                    }
                 }
             } catch (SQLException e) {
                 if (tolog) {
@@ -313,11 +314,19 @@ public class DbConnection {
         String[] ans = new String[0];
         File sqlFile = new File(fname);
         boolean toclean = true;
+        String simpleName = fname;
+        String appPath;
         if (!sqlFile.exists()) {
-            String appPath = OpticStore.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            appPath = appPath.substring(0, appPath.lastIndexOf(File.separatorChar)+1);
-            fname = appPath + "sql/" + fname;
-            System.out.println("!!!DDL path:"+fname);            
+            appPath = OpticStore.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            appPath = appPath.substring(0, appPath.lastIndexOf(File.separatorChar) + 1);
+            fname = appPath + "sql" + File.separatorChar + simpleName;
+            sqlFile = new File(fname);
+            toclean = false;
+        }
+        if (!sqlFile.exists()) {
+            appPath = System.getProperty("user.home");
+            fname = appPath + File.separatorChar + simpleName;
+            System.out.println("Check " + fname);
             sqlFile = new File(fname);
             toclean = false;
         }

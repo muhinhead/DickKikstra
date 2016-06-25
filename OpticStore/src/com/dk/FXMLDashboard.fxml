@@ -340,7 +340,7 @@
                            <content>
                               <AnchorPane prefHeight="590.0" prefWidth="1095.0">
                                  <children>
-                                    <VBox prefHeight="590.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <VBox prefHeight="258.0" prefWidth="1095.0" AnchorPane.bottomAnchor="332.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <GridPane>
                                              <columnConstraints>
@@ -433,6 +433,7 @@
                                           </GridPane>
                                        </children>
                                     </VBox>
+                                    <HBox fx:id="navigationBox" layoutX="319.0" layoutY="295.0" prefHeight="75.0" prefWidth="352.0" />
                                  </children>
                               </AnchorPane>
                            </content>

@@ -2,6 +2,7 @@ package com.dk.rmi;
 
 import com.dk.OpticStore;
 import com.dk.remote.IMessageSender;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -49,7 +50,7 @@ public class ExchangeFactory {
 //        return (IMessageSender) Naming.lookup("rmi://" + address + "/AIBserver");
 //    }
 
-    public static IMessageSender createJDBCexchanger(String[] dbParams) throws SQLException, IllegalAccessException, ClassNotFoundException, InstantiationException {
+    public static IMessageSender createJDBCexchanger(String[] dbParams) throws SQLException, IllegalAccessException, ClassNotFoundException, InstantiationException, RemoteException {
         if (dbParams.length < 4) {
             return null;
         }
@@ -57,42 +58,43 @@ public class ExchangeFactory {
     }
 
     public static IMessageSender createJDBCexchanger(String dbDriver, String connectString,
-            String dbUser, String dbPassword) throws SQLException, IllegalAccessException, ClassNotFoundException, InstantiationException {
+            String dbUser, String dbPassword) throws SQLException, IllegalAccessException, ClassNotFoundException, InstantiationException, RemoteException {
         if (dbDriver == null || dbDriver.isEmpty() || connectString == null || connectString.isEmpty()
                 || dbUser == null || dbUser.isEmpty() || dbPassword == null /*|| dbPassword.isEmpty()*/) {
             throw new SQLException("Incomplete DB connection parameters");
         }
         //AIBclient.protocol = "jdbc";
         IMessageSender exchanger;
-        DriverManager.registerDriver(
-                (java.sql.Driver) Class.forName(dbDriver).newInstance());
-        Connection connection = DriverManager.getConnection(connectString, dbUser, dbPassword);
-        connection.setAutoCommit(true);
-        sqlBatch(fixLocalDBsqls, connection, false);
+//        DriverManager.registerDriver(
+//                (java.sql.Driver) Class.forName(dbDriver).newInstance());
+//        Connection connection = DriverManager.getConnection(connectString, dbUser, dbPassword);
+//        connection.setAutoCommit(true);
+        //Connection connection = DbConnection.getConnection();
+        //sqlBatch(fixLocalDBsqls, connection, false);
         exchanger = new DbClientDataSender(OpticStore.getProperties());
         return exchanger;
     }
 
-    public static void sqlBatch(String[] sqls, Connection connection, boolean tolog) {
-        PreparedStatement ps = null;
-        for (int i = 0; i < sqls.length; i++) {
-            try {
-                ps = connection.prepareStatement(sqls[i]);
-                ps.execute();
-                if (tolog) {
-                    OpticStore.log("STATEMENT [" + sqls[i].substring(0,
-                            sqls[i].length() > 60 ? 60 : sqls[i].length()) + "]... processed");
-                }
-            } catch (SQLException e) {
-                if (tolog) {
-                    OpticStore.log(e);
-                }
-            } finally {
-                try {
-                    ps.close();
-                } catch (SQLException ex) {
-                }
-            }
-        }
-    }
+//    public static void sqlBatch(String[] sqls, Connection connection, boolean tolog) {
+//        PreparedStatement ps = null;
+//        for (int i = 0; i < sqls.length; i++) {
+//            try {
+//                ps = connection.prepareStatement(sqls[i]);
+//                ps.execute();
+//                if (tolog) {
+//                    OpticStore.log("STATEMENT [" + sqls[i].substring(0,
+//                            sqls[i].length() > 60 ? 60 : sqls[i].length()) + "]... processed");
+//                }
+//            } catch (SQLException e) {
+//                if (tolog) {
+//                    OpticStore.log(e);
+//                }
+//            } finally {
+//                try {
+//                    ps.close();
+//                } catch (SQLException ex) {
+//                }
+//            }
+//        }
+//    }
 }
