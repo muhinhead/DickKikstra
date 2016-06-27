@@ -61,7 +61,6 @@ public class FXutils {
                         effect.setInput(null);
                     }
                 })).build().play();
-                action.run();
             }
         });
 

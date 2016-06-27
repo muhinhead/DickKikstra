@@ -326,7 +326,12 @@ public class DbConnection {
         if (!sqlFile.exists()) {
             appPath = System.getProperty("user.home");
             fname = appPath + File.separatorChar + simpleName;
-            System.out.println("Check " + fname);
+            sqlFile = new File(fname);
+            toclean = false;
+        }
+        if (!sqlFile.exists()) {
+            appPath = System.getProperty("user.home") + File.separatorChar + "Downloads";
+            fname = appPath + File.separatorChar + simpleName;
             sqlFile = new File(fname);
             toclean = false;
         }
