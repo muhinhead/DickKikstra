@@ -305,6 +305,11 @@ public class FXMLDashboardController implements Initializable {
     private HBox navigationBox;
     @FXML
     private Label vidLabel;
+    
+    @FXML
+    private Label montuurDatum;
+    @FXML
+    private HBox montuurNavigationBox;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
@@ -442,6 +447,9 @@ public class FXMLDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         oogmetingTab.setDisable(true);
+        montuurTab.setDisable(true);
+        glazenTab.setDisable(true);
+        
         fisrtPane = zoekenPane;
 
         RestrictNumbersFields(new TextField[]{
@@ -647,6 +655,59 @@ public class FXMLDashboardController implements Initializable {
         navigationBox.getChildren().add(addButton);
         navigationBox.getChildren().add(okButton);
         navigationBox.getChildren().add(delButton);
+        
+        firstButton=FXutils.createButton(getClass(), "first.png", new Runnable() {
+            @Override
+            public void run() {
+                //goFirstTab2();
+                //TODO
+            }
+        });
+        prevButton = FXutils.createButton(getClass(), "prev.png", new Runnable() {
+            @Override
+            public void run() {
+//                goPrevTab2();
+                //TODO
+            }
+        });
+        nextButton = FXutils.createButton(getClass(), "next.png", new Runnable() {
+            @Override
+            public void run() {
+                //TODO
+            }
+        }
+        );
+        lastButton = FXutils.createButton(getClass(), "last.png", new Runnable() {
+            @Override
+            public void run() {
+                //TODO
+            }
+        });
+        addButton = FXutils.createButton(getClass(), "add.png", new Runnable() {
+            @Override
+            public void run() {
+                //TODO
+            }
+        });
+        okButton = FXutils.createButton(getClass(), "ok.png", new Runnable() {
+            @Override
+            public void run() {
+                //TODO
+            }
+        });
+        delButton = FXutils.createButton(getClass(), "delete.png", new Runnable() {
+            @Override
+            public void run() {
+                //TODO
+            }
+        });
+        montuurNavigationBox.getChildren().add(firstButton);
+        montuurNavigationBox.getChildren().add(prevButton);
+        montuurNavigationBox.getChildren().add(nextButton);
+        montuurNavigationBox.getChildren().add(lastButton);
+        montuurNavigationBox.getChildren().add(addButton);
+        montuurNavigationBox.getChildren().add(okButton);
+        montuurNavigationBox.getChildren().add(delButton);
     }
 
     private static Integer ifNullInteger(TextField tf) {
