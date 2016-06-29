@@ -497,9 +497,9 @@
                                                       <Label text="diversen" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                                       <Label text="id montuur" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                                                       <Label text="datum van aankoop" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                                      <ComboBox editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" />
-                                                      <ComboBox editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <ComboBox editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <ComboBox fx:id="merkCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" />
+                                                      <ComboBox fx:id="modelCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <ComboBox fx:id="kleurCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                                       <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
                                                          <columnConstraints>
                                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="141.0" />
@@ -509,7 +509,7 @@
                                                             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                          </rowConstraints>
                                                          <children>
-                                                            <TextField prefHeight="27.0" prefWidth="152.0" />
+                                                            <TextField fx:id="maatInput" prefHeight="27.0" prefWidth="152.0" />
                                                          </children>
                                                       </GridPane>
                                                       <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -521,12 +521,12 @@
                                                             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                          </rowConstraints>
                                                          <children>
-                                                            <TextField prefHeight="27.0" prefWidth="148.0" />
+                                                            <TextField fx:id="prijsMontuurInput" prefHeight="27.0" prefWidth="148.0" />
                                                          </children>
                                                       </GridPane>
-                                                      <ComboBox prefHeight="27.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                                      <ComboBox editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                                      <ComboBox editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                                      <ComboBox fx:id="montuurTypeCombo" prefHeight="27.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                      <ComboBox fx:id="materiallCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                                      <ComboBox fx:id="diversenCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                                                       <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
                                                          <columnConstraints>
                                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="139.0" />
@@ -540,6 +540,7 @@
                                                          </children>
                                                       </GridPane>
                                                       <Label fx:id="montuurDatum" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                                                      <Label fx:id="verkoopLabel" text="ID" textFill="#0000005c" />
                                                    </children>
                                                 </GridPane>
                                                 <GridPane>

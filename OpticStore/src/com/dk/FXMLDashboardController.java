@@ -27,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
@@ -305,11 +306,31 @@ public class FXMLDashboardController implements Initializable {
     private HBox navigationBox;
     @FXML
     private Label vidLabel;
-    
     @FXML
     private Label montuurDatum;
     @FXML
     private HBox montuurNavigationBox;
+
+    @FXML
+    private Label verkoopLabel;
+    @FXML
+    private ComboBox merkCombo;
+    @FXML
+    private ComboBox modelCombo;
+    @FXML
+    private ComboBox kleurCombo;
+    @FXML
+    private TextField maatInput;
+    @FXML
+    private TextField prijsMontuurInput;
+    @FXML
+    private ComboBox montuurTypeCombo;
+    @FXML
+    private ComboBox materiallCombo;
+    @FXML
+    private ComboBox diversenCombo;
+    @FXML
+    private TextField idMontuurInput;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
@@ -317,13 +338,18 @@ public class FXMLDashboardController implements Initializable {
     private Node editClientNode;
     private Node delClientNode;
     private static TitledPane fisrtPane;
+
     private Brilvoorschrift currentBrilvoorschrift = null;
     private ArrayList<Brilvoorschrift> brilvoorschriftArray = new ArrayList<Brilvoorschrift>();
+    private int brilvoorschriftIndex;
+
+    private Verkoop currentVerkoop = null;
+    private ArrayList<Verkoop> verkoopArray = new ArrayList<Verkoop>();
+    private int verkoopIndex;
 
     static void expandeFirst() {
         fisrtPane.setExpanded(true);
     }
-    private int brilvoorschriftIndex;
 
     private void clearKlantForm(boolean withDeselect) {
         if (searchFields == null) {
@@ -393,12 +419,34 @@ public class FXMLDashboardController implements Initializable {
         anamneseField.setText("");
     }
 
+    private void clearTab3() {
+        verkoopLabel.setText("");
+        merkCombo.getEditor().setText("");
+        modelCombo.getEditor().setText("");
+        kleurCombo.getEditor().setText("");
+        maatInput.setText("");
+        prijsMontuurInput.setText("");
+        montuurTypeCombo.setValue("");
+        materiallCombo.setValue("");
+        diversenCombo.setValue("");
+        idMontuurInput.setText("");
+    }
+
     private void goLastTab2() {
         if (brilvoorschriftArray.size() > 0) {
             setCurrentBrilvoorschrift(brilvoorschriftArray.get(brilvoorschriftArray.size() - 1));
             loadBrilvoorschrift();
         } else {
             clearTab2();
+        }
+    }
+
+    private void goLastTab3() {
+        if (verkoopArray.size() > 0) {
+            setCurrentVerkoop(verkoopArray.get(verkoopArray.size() - 1));
+            loadVerkoop();
+        } else {
+            clearTab3();
         }
     }
 
@@ -411,6 +459,15 @@ public class FXMLDashboardController implements Initializable {
         }
     }
 
+    private void goFirstTab3() {
+        if (verkoopArray.size() > 0) {
+            setCurrentVerkoop(verkoopArray.get(0));
+            loadVerkoop();
+        } else {
+            clearTab3();
+        }
+    }
+
     private void goPrevTab2() {
         if (brilvoorschriftIndex > 0) {
             setCurrentBrilvoorschrift(brilvoorschriftArray.get(brilvoorschriftIndex - 1));
@@ -418,10 +475,24 @@ public class FXMLDashboardController implements Initializable {
         }
     }
 
+    private void goPrevTab3() {
+        if (verkoopIndex > 0) {
+            setCurrentVerkoop(verkoopArray.get(verkoopIndex - 1));
+            loadVerkoop();
+        }
+    }
+
     private void goNextTab2() {
         if (brilvoorschriftIndex < brilvoorschriftArray.size() - 1) {
             setCurrentBrilvoorschrift(brilvoorschriftArray.get(brilvoorschriftIndex + 1));
             loadBrilvoorschrift();
+        }
+    }
+
+    private void goNextTab3() {
+        if (verkoopIndex < verkoopArray.size() - 1) {
+            setCurrentVerkoop(verkoopArray.get(verkoopIndex - 1));
+            loadVerkoop();
         }
     }
 
@@ -449,7 +520,7 @@ public class FXMLDashboardController implements Initializable {
         oogmetingTab.setDisable(true);
         montuurTab.setDisable(true);
         glazenTab.setDisable(true);
-        
+
         fisrtPane = zoekenPane;
 
         RestrictNumbersFields(new TextField[]{
@@ -655,8 +726,8 @@ public class FXMLDashboardController implements Initializable {
         navigationBox.getChildren().add(addButton);
         navigationBox.getChildren().add(okButton);
         navigationBox.getChildren().add(delButton);
-        
-        firstButton=FXutils.createButton(getClass(), "first.png", new Runnable() {
+
+        firstButton = FXutils.createButton(getClass(), "first.png", new Runnable() {
             @Override
             public void run() {
                 //goFirstTab2();
@@ -743,6 +814,23 @@ public class FXMLDashboardController implements Initializable {
         loadBrilvoorschrift();
     }
 
+    private void loadLastVerkoopList(Klant klant) throws RemoteException {
+        verkoopArray.clear();
+        setCurrentVerkoop(null);
+        if (klant != null) {
+            DbObject[] recs = OpticStore.getExchanger().getDbObjects(Verkoop.class,
+                    "klant_id=" + klant.getKlantId(), "verkoop_id");
+            for (DbObject rec : recs) {
+                verkoopArray.add((Verkoop) rec);
+            }
+            if (verkoopArray.size() > 0) {
+                setCurrentVerkoop(verkoopArray.get(verkoopArray.size() - 1));
+            }
+        }
+        loadLastVerkoop();
+        loadVerkoop();
+    }
+
     private static void fillFieldWithValue(TextField fld, Object val) {
         if (val == null) {
             fld.setText("");
@@ -787,6 +875,21 @@ public class FXMLDashboardController implements Initializable {
             fillFieldWithValue(osVisInput, getCurrentBrilvoorschrift().getOsVis());
             fillFieldWithValue(oogmetinggDoorInput, getCurrentBrilvoorschrift().getOogmetingDoor());
             anamneseField.setText(getCurrentBrilvoorschrift().getAnamnese());
+        }
+    }
+
+    private void loadVerkoop() {
+        if (getCurrentVerkoop() != null) {
+            verkoopLabel.setText(getCurrentVerkoop().getPK_ID().toString());
+            merkCombo.getEditor().setText(getCurrentVerkoop().getMontuurMerk());
+            modelCombo.getEditor().setText(getCurrentVerkoop().getMontuurModel());
+            kleurCombo.getEditor().setText(getCurrentVerkoop().getMontuurKleur());
+            maatInput.setText(getCurrentVerkoop().getMontuurMaat());
+            prijsMontuurInput.setText(getCurrentVerkoop().getMontuurPrijs() == null ? "" : getCurrentVerkoop().getMontuurPrijs().toString());
+            montuurTypeCombo.setValue(getCurrentVerkoop().getMontuurType());
+            materiallCombo.setValue(getCurrentVerkoop().getMateriaal());
+            diversenCombo.setValue(getCurrentVerkoop().getDiverse());
+            idMontuurInput.setText(getCurrentVerkoop().getIdMontuur());
         }
     }
 
@@ -1078,7 +1181,7 @@ public class FXMLDashboardController implements Initializable {
                 klntPostCodePlaatsLabel.setText(postPlaats);
                 klntVerkoolDatumLabel.setText(getLastSellDate(klant.getKlantId()));
                 loadLastBrilvoorschriftList(klant);
-                loadLastBrilvoorschrift();
+                //loadLastBrilvoorschrift();
                 oogmetingTab.setDisable(false);
                 montuurTab.setDisable(false);
                 glazenTab.setDisable(false);
@@ -1137,6 +1240,25 @@ public class FXMLDashboardController implements Initializable {
         }
     }
 
+    private void loadLastVerkoop() throws RemoteException {
+        if (verkoopArray.size() > 0) {
+            Verkoop vk = verkoopArray.get(verkoopArray.size() - 1);
+            merkLabel.setText(vk.getMontuurMerk());
+            modelLabel.setText(vk.getMontuurModel());
+            kleurLabel.setText(vk.getMontuurKleur());
+            maatLabel.setText(vk.getMontuurMaat());
+            prijsmontuurLabel.setText(vk.getMontuurPrijs().toString());
+            btwLabel.setText(vk.getMontuurBtw().toString());
+            diversenLabel.setText(vk.getDiverse());
+            soortglasLabel.setText(vk.getSoortGlas());
+            montuurtypeLabel.setText(vk.getMontuurType());
+            materiaalLabel.setText(vk.getMateriaal());
+            kortingLabel.setText(vk.getKorting().toString());
+            totaalLabel.setText(vk.getTotaal().toString());
+            totaalBtwLabel.setText(vk.getTotalBtw().toString());
+        }
+    }
+
     private void loadLastBrilvoorschrift() throws RemoteException {
         if (brilvoorschriftArray.size() > 0) {
             Brilvoorschrift bs = brilvoorschriftArray.get(brilvoorschriftArray.size() - 1);
@@ -1155,7 +1277,6 @@ public class FXMLDashboardController implements Initializable {
             odLhLabel.setText(bs.getOdLh().toString());
             odHaLabel.setText(bs.getOdHa().toString());
             odIodLabel.setText(bs.getOdIod().toString());
-
             osSphLabel.setText(bs.getOsSph().toString());
             osCylLabel.setText(bs.getOsCyl().toString());
             osAsLabel.setText(bs.getOsAs().toString());
@@ -1186,5 +1307,20 @@ public class FXMLDashboardController implements Initializable {
     private void setCurrentBrilvoorschrift(Brilvoorschrift currentBrilvoorschrift) {
         this.currentBrilvoorschrift = currentBrilvoorschrift;
         brilvoorschriftIndex = brilvoorschriftArray.indexOf(this.currentBrilvoorschrift);
+    }
+
+    /**
+     * @return the currentVerkoop
+     */
+    private Verkoop getCurrentVerkoop() {
+        return currentVerkoop;
+    }
+
+    /**
+     * @param currentVerkoop the currentVerkoop to set
+     */
+    private void setCurrentVerkoop(Verkoop currentVerkoop) {
+        this.currentVerkoop = currentVerkoop;
+        verkoopIndex = verkoopArray.indexOf(this.currentVerkoop);
     }
 }
