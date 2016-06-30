@@ -8,9 +8,12 @@ package com.dk.util;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TimelineBuilder;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.ColorAdjustBuilder;
 import javafx.scene.effect.Reflection;
@@ -90,5 +93,24 @@ public class FXutils {
 
     public static Node createButton(Class cls, String iconName, final Runnable action) {
         return createButton(cls, iconName, action, false);
+    }
+    
+    public static void RestrictNumbersOnly(final TextField tf) {
+        tf.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("|[-\\+]?|[-\\+]?\\d+\\.?|[-\\+]?\\d+\\.?\\d+")) {
+                    tf.setText(oldValue);
+                }
+            }
+        });
+    }
+
+    public static void RestrictNumbersFields(TextField[] tl) {
+        for (TextField tf : tl) {
+            if (tf != null) {
+                RestrictNumbersOnly(tf);
+            }
+        }
     }
 }

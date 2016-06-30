@@ -19,6 +19,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -306,8 +307,8 @@ public class FXMLDashboardController implements Initializable {
     private HBox navigationBox;
     @FXML
     private Label vidLabel;
-    @FXML
-    private Label montuurDatum;
+    //@FXML
+    //private Label montuurDatum;
     @FXML
     private HBox montuurNavigationBox;
 
@@ -331,6 +332,8 @@ public class FXMLDashboardController implements Initializable {
     private ComboBox diversenCombo;
     @FXML
     private TextField idMontuurInput;
+    @FXML
+    private TextField montuurDatumInput;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
@@ -400,7 +403,8 @@ public class FXMLDashboardController implements Initializable {
         if (withDeselect) {
             klantGrid.unselect();
         }
-
+        clearTab2();
+        clearTab3();
     }
 
     private void clearTab2() {
@@ -412,10 +416,11 @@ public class FXMLDashboardController implements Initializable {
             osSphInput, osCylInput, osAsInput, osAddInput, osNabijInput,
             osPrInput, osBasisInput, osPr1Input, osBasis1Input,
             osVisInput, osPdDnInput, osLhInput, osHaInput, osIodInput,
-            oogmetinggDoorInput, datumRefractieInput
+            oogmetinggDoorInput
         }) {
             tf.setText("");
         }
+        datumRefractieInput.setText(OpticStore.dateFormat.format(Calendar.getInstance().getTime()));
         anamneseField.setText("");
     }
 
@@ -430,6 +435,8 @@ public class FXMLDashboardController implements Initializable {
         materiallCombo.setValue("");
         diversenCombo.setValue("");
         idMontuurInput.setText("");
+        montuurDatumInput.setText(OpticStore.dateFormat.format(Calendar.getInstance().getTime()));
+
     }
 
     private void goLastTab2() {
@@ -491,27 +498,8 @@ public class FXMLDashboardController implements Initializable {
 
     private void goNextTab3() {
         if (verkoopIndex < verkoopArray.size() - 1) {
-            setCurrentVerkoop(verkoopArray.get(verkoopIndex - 1));
+            setCurrentVerkoop(verkoopArray.get(verkoopIndex + 1));
             loadVerkoop();
-        }
-    }
-
-    public static void RestrictNumbersOnly(final TextField tf) {
-        tf.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("|[-\\+]?|[-\\+]?\\d+\\.?|[-\\+]?\\d+\\.?\\d+")) {
-                    tf.setText(oldValue);
-                }
-            }
-        });
-    }
-
-    private void RestrictNumbersFields(TextField[] tl) {
-        for (TextField tf : tl) {
-            if (tf != null) {
-                RestrictNumbersOnly(tf);
-            }
         }
     }
 
@@ -523,7 +511,7 @@ public class FXMLDashboardController implements Initializable {
 
         fisrtPane = zoekenPane;
 
-        RestrictNumbersFields(new TextField[]{
+        FXutils.RestrictNumbersFields(new TextField[]{
             odSphInput, odCylInput, odAsInput, odAddInput, odNabijInput,
             odPrInput, odBasisInput, odPr1Input, odBasis1Input,
             odVisInput, odLhInput, odHaInput, odIodInput,
@@ -688,16 +676,19 @@ public class FXMLDashboardController implements Initializable {
         Node okButton = FXutils.createButton(getClass(), "ok.png", new Runnable() {
             @Override
             public void run() {
-                //TODO
                 try {
+                    boolean added = false;
                     if (getCurrentBrilvoorschrift() == null) {
                         setCurrentBrilvoorschrift(new Brilvoorschrift(null));
                         getCurrentBrilvoorschrift().setBrilvoorschriftId(0);
                         getCurrentBrilvoorschrift().setNew(true);
+                        added = true;
                     }
                     fillCurrentBrilvoorschriftAndSave();
-                    brilvoorschriftArray.add(getCurrentBrilvoorschrift());
-                    goLastTab2();
+                    if (added) {
+                        brilvoorschriftArray.add(getCurrentBrilvoorschrift());
+                        goLastTab2();
+                    }
                 } catch (Exception ex) {
                     OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
                 }
@@ -730,46 +721,70 @@ public class FXMLDashboardController implements Initializable {
         firstButton = FXutils.createButton(getClass(), "first.png", new Runnable() {
             @Override
             public void run() {
-                //goFirstTab2();
-                //TODO
+                goFirstTab3();
             }
         });
         prevButton = FXutils.createButton(getClass(), "prev.png", new Runnable() {
             @Override
             public void run() {
-//                goPrevTab2();
-                //TODO
+                goPrevTab3();
             }
         });
         nextButton = FXutils.createButton(getClass(), "next.png", new Runnable() {
             @Override
             public void run() {
-                //TODO
+                goNextTab3();
             }
         }
         );
         lastButton = FXutils.createButton(getClass(), "last.png", new Runnable() {
             @Override
             public void run() {
-                //TODO
+                goLastTab3();
             }
         });
         addButton = FXutils.createButton(getClass(), "add.png", new Runnable() {
             @Override
             public void run() {
-                //TODO
+                setCurrentVerkoop(null);
+                clearTab3();
             }
         });
         okButton = FXutils.createButton(getClass(), "ok.png", new Runnable() {
             @Override
             public void run() {
                 //TODO
+                try {
+                    boolean added = false;
+                    if (getCurrentVerkoop() == null) {
+                        setCurrentVerkoop(new Verkoop(null));
+                        getCurrentVerkoop().setVerkoopId(0);
+                        getCurrentVerkoop().setNew(true);
+                        added = true;
+                    }
+                    fillCurrentVerkoopAndSave();
+                    if (added) {
+                        verkoopArray.add(getCurrentVerkoop());
+                        goLastTab3();
+                    }
+                } catch (Exception ex) {
+                    OpticStore.logAndShowErrorMessage(ex.getCause().getLocalizedMessage());
+                }
             }
         });
         delButton = FXutils.createButton(getClass(), "delete.png", new Runnable() {
             @Override
             public void run() {
-                //TODO
+                if (getCurrentVerkoop() != null && OpticStore.yesOrNoDialog("Bent u zeker dat u wilt verwijderen van dit record?\n(vorkoop_id="
+                        + getCurrentVerkoop().getPK_ID() + ")")) {
+                    try {
+                        OpticStore.getExchanger().deleteObject(getCurrentBrilvoorschrift());
+                        verkoopArray.remove(getCurrentVerkoop());
+                        goLastTab3();
+                    } catch (RemoteException ex) {
+                        OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
+                    }
+                }
             }
         });
         montuurNavigationBox.getChildren().add(firstButton);
@@ -779,6 +794,9 @@ public class FXMLDashboardController implements Initializable {
         montuurNavigationBox.getChildren().add(addButton);
         montuurNavigationBox.getChildren().add(okButton);
         montuurNavigationBox.getChildren().add(delButton);
+
+        montuurTypeCombo.getItems().add("correctie");
+        montuurTypeCombo.getItems().add("zon");
     }
 
     private static Integer ifNullInteger(TextField tf) {
@@ -893,6 +911,45 @@ public class FXMLDashboardController implements Initializable {
         }
     }
 
+    private void fillCurrentVerkoopAndSave() throws SQLException, ForeignKeyViolationException, ParseException, RemoteException {
+        if (getCurrentVerkoop().isNew()) {
+            getCurrentVerkoop().setKlantId(selectedKlantID);
+        }
+        getCurrentVerkoop().setDiverse(diversenCombo.getValue() == null ? "" : diversenCombo.getValue().toString());
+        getCurrentVerkoop().setIdMontuur(idMontuurInput.getText());
+        getCurrentVerkoop().setKorting(0.0); //TODO - claculate
+        getCurrentVerkoop().setLBtw(0.0); //TODO - glazen calc
+        getCurrentVerkoop().setLCoating(""); //TODO - glazen
+        getCurrentVerkoop().setLDiameter(0); //TODO - glazen
+        getCurrentVerkoop().setLKleurGlazen(""); //TODO - glazen
+        getCurrentVerkoop().setLPrijsGlas(0.0); //TODO - glazen
+        getCurrentVerkoop().setLReverancier(""); //TODO - glazen
+        getCurrentVerkoop().setLTypeGlas(""); //TODO - glazen
+        getCurrentVerkoop().setMateriaal(materiallCombo.getValue() == null ? "" : materiallCombo.getValue().toString());
+        getCurrentVerkoop().setMontuurBtw(0.0); //TODO - calc
+        getCurrentVerkoop().setMontuurKleur(kleurCombo.getValue() == null ? "" : kleurCombo.getValue().toString());
+        getCurrentVerkoop().setMontuurMaat(maatInput.getText());
+        getCurrentVerkoop().setMontuurMerk(merkCombo.getValue() == null ? "" : merkCombo.getValue().toString());
+        getCurrentVerkoop().setMontuurModel(modelCombo.getValue() == null ? "" : modelCombo.getValue().toString());
+        getCurrentVerkoop().setMontuurPrijs(ifNullDouble(prijsMontuurInput));
+        getCurrentVerkoop().setMontuurType(montuurTypeCombo.getValue() == null ? "" : montuurTypeCombo.getValue().toString());
+        getCurrentVerkoop().setRBtw(0.0); //TODO - glazen calc
+        getCurrentVerkoop().setRCoating(""); //TODO - glazen
+        getCurrentVerkoop().setRDiameter(0); //TODO - glazen
+        getCurrentVerkoop().setRKleurGlazen(""); //TODO - glazen
+        getCurrentVerkoop().setRPrijsGlas(0.0); //TODO - glazen
+        getCurrentVerkoop().setRLeverancier(""); //TODO - glazen
+        getCurrentVerkoop().setRTypeGlas(""); //TODO - glazen
+        getCurrentVerkoop().setSoortGlas(""); //TODO - glazen
+        getCurrentVerkoop().setTotaal(0.0); //TODO - calc
+        getCurrentVerkoop().setTotalBtw(0.0); //TODO - calc
+        if (montuurDatumInput.getText()!=null && !montuurDatumInput.getText().isEmpty()) {
+            java.util.Date dt = OpticStore.dateFormat.parse(montuurDatumInput.getText());
+            getCurrentVerkoop().setVerkoopdatum(new Date(dt.getTime()));
+        }
+        setCurrentVerkoop((Verkoop) OpticStore.getExchanger().saveDbObject(getCurrentVerkoop()));
+    }
+
     private void fillCurrentBrilvoorschriftAndSave() throws SQLException, ForeignKeyViolationException, ParseException, RemoteException {
         if (getCurrentBrilvoorschrift().isNew()) {
             getCurrentBrilvoorschrift().setKlantId(selectedKlantID);
@@ -901,6 +958,8 @@ public class FXMLDashboardController implements Initializable {
         if (!datumRefractieInput.getText().isEmpty()) {
             java.util.Date dt = OpticStore.dateFormat.parse(datumRefractieInput.getText());
             getCurrentBrilvoorschrift().setDatumRefractie(new Date(dt.getTime()));
+        } else {
+            getCurrentBrilvoorschrift().setDatumRefractie(null);
         }
         getCurrentBrilvoorschrift().setOdAdd(ifNullDouble(odAddInput));
         getCurrentBrilvoorschrift().setOsAdd(ifNullDouble(odAddInput));
@@ -1181,6 +1240,7 @@ public class FXMLDashboardController implements Initializable {
                 klntPostCodePlaatsLabel.setText(postPlaats);
                 klntVerkoolDatumLabel.setText(getLastSellDate(klant.getKlantId()));
                 loadLastBrilvoorschriftList(klant);
+                loadLastVerkoopList(klant);
                 //loadLastBrilvoorschrift();
                 oogmetingTab.setDisable(false);
                 montuurTab.setDisable(false);
