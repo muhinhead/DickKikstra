@@ -8,8 +8,10 @@ package com.dk;
 import com.dk.orm.Brilvoorschrift;
 import com.dk.orm.Klant;
 import com.dk.orm.Verkoop;
+import com.dk.orm.dbobject.ComboItem;
 import com.dk.orm.dbobject.DbObject;
 import com.dk.orm.dbobject.ForeignKeyViolationException;
+import com.dk.util.AutoCompleteComboBoxListener;
 import com.dk.util.FXutils;
 import com.dk.util.TableGridPanel;
 import com.sun.javafx.collections.ObservableListWrapper;
@@ -21,6 +23,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -511,6 +516,12 @@ public class FXMLDashboardController implements Initializable {
 
         fisrtPane = zoekenPane;
 
+        for (ComboBox cb : new ComboBox[]{merkCombo, modelCombo, kleurCombo, materiallCombo, diversenCombo}) {
+            new AutoCompleteComboBoxListener(cb);
+            cb.getItems().clear();
+        }
+        fillCombos();
+
         FXutils.RestrictNumbersFields(new TextField[]{
             odSphInput, odCylInput, odAsInput, odAddInput, odNabijInput,
             odPrInput, odBasisInput, odPr1Input, odBasis1Input,
@@ -518,7 +529,7 @@ public class FXMLDashboardController implements Initializable {
             osSphInput, osCylInput, osAsInput, osAddInput, osNabijInput,
             osPrInput, osBasisInput, osPr1Input, osBasis1Input,
             osVisInput, osLhInput, osHaInput, osIodInput,
-            oogmetinggDoorInput, datumRefractieInput
+            oogmetinggDoorInput//, datumRefractieInput
         });
 
         Node logoutNode = FXutils.createButton(getClass(), "exit.png", new Runnable() {
@@ -799,6 +810,32 @@ public class FXMLDashboardController implements Initializable {
         montuurTypeCombo.getItems().add("zon");
     }
 
+    private static void fillCombo(ComboBox cb, String select, boolean withID) {
+        Vector[] v;
+        try {
+            v = OpticStore.getExchanger().getTableBody(select);
+            Vector lines = v[1];
+            for (int i = 0; i < lines.size(); i++) {
+                Vector line = (Vector) lines.get(i);
+                if (withID) {
+                    cb.getItems().add(new ComboItem(Integer.parseInt((String) line.get(0)), (String) line.get(1)));
+                } else {
+                    cb.getItems().add((String) line.get(0));
+                }
+            }
+        } catch (RemoteException ex) {
+            OpticStore.logAndShowErrorMessage(ex.getCause().getLocalizedMessage());
+        }
+    }
+
+    private void fillCombos() {
+        fillCombo(merkCombo, "select distinct montuur_merk from verkoop order by montuur_merk", false);
+        fillCombo(modelCombo,"select distinct montuur_model from verkoop order by montuur_model",false);
+        fillCombo(kleurCombo,"select distinct montuur_kleur from verkoop order by montuur_kleur",false);
+        fillCombo(materiallCombo,"select distinct materiaal from verkoop order by materiaal",false);
+        fillCombo(diversenCombo,"select distinct diverse from verkoop order by diverse",false);
+    }
+
     private static Integer ifNullInteger(TextField tf) {
         if (tf != null && tf.getText() != null) {
             return Integer.parseInt(tf.getText());
@@ -943,7 +980,7 @@ public class FXMLDashboardController implements Initializable {
         getCurrentVerkoop().setSoortGlas(""); //TODO - glazen
         getCurrentVerkoop().setTotaal(0.0); //TODO - calc
         getCurrentVerkoop().setTotalBtw(0.0); //TODO - calc
-        if (montuurDatumInput.getText()!=null && !montuurDatumInput.getText().isEmpty()) {
+        if (montuurDatumInput.getText() != null && !montuurDatumInput.getText().isEmpty()) {
             java.util.Date dt = OpticStore.dateFormat.parse(montuurDatumInput.getText());
             getCurrentVerkoop().setVerkoopdatum(new Date(dt.getTime()));
         }
