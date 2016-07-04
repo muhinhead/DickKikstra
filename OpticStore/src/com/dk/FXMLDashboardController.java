@@ -441,7 +441,7 @@ public class FXMLDashboardController implements Initializable {
         diversenCombo.setValue("");
         idMontuurInput.setText("");
         montuurDatumInput.setText(OpticStore.dateFormat.format(Calendar.getInstance().getTime()));
-
+        fillCombos();
     }
 
     private void goLastTab2() {
@@ -516,7 +516,7 @@ public class FXMLDashboardController implements Initializable {
 
         fisrtPane = zoekenPane;
 
-        for (ComboBox cb : new ComboBox[]{merkCombo, modelCombo, kleurCombo, materiallCombo, diversenCombo}) {
+        for (ComboBox cb : new ComboBox[]{merkCombo, modelCombo, kleurCombo, diversenCombo}) {
             new AutoCompleteComboBoxListener(cb);
             cb.getItems().clear();
         }
@@ -808,11 +808,17 @@ public class FXMLDashboardController implements Initializable {
 
         montuurTypeCombo.getItems().add("correctie");
         montuurTypeCombo.getItems().add("zon");
+        
+        materiallCombo.getItems().add("metaal");
+        materiallCombo.getItems().add("kunststof");
+        materiallCombo.getItems().add("nylor");
+        materiallCombo.getItems().add("randloos");
     }
 
     private static void fillCombo(ComboBox cb, String select, boolean withID) {
         Vector[] v;
         try {
+            cb.getItems().clear();
             v = OpticStore.getExchanger().getTableBody(select);
             Vector lines = v[1];
             for (int i = 0; i < lines.size(); i++) {
@@ -832,7 +838,6 @@ public class FXMLDashboardController implements Initializable {
         fillCombo(merkCombo, "select distinct montuur_merk from verkoop order by montuur_merk", false);
         fillCombo(modelCombo,"select distinct montuur_model from verkoop order by montuur_model",false);
         fillCombo(kleurCombo,"select distinct montuur_kleur from verkoop order by montuur_kleur",false);
-        fillCombo(materiallCombo,"select distinct materiaal from verkoop order by materiaal",false);
         fillCombo(diversenCombo,"select distinct diverse from verkoop order by diverse",false);
     }
 
@@ -936,15 +941,16 @@ public class FXMLDashboardController implements Initializable {
     private void loadVerkoop() {
         if (getCurrentVerkoop() != null) {
             verkoopLabel.setText(getCurrentVerkoop().getPK_ID().toString());
-            merkCombo.getEditor().setText(getCurrentVerkoop().getMontuurMerk());
-            modelCombo.getEditor().setText(getCurrentVerkoop().getMontuurModel());
-            kleurCombo.getEditor().setText(getCurrentVerkoop().getMontuurKleur());
-            maatInput.setText(getCurrentVerkoop().getMontuurMaat());
-            prijsMontuurInput.setText(getCurrentVerkoop().getMontuurPrijs() == null ? "" : getCurrentVerkoop().getMontuurPrijs().toString());
+            merkCombo.setValue(getCurrentVerkoop().getMontuurMerk());
+            modelCombo.setValue(getCurrentVerkoop().getMontuurModel());
+            kleurCombo.setValue(getCurrentVerkoop().getMontuurKleur());
+            fillFieldWithValue(maatInput, getCurrentVerkoop().getMontuurMaat());
+            fillFieldWithValue(prijsMontuurInput, getCurrentVerkoop().getMontuurPrijs());
             montuurTypeCombo.setValue(getCurrentVerkoop().getMontuurType());
             materiallCombo.setValue(getCurrentVerkoop().getMateriaal());
             diversenCombo.setValue(getCurrentVerkoop().getDiverse());
-            idMontuurInput.setText(getCurrentVerkoop().getIdMontuur());
+            fillFieldWithValue(idMontuurInput, getCurrentVerkoop().getIdMontuur());
+            fillFieldWithValue(montuurDatumInput, getCurrentVerkoop().getVerkoopdatum());
         }
     }
 
@@ -983,7 +989,7 @@ public class FXMLDashboardController implements Initializable {
         if (montuurDatumInput.getText() != null && !montuurDatumInput.getText().isEmpty()) {
             java.util.Date dt = OpticStore.dateFormat.parse(montuurDatumInput.getText());
             getCurrentVerkoop().setVerkoopdatum(new Date(dt.getTime()));
-        }
+        } 
         setCurrentVerkoop((Verkoop) OpticStore.getExchanger().saveDbObject(getCurrentVerkoop()));
     }
 
