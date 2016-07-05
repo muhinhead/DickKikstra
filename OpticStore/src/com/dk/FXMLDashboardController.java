@@ -340,6 +340,40 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private TextField montuurDatumInput;
 
+    @FXML
+    private ComboBox rLeverancierCombo;
+    @FXML
+    private ComboBox lLeverancierCombo;
+    @FXML
+    private ComboBox rTypeGlasCombo;
+    @FXML
+    private ComboBox lTypeGlasCombo;
+    @FXML
+    private ComboBox rCoatingCombo;
+    @FXML
+    private ComboBox lCoatingCombo;
+    @FXML
+    private ComboBox rKleurGlasCombo;
+    @FXML
+    private ComboBox lKleurGlasCombo;
+    @FXML
+    private ComboBox soortGlasCombo;
+    @FXML
+    private TextField rDiameterInput; 
+    @FXML
+    private TextField lDiameterInput;
+    @FXML
+    private TextField rPrijsGlasInput; 
+    @FXML
+    private TextField lPrijsGlasInput; 
+    @FXML
+    private TextField breedteInput;
+    @FXML
+    private TextField hoogteInput;
+    @FXML
+    private TextField neusmaatInput;
+
+
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
     private int selectedKlantID = 0;
@@ -529,7 +563,10 @@ public class FXMLDashboardController implements Initializable {
             osSphInput, osCylInput, osAsInput, osAddInput, osNabijInput,
             osPrInput, osBasisInput, osPr1Input, osBasis1Input,
             osVisInput, osLhInput, osHaInput, osIodInput,
-            oogmetinggDoorInput//, datumRefractieInput
+            oogmetinggDoorInput, 
+            rDiameterInput, lDiameterInput,
+            rPrijsGlasInput, lPrijsGlasInput ,
+            breedteInput, hoogteInput, neusmaatInput
         });
 
         Node logoutNode = FXutils.createButton(getClass(), "exit.png", new Runnable() {
@@ -779,7 +816,7 @@ public class FXMLDashboardController implements Initializable {
                         goLastTab3();
                     }
                 } catch (Exception ex) {
-                    OpticStore.logAndShowErrorMessage(ex.getCause().getLocalizedMessage());
+                    OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
                 }
             }
         });
@@ -808,25 +845,34 @@ public class FXMLDashboardController implements Initializable {
 
         montuurTypeCombo.getItems().add("correctie");
         montuurTypeCombo.getItems().add("zon");
-        
+
         materiallCombo.getItems().add("metaal");
         materiallCombo.getItems().add("kunststof");
         materiallCombo.getItems().add("nylor");
         materiallCombo.getItems().add("randloos");
+
+        soortGlasCombo.getItems().add("enkelvoudig");
+        soortGlasCombo.getItems().add("multifocaal");
+        soortGlasCombo.getItems().add("leesbril");
+        soortGlasCombo.getItems().add("computerbril");
     }
 
-    private static void fillCombo(ComboBox cb, String select, boolean withID) {
+    private static void fillCombos(ComboBox[] cbs, String select, boolean withID) {
         Vector[] v;
         try {
-            cb.getItems().clear();
+            for (ComboBox cb : cbs) {
+                cb.getItems().clear();
+            }
             v = OpticStore.getExchanger().getTableBody(select);
             Vector lines = v[1];
             for (int i = 0; i < lines.size(); i++) {
                 Vector line = (Vector) lines.get(i);
-                if (withID) {
-                    cb.getItems().add(new ComboItem(Integer.parseInt((String) line.get(0)), (String) line.get(1)));
-                } else {
-                    cb.getItems().add((String) line.get(0));
+                for (ComboBox cb : cbs) {
+                    if (withID) {
+                        cb.getItems().add(new ComboItem(Integer.parseInt((String) line.get(0)), (String) line.get(1)));
+                    } else {
+                        cb.getItems().add((String) line.get(0));
+                    }
                 }
             }
         } catch (RemoteException ex) {
@@ -834,11 +880,24 @@ public class FXMLDashboardController implements Initializable {
         }
     }
 
+    private static void fillCombo(ComboBox cb, String select, boolean withID) {
+        fillCombos(new ComboBox[]{cb}, select, withID);
+    }
+
     private void fillCombos() {
         fillCombo(merkCombo, "select distinct montuur_merk from verkoop order by montuur_merk", false);
-        fillCombo(modelCombo,"select distinct montuur_model from verkoop order by montuur_model",false);
-        fillCombo(kleurCombo,"select distinct montuur_kleur from verkoop order by montuur_kleur",false);
-        fillCombo(diversenCombo,"select distinct diverse from verkoop order by diverse",false);
+        fillCombo(modelCombo, "select distinct montuur_model from verkoop order by montuur_model", false);
+        fillCombo(kleurCombo, "select distinct montuur_kleur from verkoop order by montuur_kleur", false);
+        fillCombo(diversenCombo, "select distinct diverse from verkoop order by diverse", false);
+        fillCombos(new ComboBox[]{lLeverancierCombo,rLeverancierCombo},
+                "select distinct l_reverancier from verkoop "
+                        + "union select distinct r_leverancier from verkoop",false);
+        fillCombos(new ComboBox[]{lTypeGlasCombo, rTypeGlasCombo},"select distinct l_type_glas from verkoop "
+                        + "union select distinct r_type_glas from verkoop",false);
+        fillCombos(new ComboBox[]{lCoatingCombo, rCoatingCombo},"select distinct l_type_glas from verkoop "
+                        + "union select distinct r_type_glas from verkoop",false);
+        fillCombos(new ComboBox[]{lKleurGlasCombo, rKleurGlasCombo},"select distinct r_coating from verkoop "
+                        + "union select distinct r_coating from verkoop",false);
     }
 
     private static Integer ifNullInteger(TextField tf) {
@@ -903,7 +962,8 @@ public class FXMLDashboardController implements Initializable {
 
     private void loadBrilvoorschrift() {
         if (getCurrentBrilvoorschrift() != null) {
-            vidLabel.setText(getCurrentBrilvoorschrift().getBrilvoorschriftId().toString());
+            //vidLabel.setText(getCurrentBrilvoorschrift().getBrilvoorschriftId().toString());
+            vidLabel.setText("" + (brilvoorschriftIndex + 1) + "/" + brilvoorschriftArray.size());
             fillFieldWithValue(datumRefractieInput, getCurrentBrilvoorschrift().getDatumRefractie());
             fillFieldWithValue(odAddInput, getCurrentBrilvoorschrift().getOdAdd());
             fillFieldWithValue(osAddInput, getCurrentBrilvoorschrift().getOsAdd());
@@ -940,7 +1000,8 @@ public class FXMLDashboardController implements Initializable {
 
     private void loadVerkoop() {
         if (getCurrentVerkoop() != null) {
-            verkoopLabel.setText(getCurrentVerkoop().getPK_ID().toString());
+            verkoopLabel.setText(" " + (verkoopIndex + 1) + "/" + verkoopArray.size());
+            //verkoopLabel.setText(getCurrentVerkoop().getPK_ID().toString());
             merkCombo.setValue(getCurrentVerkoop().getMontuurMerk());
             modelCombo.setValue(getCurrentVerkoop().getMontuurModel());
             kleurCombo.setValue(getCurrentVerkoop().getMontuurKleur());
@@ -989,7 +1050,7 @@ public class FXMLDashboardController implements Initializable {
         if (montuurDatumInput.getText() != null && !montuurDatumInput.getText().isEmpty()) {
             java.util.Date dt = OpticStore.dateFormat.parse(montuurDatumInput.getText());
             getCurrentVerkoop().setVerkoopdatum(new Date(dt.getTime()));
-        } 
+        }
         setCurrentVerkoop((Verkoop) OpticStore.getExchanger().saveDbObject(getCurrentVerkoop()));
     }
 

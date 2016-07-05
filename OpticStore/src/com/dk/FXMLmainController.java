@@ -13,7 +13,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,7 +46,7 @@ public class FXMLmainController implements Initializable {
             }
         }
         if (currentUser == null) {
-            Dialogs.showErrorDialog(OpticStore.mainStage, "Access denied!", "Error", "Oops!");
+            Dialogs.showErrorDialog(OpticStore.mainStage, "Toegang geweigerd!", "Fout", "Oh!");
             //Platform.exit();
         } else {
             //OpticStore.mainApp.resize2(1100.0, 800.0);
