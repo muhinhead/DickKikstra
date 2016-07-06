@@ -686,6 +686,7 @@
                                                       <TextField fx:id="rPrijsGlasInput" prefHeight="27.0" prefWidth="90.0" />
                                                    </children>
                                                 </GridPane>
+                                                <Label fx:id="verkoop1Label" text="ID" textFill="#0000005c" />
                                              </children>
                                           </GridPane>
                                           <Label prefHeight="17.0" prefWidth="1104.0" style="-fx-background-color: lightgray;" text="glas links" textFill="WHITE" />
