@@ -316,6 +316,8 @@ public class FXMLDashboardController implements Initializable {
     //private Label montuurDatum;
     @FXML
     private HBox montuurNavigationBox;
+    @FXML
+    private HBox glazenNavigationBox;
 
     @FXML
     private Label verkoopLabel;
@@ -766,42 +768,100 @@ public class FXMLDashboardController implements Initializable {
         navigationBox.getChildren().add(okButton);
         navigationBox.getChildren().add(delButton);
 
-        firstButton = FXutils.createButton(getClass(), "first.png", new Runnable() {
+        firstButton = FXutils.createButton(getClass(), "first.png", firstVerkoopAction());
+        prevButton = FXutils.createButton(getClass(), "prev.png", prevVerkoopAction());
+        nextButton = FXutils.createButton(getClass(), "next.png", nextVerkoopAction());
+        lastButton = FXutils.createButton(getClass(), "last.png", lastVerkoopAction());
+        addButton = FXutils.createButton(getClass(), "add.png", addVerkoopAction());
+        okButton = FXutils.createButton(getClass(), "ok.png", okVerkoopAction());
+        delButton = FXutils.createButton(getClass(), "delete.png", delVerkoopAction());
+        montuurNavigationBox.getChildren().add(firstButton);
+        montuurNavigationBox.getChildren().add(prevButton);
+        montuurNavigationBox.getChildren().add(nextButton);
+        montuurNavigationBox.getChildren().add(lastButton);
+        montuurNavigationBox.getChildren().add(addButton);
+        montuurNavigationBox.getChildren().add(okButton);
+        montuurNavigationBox.getChildren().add(delButton);
+
+        firstButton = FXutils.createButton(getClass(), "first.png", firstVerkoopAction());
+        prevButton = FXutils.createButton(getClass(), "prev.png", prevVerkoopAction());
+        nextButton = FXutils.createButton(getClass(), "next.png", nextVerkoopAction());
+        lastButton = FXutils.createButton(getClass(), "last.png", lastVerkoopAction());
+        addButton = FXutils.createButton(getClass(), "add.png", addVerkoopAction());
+        okButton = FXutils.createButton(getClass(), "ok.png", okVerkoopAction());
+        delButton = FXutils.createButton(getClass(), "delete.png", delVerkoopAction());
+        glazenNavigationBox.getChildren().add(firstButton);
+        glazenNavigationBox.getChildren().add(prevButton);
+        glazenNavigationBox.getChildren().add(nextButton);
+        glazenNavigationBox.getChildren().add(lastButton);
+        glazenNavigationBox.getChildren().add(addButton);
+        glazenNavigationBox.getChildren().add(okButton);
+        glazenNavigationBox.getChildren().add(delButton);
+        
+        montuurTypeCombo.getItems().add("correctie");
+        montuurTypeCombo.getItems().add("zon");
+
+        materiallCombo.getItems().add("metaal");
+        materiallCombo.getItems().add("kunststof");
+        materiallCombo.getItems().add("nylor");
+        materiallCombo.getItems().add("randloos");
+
+        soortGlasCombo.getItems().add("enkelvoudig");
+        soortGlasCombo.getItems().add("multifocaal");
+        soortGlasCombo.getItems().add("leesbril");
+        soortGlasCombo.getItems().add("computerbril");
+    }
+    
+    private Runnable firstVerkoopAction() {
+        return new Runnable() {
             @Override
             public void run() {
                 goFirstTab3();
             }
-        });
-        prevButton = FXutils.createButton(getClass(), "prev.png", new Runnable() {
+        };
+    }
+
+    private Runnable prevVerkoopAction() {
+        return new Runnable() {
             @Override
             public void run() {
                 goPrevTab3();
             }
-        });
-        nextButton = FXutils.createButton(getClass(), "next.png", new Runnable() {
+        };
+    }
+    
+    private Runnable nextVerkoopAction() {
+        return new Runnable() {
             @Override
             public void run() {
                 goNextTab3();
             }
-        }
-        );
-        lastButton = FXutils.createButton(getClass(), "last.png", new Runnable() {
+        };
+    }
+    
+    private Runnable lastVerkoopAction() {
+        return new Runnable() {
             @Override
             public void run() {
                 goLastTab3();
             }
-        });
-        addButton = FXutils.createButton(getClass(), "add.png", new Runnable() {
+        };
+    }
+    
+    private Runnable addVerkoopAction() {
+        return new Runnable() {
             @Override
             public void run() {
                 setCurrentVerkoop(null);
                 clearTab3();
             }
-        });
-        okButton = FXutils.createButton(getClass(), "ok.png", new Runnable() {
+        };
+    }
+    
+    private Runnable okVerkoopAction() {
+        return new Runnable() {
             @Override
             public void run() {
-                //TODO
                 try {
                     boolean added = false;
                     if (getCurrentVerkoop() == null) {
@@ -819,8 +879,11 @@ public class FXMLDashboardController implements Initializable {
                     OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
                 }
             }
-        });
-        delButton = FXutils.createButton(getClass(), "delete.png", new Runnable() {
+        };
+    }
+    
+    private Runnable delVerkoopAction() {
+        return new Runnable() {
             @Override
             public void run() {
                 if (getCurrentVerkoop() != null && OpticStore.yesOrNoDialog("Bent u zeker dat u wilt verwijderen van dit record?\n(vorkoop_id="
@@ -834,29 +897,9 @@ public class FXMLDashboardController implements Initializable {
                     }
                 }
             }
-        });
-        montuurNavigationBox.getChildren().add(firstButton);
-        montuurNavigationBox.getChildren().add(prevButton);
-        montuurNavigationBox.getChildren().add(nextButton);
-        montuurNavigationBox.getChildren().add(lastButton);
-        montuurNavigationBox.getChildren().add(addButton);
-        montuurNavigationBox.getChildren().add(okButton);
-        montuurNavigationBox.getChildren().add(delButton);
-
-        montuurTypeCombo.getItems().add("correctie");
-        montuurTypeCombo.getItems().add("zon");
-
-        materiallCombo.getItems().add("metaal");
-        materiallCombo.getItems().add("kunststof");
-        materiallCombo.getItems().add("nylor");
-        materiallCombo.getItems().add("randloos");
-
-        soortGlasCombo.getItems().add("enkelvoudig");
-        soortGlasCombo.getItems().add("multifocaal");
-        soortGlasCombo.getItems().add("leesbril");
-        soortGlasCombo.getItems().add("computerbril");
+        };
     }
-
+    
     private static void fillCombos(ComboBox[] cbs, String select, boolean withID) {
         Vector[] v;
         try {
