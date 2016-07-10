@@ -53,6 +53,7 @@ public class FXMLDashboardController implements Initializable {
 
     private static final String FILL_THIS_FIELD = "dit veld invullen";
     private static final String graylabelStyle = "-fx-background-color: gray;";
+    private static final double NDS = 21.0;
 
     @FXML
     private HBox logoutBox;
@@ -302,6 +303,12 @@ public class FXMLDashboardController implements Initializable {
     private Label r_btwLabel;
     @FXML
     private Label l_btwLabel;
+    @FXML
+    private Label diversePrijsLabel;
+    @FXML
+    private Label diverseBtwLabel;
+    
+    
     @FXML
     private Button anamneseButton;
     @FXML
@@ -1068,8 +1075,9 @@ public class FXMLDashboardController implements Initializable {
 
     private void loadVerkoop() {
         if (getCurrentVerkoop() != null) {
-            verkoopLabel.setText(" " + (verkoopIndex + 1) + "/" + verkoopArray.size());
-            //verkoopLabel.setText(getCurrentVerkoop().getPK_ID().toString());
+            String num = " " + (verkoopIndex + 1) + "/" + verkoopArray.size();
+            verkoopLabel.setText(num);
+            verkoop1Label.setText(num);
             merkCombo.setValue(getCurrentVerkoop().getMontuurMerk());
             modelCombo.setValue(getCurrentVerkoop().getMontuurModel());
             kleurCombo.setValue(getCurrentVerkoop().getMontuurKleur());
@@ -1108,10 +1116,10 @@ public class FXMLDashboardController implements Initializable {
         getCurrentVerkoop().setLBtw(0.0); //TODO - glazen calc
         getCurrentVerkoop().setLCoating(lCoatingCombo.getValue() == null ? "" : lCoatingCombo.getValue().toString());
         getCurrentVerkoop().setLDiameter(lDiameterInput.getText() == null ? 0 : Integer.parseInt(lDiameterInput.getText()));
-        getCurrentVerkoop().setLKleurGlazen(lKleurGlasCombo.getValue() == null ? "" : lKleurGlasCombo.getValue().toString()); 
-        getCurrentVerkoop().setLPrijsGlas(lPrijsGlasInput.getText() == null ? 0.0 : Double.parseDouble(lPrijsGlasInput.getText())); 
-        getCurrentVerkoop().setLReverancier(lLeverancierCombo.getValue() == null ? "" : lLeverancierCombo.getValue().toString()); 
-        getCurrentVerkoop().setLTypeGlas(lTypeGlasCombo.getValue()==null?"":lTypeGlasCombo.getValue().toString());
+        getCurrentVerkoop().setLKleurGlazen(lKleurGlasCombo.getValue() == null ? "" : lKleurGlasCombo.getValue().toString());
+        getCurrentVerkoop().setLPrijsGlas(lPrijsGlasInput.getText() == null ? 0.0 : Double.parseDouble(lPrijsGlasInput.getText()));
+        getCurrentVerkoop().setLReverancier(lLeverancierCombo.getValue() == null ? "" : lLeverancierCombo.getValue().toString());
+        getCurrentVerkoop().setLTypeGlas(lTypeGlasCombo.getValue() == null ? "" : lTypeGlasCombo.getValue().toString());
         getCurrentVerkoop().setMateriaal(materiallCombo.getValue() == null ? "" : materiallCombo.getValue().toString());
         getCurrentVerkoop().setMontuurBtw(0.0); //TODO - calc
         getCurrentVerkoop().setMontuurKleur(kleurCombo.getValue() == null ? "" : kleurCombo.getValue().toString());
@@ -1121,13 +1129,13 @@ public class FXMLDashboardController implements Initializable {
         getCurrentVerkoop().setMontuurPrijs(ifNullDouble(prijsMontuurInput));
         getCurrentVerkoop().setMontuurType(montuurTypeCombo.getValue() == null ? "" : montuurTypeCombo.getValue().toString());
         getCurrentVerkoop().setRBtw(0.0); //TODO - glazen calc
-        getCurrentVerkoop().setRCoating(rCoatingCombo.getValue() == null ? "" : rCoatingCombo.getValue().toString()); 
-        getCurrentVerkoop().setRDiameter(rDiameterInput.getText() == null ? 0 : Integer.parseInt(rDiameterInput.getText())); 
-        getCurrentVerkoop().setRKleurGlazen(rKleurGlasCombo.getValue() == null ? "" : rKleurGlasCombo.getValue().toString()); 
-        getCurrentVerkoop().setRPrijsGlas(rPrijsGlasInput.getText() == null ? 0.0 : Double.parseDouble(rPrijsGlasInput.getText())); 
-        getCurrentVerkoop().setRLeverancier(rLeverancierCombo.getValue() == null ? "" : rLeverancierCombo.getValue().toString()); 
-        getCurrentVerkoop().setRTypeGlas(rTypeGlasCombo.getValue()==null?"":rTypeGlasCombo.getValue().toString());
-        getCurrentVerkoop().setSoortGlas(soortGlasCombo.getValue()==null?"":soortGlasCombo.getValue().toString());
+        getCurrentVerkoop().setRCoating(rCoatingCombo.getValue() == null ? "" : rCoatingCombo.getValue().toString());
+        getCurrentVerkoop().setRDiameter(rDiameterInput.getText() == null ? 0 : Integer.parseInt(rDiameterInput.getText()));
+        getCurrentVerkoop().setRKleurGlazen(rKleurGlasCombo.getValue() == null ? "" : rKleurGlasCombo.getValue().toString());
+        getCurrentVerkoop().setRPrijsGlas(rPrijsGlasInput.getText() == null ? 0.0 : Double.parseDouble(rPrijsGlasInput.getText()));
+        getCurrentVerkoop().setRLeverancier(rLeverancierCombo.getValue() == null ? "" : rLeverancierCombo.getValue().toString());
+        getCurrentVerkoop().setRTypeGlas(rTypeGlasCombo.getValue() == null ? "" : rTypeGlasCombo.getValue().toString());
+        getCurrentVerkoop().setSoortGlas(soortGlasCombo.getValue() == null ? "" : soortGlasCombo.getValue().toString());
         getCurrentVerkoop().setTotaal(0.0); //TODO - calc
         getCurrentVerkoop().setTotalBtw(0.0); //TODO - calc
         if (montuurDatumInput.getText() != null && !montuurDatumInput.getText().isEmpty()) {
@@ -1487,22 +1495,55 @@ public class FXMLDashboardController implements Initializable {
         }
     }
 
+    
     private void loadLastVerkoop() throws RemoteException {
         if (verkoopArray.size() > 0) {
-            Verkoop vk = verkoopArray.get(verkoopArray.size() - 1);
-            merkLabel.setText(vk.getMontuurMerk());
-            modelLabel.setText(vk.getMontuurModel());
-            kleurLabel.setText(vk.getMontuurKleur());
-            maatLabel.setText(vk.getMontuurMaat());
-            prijsmontuurLabel.setText(vk.getMontuurPrijs().toString());
-            btwLabel.setText(vk.getMontuurBtw().toString());
-            diversenLabel.setText(vk.getDiverse());
-            soortglasLabel.setText(vk.getSoortGlas());
-            montuurtypeLabel.setText(vk.getMontuurType());
-            materiaalLabel.setText(vk.getMateriaal());
-            kortingLabel.setText(vk.getKorting().toString());
-            totaalLabel.setText(vk.getTotaal().toString());
-            totaalBtwLabel.setText(vk.getTotalBtw().toString());
+            Verkoop vp = verkoopArray.get(verkoopArray.size() - 1);
+            merkLabel.setText(vp.getMontuurMerk());
+            modelLabel.setText(vp.getMontuurModel());
+            kleurLabel.setText(vp.getMontuurKleur());
+            maatLabel.setText(vp.getMontuurMaat());
+            prijsmontuurLabel.setText(vp.getMontuurPrijs().toString());
+            btwLabel.setText(vp.getMontuurBtw().toString());
+            diversenLabel.setText(vp.getDiverse());
+            soortglasLabel.setText(vp.getSoortGlas());
+            montuurtypeLabel.setText(vp.getMontuurType());
+            materiaalLabel.setText(vp.getMateriaal());
+            kortingLabel.setText(vp.getKorting().toString());
+            totaalLabel.setText(vp.getTotaal().toString());
+            totaalBtwLabel.setText(vp.getTotalBtw().toString());
+            r_leverancierLabel.setText(vp.getLReverancier());
+            l_leverancierLabel.setText(vp.getRLeverancier());
+            r_typeglasLabel.setText(vp.getRTypeGlas());
+            l_typeglasLabel.setText(vp.getLTypeGlas());
+            r_coatingLabel.setText(vp.getRCoating());
+            l_coatingLabel.setText(vp.getLCoating());
+            r_kleurglazenLabel.setText(vp.getRKleurGlazen());
+            l_kleurglazenLabel.setText(vp.getLKleurGlazen());
+            r_diameterLabel.setText(vp.getRDiameter() == null ? "" : vp.getRDiameter().toString());
+            l_diameterLabel.setText(vp.getLDiameter() == null ? "" : vp.getLDiameter().toString());
+            r_prijsglasLabel.setText(vp.getRPrijsGlas() == null ? "" : vp.getRPrijsGlas().toString());
+            l_prijsglasLabel.setText(vp.getLPrijsGlas() == null ? "" : vp.getLPrijsGlas().toString());
+            r_btwLabel.setText(vp.getRBtw() == null ? "" : vp.getRBtw().toString());
+            l_btwLabel.setText(vp.getLBtw() == null ? "" : vp.getLBtw().toString());
+            breedteLabel.setText(vp.getBreedte() == null ? "" : vp.getBreedte().toString());
+            hoogteLabel.setText(vp.getHoogte() == null ? "" : vp.getHoogte().toString());
+            neusmaatLabel.setText(vp.getNeusmaat() == null ? "" : vp.getNeusmaat().toString());
+            merkLabel.setText(vp.getMontuurMerk());
+            modelLabel.setText(vp.getMontuurModel());
+            kleurLabel.setText(vp.getMontuurKleur());
+            maatLabel.setText(vp.getMontuurMaat());
+            prijsmontuurLabel.setText(vp.getMontuurPrijs() == null ? "" : vp.getMontuurPrijs().toString());
+            btwLabel.setText(vp.getMontuurPrijs() == null ? "" : "" + NDS * (vp.getMontuurPrijs() / (100 + NDS)));
+            diversenLabel.setText(vp.getDiverse());
+            diversePrijsLabel.setText(vp.getDiversePrijs()==null?"":vp.getDiversePrijs().toString());
+            diverseBtwLabel.setText(vp.getDiverseBtw()==null?"":vp.getDiverseBtw().toString());
+            soortglasLabel.setText(vp.getSoortGlas());
+            montuurtypeLabel.setText(vp.getMontuurType());
+            materiaalLabel.setText(vp.getMateriaal());
+            kortingLabel.setText(vp.getKorting() == null ? "" : vp.getKorting().toString());
+            totaalLabel.setText(vp.getTotaal() == null ? "" : vp.getTotaal().toString());
+            totaalBtwLabel.setText(vp.getTotalBtw() == null ? "" : vp.getTotalBtw().toString());
         }
     }
 
