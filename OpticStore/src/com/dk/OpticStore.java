@@ -182,9 +182,14 @@ public class OpticStore extends Application {
         logger.log(Level.SEVERE, msg, th);
     }
 
+    public static void logAndShowErrorMessage(Throwable th) {
+        Dialogs.showErrorDialog(mainApp.mainStage, th.getLocalizedMessage(), "Fout", th.getCause().getLocalizedMessage());
+        log(th);
+    }
+    
     public static void logAndShowErrorMessage(String msg) {
-        log(msg);
         Dialogs.showErrorDialog(mainApp.mainStage, msg, "Fout", "Helaas!");
+        log(msg);
     }
 
     public static boolean yesOrNoDialog(String msg) {
@@ -192,7 +197,7 @@ public class OpticStore extends Application {
                 null, "Aandacht", Dialogs.DialogOptions.YES_NO);
         return ans == Dialogs.DialogResponse.YES;
     }
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         mainApp = this;
@@ -235,26 +240,26 @@ public class OpticStore extends Application {
                     public void handle(ActionEvent t) {
                         loginPane.setVisible(showLogin);
                         dashboardPane.setVisible(!showLogin);
-                        if(showLogin)
+                        if (showLogin) {
                             loginPane.requestLayout();
-                        else
+                        } else {
                             dashboardPane.requestLayout();
+                        }
                         Timeline fadeIn = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(rootPane.opacityProperty(), 0.0)),
                                 new KeyFrame(new Duration(400), new KeyValue(rootPane.opacityProperty(), 1.0)));
                         fadeIn.play();
                     }
                 }, new KeyValue(rootPane.opacityProperty(), 0.0)));
         fade.play();
-        
-        mainStage.setTitle(showLogin?
-                //OpticStore.class.getProtectionDomain().getCodeSource().getLocation().getPath()//f.getAbsolutePath()/*
+
+        mainStage.setTitle(showLogin
+                ? //OpticStore.class.getProtectionDomain().getCodeSource().getLocation().getPath()//f.getAbsolutePath()/*
                 "Login" : "de oogkas");
-        if(!showLogin) {
+        if (!showLogin) {
             FXMLDashboardController.expandeFirst();
         }
     }
-    
-    
+
     public void hideLoginAndShowDashboard() {
         resize2(1200.0, 750.0);
         swapLoginAndDashboard(false);
@@ -264,7 +269,7 @@ public class OpticStore extends Application {
         mainApp.resize2(mainApp.getLoginWidth(), mainApp.getLoginHeight());
         swapLoginAndDashboard(true);
     }
-    
+
     public void resize2(double ww, double hh) {
         resize(mainStage.getWidth(), mainStage.getHeight(), ww, hh);
     }
@@ -310,5 +315,6 @@ public class OpticStore extends Application {
         exchanger = ExchangeFactory.getExchanger(connectString, props);
         return getExchanger() != null;
     }
+
 
 }

@@ -4,6 +4,7 @@ package com.dk.orm;
 
 import com.dk.orm.dbobject.DbObject;
 import com.dk.orm.dbobject.ForeignKeyViolationException;
+import com.dk.orm.dbobject.TriggerAdapter;
 import com.dk.orm.dbobject.Triggers;
 import java.sql.*;
 import java.util.ArrayList;
@@ -47,6 +48,44 @@ public class Verkoop extends DbObject  {
     private Double diversePrijs = null;
     private Double diverseBtw = null;
 
+    private static final double NDS = 21.0;
+    static {
+        setTriggers(new TriggerAdapter() {
+
+            @Override
+            public void beforeInsert(DbObject dbObject) throws SQLException {
+                try {
+                    Verkoop vb = (Verkoop) dbObject;
+                    calcBTW(vb);
+                } catch (ForeignKeyViolationException ex) {
+                }
+            }
+
+            @Override
+            public void beforeUpdate(DbObject dbObject) throws SQLException {
+                try {
+                    Verkoop vb = (Verkoop) dbObject;
+                    calcBTW(vb);
+                } catch (ForeignKeyViolationException ex) {
+                }
+            }
+
+            private Double getBTW(Double val) {
+                if (val == null) {
+                    return null;
+                }
+                return new Double((val.doubleValue() / (100.0 + NDS)) * NDS);
+            }
+
+            private void calcBTW(Verkoop vk) throws SQLException, ForeignKeyViolationException {
+                vk.setLBtw(getBTW(vk.getLPrijsGlas()));
+                vk.setRBtw(getBTW(vk.getRPrijsGlas()));
+                vk.setMontuurBtw(getBTW(vk.getMontuurPrijs()));
+                vk.setTotalBtw(getBTW(vk.getTotaal()));
+            }
+        });
+    }
+    
     public Verkoop(Connection connection) {
         super(connection, "verkoop", "verkoop_id");
         setColumnNames(new String[]{"verkoop_id", "klant_id", "r_leverancier", "l_reverancier", "r_type_glas", "l_type_glas", "r_coating", "l_coating", "r_kleur_glazen", "l_kleur_glazen", "r_diameter", "l_diameter", "r_prijs_glas", "l_prijs_glas", "r_btw", "l_btw", "montuur_merk", "montuur_model", "montuur_kleur", "montuur_maat", "montuur_prijs", "montuur_btw", "montuur_type", "materiaal", "korting", "totaal", "total_btw", "verkoopdatum", "diverse", "id_montuur", "breedte", "hoogte", "neusmaat", "soort_glas", "diverse_prijs", "diverse_btw"});

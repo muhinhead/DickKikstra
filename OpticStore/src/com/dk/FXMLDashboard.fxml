@@ -309,6 +309,8 @@
                                                             <Label fx:id="kortingLabel" prefHeight="17.0" prefWidth="181.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
                                                             <Label fx:id="totaalLabel" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="8" GridPane.rowIndex="10" />
                                                             <Label fx:id="totaalBtwLabel" prefHeight="17.0" prefWidth="131.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+                                                            <Label fx:id="diversePrijsLabel" prefHeight="17.0" prefWidth="122.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+                                                            <Label fx:id="diverseBtwLabel" prefHeight="17.0" prefWidth="102.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
                                                          </children>
                                                       </GridPane>
                                                    </children>
