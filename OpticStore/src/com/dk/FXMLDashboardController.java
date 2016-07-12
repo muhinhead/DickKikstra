@@ -380,6 +380,14 @@ public class FXMLDashboardController implements Initializable {
     private TextField hoogteInput;
     @FXML
     private TextField neusmaatInput;
+    @FXML
+    private TextField kortingInput;
+    @FXML
+    private TextField totaalInput;
+    @FXML
+    private TextField btwInput;
+    @FXML
+    private TextField diversenPrijsInput;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
@@ -489,6 +497,9 @@ public class FXMLDashboardController implements Initializable {
         hoogteInput.setText("");
         neusmaatInput.setText("");
         soortGlasCombo.setValue("");
+        kortingInput.setText("0.0");
+        totaalInput.setText("0.0");
+        btwInput.setText("0.0");
     }
 
     private void clearTab3() {
@@ -502,6 +513,7 @@ public class FXMLDashboardController implements Initializable {
         materiallCombo.setValue("");
         diversenCombo.setValue("");
         idMontuurInput.setText("");
+        diversenPrijsInput.setText("0.0");
         montuurDatumInput.setText(OpticStore.dateFormat.format(Calendar.getInstance().getTime()));
         fillCombos();
     }
@@ -596,7 +608,7 @@ public class FXMLDashboardController implements Initializable {
             oogmetinggDoorInput,
             rDiameterInput, lDiameterInput,
             rPrijsGlasInput, lPrijsGlasInput,
-            breedteInput, hoogteInput, neusmaatInput
+            breedteInput, hoogteInput, neusmaatInput, kortingInput, diversenPrijsInput
         });
 
         Node logoutNode = FXutils.createButton(getClass(), "exit.png", new Runnable() {
@@ -1106,6 +1118,10 @@ public class FXMLDashboardController implements Initializable {
             fillFieldWithValue(hoogteInput, getCurrentVerkoop().getHoogte());
             fillFieldWithValue(neusmaatInput, getCurrentVerkoop().getNeusmaat());
             soortGlasCombo.setValue(getCurrentVerkoop().getSoortGlas());
+            fillFieldWithValue(kortingInput, getCurrentVerkoop().getKorting());
+            fillFieldWithValue(totaalInput, getCurrentVerkoop().getTotaal());
+            fillFieldWithValue(btwInput, getCurrentVerkoop().getTotalBtw());
+            fillFieldWithValue(diversenPrijsInput, getCurrentVerkoop().getDiversePrijs());
         }
     }
 
@@ -1114,11 +1130,11 @@ public class FXMLDashboardController implements Initializable {
             getCurrentVerkoop().setKlantId(selectedKlantID);
         }
         getCurrentVerkoop().setDiverse(diversenCombo.getEditor().getText());
-        getCurrentVerkoop().setDiversePrijs(888.0); //TODO - 
-        getCurrentVerkoop().setDiverseBtw(0.0); //TODO - calc
+        getCurrentVerkoop().setDiversePrijs(ifNullDouble(diversenPrijsInput)); //TODO - 
+        //getCurrentVerkoop().setDiverseBtw(0.0); //TODO - calc
         getCurrentVerkoop().setIdMontuur(idMontuurInput.getText());
-        getCurrentVerkoop().setKorting(0.0); //TODO
-        getCurrentVerkoop().setLBtw(0.0); //TODO - glazen calc
+        getCurrentVerkoop().setKorting(ifNullDouble(kortingInput)); //TODO
+        //getCurrentVerkoop().setLBtw(0.0); //TODO - glazen calc
         getCurrentVerkoop().setLCoating(lCoatingCombo.getEditor().getText());
         getCurrentVerkoop().setLDiameter(ifNullInteger(lDiameterInput));
         getCurrentVerkoop().setLKleurGlazen(lKleurGlasCombo.getEditor().getText());
@@ -1126,15 +1142,15 @@ public class FXMLDashboardController implements Initializable {
         getCurrentVerkoop().setLReverancier(lLeverancierCombo.getEditor().getText());
         getCurrentVerkoop().setLTypeGlas(lTypeGlasCombo.getEditor().getText());
         getCurrentVerkoop().setMateriaal(materiallCombo.getValue().toString());
-        getCurrentVerkoop().setMontuurBtw(0.0); //TODO - calc
-        getCurrentVerkoop().setKorting(0.0); //TODO - 
+//        getCurrentVerkoop().setMontuurBtw(0.0); //TODO - calc
+//        getCurrentVerkoop().setKorting(0.0); //TODO - 
         getCurrentVerkoop().setMontuurKleur(kleurCombo.getEditor().getText());
         getCurrentVerkoop().setMontuurMaat(maatInput.getText());
         getCurrentVerkoop().setMontuurMerk(merkCombo.getEditor().getText());
         getCurrentVerkoop().setMontuurModel(modelCombo.getEditor().getText());
         getCurrentVerkoop().setMontuurPrijs(ifNullDouble(prijsMontuurInput));
         getCurrentVerkoop().setMontuurType(montuurTypeCombo.getValue().toString());
-        getCurrentVerkoop().setRBtw(0.0); //TODO - glazen calc
+        //getCurrentVerkoop().setRBtw(0.0); //TODO - glazen calc
         getCurrentVerkoop().setRCoating(rCoatingCombo.getEditor().getText());
         getCurrentVerkoop().setRDiameter(ifNullInteger(rDiameterInput));
         getCurrentVerkoop().setRKleurGlazen(rKleurGlasCombo.getEditor().getText());
@@ -1145,12 +1161,13 @@ public class FXMLDashboardController implements Initializable {
         getCurrentVerkoop().setHoogte(ifNullInteger(hoogteInput));
         getCurrentVerkoop().setNeusmaat(ifNullInteger(neusmaatInput));
         getCurrentVerkoop().setSoortGlas(soortGlasCombo.getValue().toString());
-        getCurrentVerkoop().setTotaal(999.0); //TODO - calc
-        getCurrentVerkoop().setTotalBtw(0.0); //TODO - calc
+//        getCurrentVerkoop().setTotaal(999.0); //TODO - calc
+//        getCurrentVerkoop().setTotalBtw(0.0); //TODO - calc
         if (montuurDatumInput.getText() != null && !montuurDatumInput.getText().isEmpty()) {
             java.util.Date dt = OpticStore.dateFormat.parse(montuurDatumInput.getText());
             getCurrentVerkoop().setVerkoopdatum(new Date(dt.getTime()));
         }
+        getCurrentVerkoop().setKorting(ifNullDouble(kortingInput));
         setCurrentVerkoop((Verkoop) OpticStore.getExchanger().saveDbObject(getCurrentVerkoop()));
         fillLastVerkoop(verkoopArray.get(verkoopArray.size() - 1));
     }

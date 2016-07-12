@@ -554,6 +554,7 @@
                                                             <TextField fx:id="montuurDatumInput" prefHeight="27.0" promptText="JJJJ-MM-DD" />
                                                          </children>
                                                       </GridPane>
+                                                      <TextField fx:id="diversenPrijsInput" maxWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                                                    </children>
                                                 </GridPane>
                                                 <GridPane>
@@ -673,7 +674,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <TextField fx:id="rDiameterInput" prefHeight="27.0" prefWidth="90.0" />
+                                                      <TextField fx:id="rDiameterInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
                                                    </children>
                                                 </GridPane>
                                                 <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
@@ -685,7 +686,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <TextField fx:id="rPrijsGlasInput" prefHeight="27.0" prefWidth="90.0" />
+                                                      <TextField fx:id="rPrijsGlasInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
                                                    </children>
                                                 </GridPane>
                                                 <Label fx:id="verkoop1Label" text="ID" textFill="#0000005f" />
@@ -696,8 +697,8 @@
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="0.0" prefWidth="257.0" />
                                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="589.0" minWidth="10.0" prefWidth="152.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="573.0" minWidth="10.0" prefWidth="573.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="584.0" minWidth="10.0" prefWidth="584.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="91.0" />
                                             </columnConstraints>
                                             <rowConstraints>
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -764,7 +765,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <ComboBox fx:id="lKleurGlasCombo" editable="true" prefHeight="27.0" prefWidth="280.0" />
+                                                      <ComboBox fx:id="lKleurGlasCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
                                                    </children>
                                                 </GridPane>
                                                 <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -776,7 +777,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <TextField fx:id="lDiameterInput" prefHeight="27.0" prefWidth="90.0" />
+                                                      <TextField fx:id="lDiameterInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
                                                    </children>
                                                 </GridPane>
                                                 <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
@@ -788,7 +789,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <TextField fx:id="lPrijsGlasInput" prefHeight="27.0" prefWidth="98.0" />
+                                                      <TextField fx:id="lPrijsGlasInput" maxWidth="100.0" prefHeight="27.0" prefWidth="98.0" />
                                                    </children>
                                                 </GridPane>
                                                 <Label text="breedte" GridPane.columnIndex="1" GridPane.rowIndex="7" />
@@ -804,7 +805,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <TextField fx:id="breedteInput" prefHeight="27.0" prefWidth="90.0" />
+                                                      <TextField fx:id="breedteInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
                                                    </children>
                                                 </GridPane>
                                                 <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
@@ -816,7 +817,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <TextField fx:id="hoogteInput" prefHeight="27.0" prefWidth="90.0" />
+                                                      <TextField fx:id="hoogteInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
                                                    </children>
                                                 </GridPane>
                                                 <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
@@ -828,19 +829,49 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <TextField fx:id="neusmaatInput" prefHeight="27.0" prefWidth="90.0" />
+                                                      <TextField fx:id="neusmaatInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
+                                                      <GridPane GridPane.columnIndex="1">
+                                                         <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="181.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="219.0" />
+                                                         </columnConstraints>
+                                                         <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                         </rowConstraints>
+                                                         <children>
+                                                            <TextField fx:id="kortingInput" maxWidth="100.0" prefHeight="27.0" GridPane.columnIndex="1" />
+                                                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="187.0" text="kortug" />
+                                                         </children>
+                                                      </GridPane>
                                                    </children>
                                                 </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                                <GridPane prefHeight="30.0" prefWidth="495.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
                                                    <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="233.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="351.0" />
                                                    </columnConstraints>
                                                    <rowConstraints>
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
                                                       <ComboBox fx:id="soortGlasCombo" prefWidth="150.0" />
+                                                      <GridPane GridPane.columnIndex="1">
+                                                         <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="71.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="101.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="40.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="139.0" />
+                                                         </columnConstraints>
+                                                         <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                         </rowConstraints>
+                                                         <children>
+                                                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="62.0" text="totaal" />
+                                                            <TextField fx:id="totaalInput" maxWidth="100.0" GridPane.columnIndex="1" />
+                                                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="36.0" text="btw" GridPane.columnIndex="2" />
+                                                            <TextField fx:id="btwInput" editable="false" maxWidth="100.0" prefHeight="27.0" prefWidth="100.0" GridPane.columnIndex="3" />
+                                                         </children>
+                                                      </GridPane>
                                                    </children>
                                                 </GridPane>
                                              </children>

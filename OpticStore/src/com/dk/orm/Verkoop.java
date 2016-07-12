@@ -9,7 +9,8 @@ import com.dk.orm.dbobject.Triggers;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class Verkoop extends DbObject  {
+public class Verkoop extends DbObject {
+
     private static Triggers activeTriggers = null;
     private Integer verkoopId = null;
     private Integer klantId = null;
@@ -48,44 +49,10 @@ public class Verkoop extends DbObject  {
     private Double diversePrijs = null;
     private Double diverseBtw = null;
 
-    private static final double NDS = 21.0;
     static {
-        setTriggers(new TriggerAdapter() {
-
-            @Override
-            public void beforeInsert(DbObject dbObject) throws SQLException {
-                try {
-                    Verkoop vb = (Verkoop) dbObject;
-                    calcBTW(vb);
-                } catch (ForeignKeyViolationException ex) {
-                }
-            }
-
-            @Override
-            public void beforeUpdate(DbObject dbObject) throws SQLException {
-                try {
-                    Verkoop vb = (Verkoop) dbObject;
-                    calcBTW(vb);
-                } catch (ForeignKeyViolationException ex) {
-                }
-            }
-
-            private Double getBTW(Double val) {
-                if (val == null) {
-                    return null;
-                }
-                return new Double((val.doubleValue() / (100.0 + NDS)) * NDS);
-            }
-
-            private void calcBTW(Verkoop vk) throws SQLException, ForeignKeyViolationException {
-                vk.setLBtw(getBTW(vk.getLPrijsGlas()));
-                vk.setRBtw(getBTW(vk.getRPrijsGlas()));
-                vk.setMontuurBtw(getBTW(vk.getMontuurPrijs()));
-                vk.setTotalBtw(getBTW(vk.getTotaal()));
-            }
-        });
+        setTriggers(new VerkoopTrigger());
     }
-    
+
     public Verkoop(Connection connection) {
         super(connection, "verkoop", "verkoop_id");
         setColumnNames(new String[]{"verkoop_id", "klant_id", "r_leverancier", "l_reverancier", "r_type_glas", "l_type_glas", "r_coating", "l_coating", "r_kleur_glazen", "l_kleur_glazen", "r_diameter", "l_diameter", "r_prijs_glas", "l_prijs_glas", "r_btw", "l_btw", "montuur_merk", "montuur_model", "montuur_kleur", "montuur_maat", "montuur_prijs", "montuur_btw", "montuur_type", "materiaal", "korting", "totaal", "total_btw", "verkoopdatum", "diverse", "id_montuur", "breedte", "hoogte", "neusmaat", "soort_glas", "diverse_prijs", "diverse_btw"});
@@ -95,7 +62,7 @@ public class Verkoop extends DbObject  {
         super(connection, "verkoop", "verkoop_id");
         setNew(verkoopId.intValue() <= 0);
 //        if (verkoopId.intValue() != 0) {
-            this.verkoopId = verkoopId;
+        this.verkoopId = verkoopId;
 //        }
         this.klantId = klantId;
         this.rLeverancier = rLeverancier;
@@ -184,88 +151,98 @@ public class Verkoop extends DbObject  {
             }
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null) {
+                    rs.close();
+                }
             } finally {
-                if (ps != null) ps.close();
+                if (ps != null) {
+                    ps.close();
+                }
             }
         }
         return verkoop;
     }
 
     protected void insert() throws SQLException, ForeignKeyViolationException {
-         if (getTriggers() != null) {
-             getTriggers().beforeInsert(this);
-         }
-         PreparedStatement ps = null;
-         String stmt =
-                "INSERT INTO verkoop ("+(getVerkoopId().intValue()!=0?"verkoop_id,":"")+"klant_id,r_leverancier,l_reverancier,r_type_glas,l_type_glas,r_coating,l_coating,r_kleur_glazen,l_kleur_glazen,r_diameter,l_diameter,r_prijs_glas,l_prijs_glas,r_btw,l_btw,montuur_merk,montuur_model,montuur_kleur,montuur_maat,montuur_prijs,montuur_btw,montuur_type,materiaal,korting,totaal,total_btw,verkoopdatum,diverse,id_montuur,breedte,hoogte,neusmaat,soort_glas,diverse_prijs,diverse_btw) values("+(getVerkoopId().intValue()!=0?"?,":"")+"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-         try {
-             ps = getConnection().prepareStatement(stmt);
-             int n = 0;
-             if (getVerkoopId().intValue()!=0) {
-                 ps.setObject(++n, getVerkoopId());
-             }
-             ps.setObject(++n, getKlantId());
-             ps.setObject(++n, getRLeverancier());
-             ps.setObject(++n, getLReverancier());
-             ps.setObject(++n, getRTypeGlas());
-             ps.setObject(++n, getLTypeGlas());
-             ps.setObject(++n, getRCoating());
-             ps.setObject(++n, getLCoating());
-             ps.setObject(++n, getRKleurGlazen());
-             ps.setObject(++n, getLKleurGlazen());
-             ps.setObject(++n, getRDiameter());
-             ps.setObject(++n, getLDiameter());
-             ps.setObject(++n, getRPrijsGlas());
-             ps.setObject(++n, getLPrijsGlas());
-             ps.setObject(++n, getRBtw());
-             ps.setObject(++n, getLBtw());
-             ps.setObject(++n, getMontuurMerk());
-             ps.setObject(++n, getMontuurModel());
-             ps.setObject(++n, getMontuurKleur());
-             ps.setObject(++n, getMontuurMaat());
-             ps.setObject(++n, getMontuurPrijs());
-             ps.setObject(++n, getMontuurBtw());
-             ps.setObject(++n, getMontuurType());
-             ps.setObject(++n, getMateriaal());
-             ps.setObject(++n, getKorting());
-             ps.setObject(++n, getTotaal());
-             ps.setObject(++n, getTotalBtw());
-             ps.setObject(++n, getVerkoopdatum());
-             ps.setObject(++n, getDiverse());
-             ps.setObject(++n, getIdMontuur());
-             ps.setObject(++n, getBreedte());
-             ps.setObject(++n, getHoogte());
-             ps.setObject(++n, getNeusmaat());
-             ps.setObject(++n, getSoortGlas());
-             ps.setObject(++n, getDiversePrijs());
-             ps.setObject(++n, getDiverseBtw());
-             ps.execute();
-         } finally {
-             if (ps != null) ps.close();
-         }
-         ResultSet rs = null;
-         if (getVerkoopId().intValue()==0) {
-             stmt = "SELECT max(verkoop_id) FROM verkoop";
-             try {
-                 ps = getConnection().prepareStatement(stmt);
-                 rs = ps.executeQuery();
-                 if (rs.next()) {
-                     setVerkoopId(new Integer(rs.getInt(1)));
-                 }
-             } finally {
-                 try {
-                     if (rs != null) rs.close();
-                 } finally {
-                     if (ps != null) ps.close();
-                 }
-             }
-         }
-         setNew(false);
-         setWasChanged(false);
-         if (getTriggers() != null) {
-             getTriggers().afterInsert(this);
-         }
+        if (getTriggers() != null) {
+            getTriggers().beforeInsert(this);
+        }
+        PreparedStatement ps = null;
+        String stmt
+                = "INSERT INTO verkoop (" + (getVerkoopId().intValue() != 0 ? "verkoop_id," : "") + "klant_id,r_leverancier,l_reverancier,r_type_glas,l_type_glas,r_coating,l_coating,r_kleur_glazen,l_kleur_glazen,r_diameter,l_diameter,r_prijs_glas,l_prijs_glas,r_btw,l_btw,montuur_merk,montuur_model,montuur_kleur,montuur_maat,montuur_prijs,montuur_btw,montuur_type,materiaal,korting,totaal,total_btw,verkoopdatum,diverse,id_montuur,breedte,hoogte,neusmaat,soort_glas,diverse_prijs,diverse_btw) values(" + (getVerkoopId().intValue() != 0 ? "?," : "") + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            ps = getConnection().prepareStatement(stmt);
+            int n = 0;
+            if (getVerkoopId().intValue() != 0) {
+                ps.setObject(++n, getVerkoopId());
+            }
+            ps.setObject(++n, getKlantId());
+            ps.setObject(++n, getRLeverancier());
+            ps.setObject(++n, getLReverancier());
+            ps.setObject(++n, getRTypeGlas());
+            ps.setObject(++n, getLTypeGlas());
+            ps.setObject(++n, getRCoating());
+            ps.setObject(++n, getLCoating());
+            ps.setObject(++n, getRKleurGlazen());
+            ps.setObject(++n, getLKleurGlazen());
+            ps.setObject(++n, getRDiameter());
+            ps.setObject(++n, getLDiameter());
+            ps.setObject(++n, getRPrijsGlas());
+            ps.setObject(++n, getLPrijsGlas());
+            ps.setObject(++n, getRBtw());
+            ps.setObject(++n, getLBtw());
+            ps.setObject(++n, getMontuurMerk());
+            ps.setObject(++n, getMontuurModel());
+            ps.setObject(++n, getMontuurKleur());
+            ps.setObject(++n, getMontuurMaat());
+            ps.setObject(++n, getMontuurPrijs());
+            ps.setObject(++n, getMontuurBtw());
+            ps.setObject(++n, getMontuurType());
+            ps.setObject(++n, getMateriaal());
+            ps.setObject(++n, getKorting());
+            ps.setObject(++n, getTotaal());
+            ps.setObject(++n, getTotalBtw());
+            ps.setObject(++n, getVerkoopdatum());
+            ps.setObject(++n, getDiverse());
+            ps.setObject(++n, getIdMontuur());
+            ps.setObject(++n, getBreedte());
+            ps.setObject(++n, getHoogte());
+            ps.setObject(++n, getNeusmaat());
+            ps.setObject(++n, getSoortGlas());
+            ps.setObject(++n, getDiversePrijs());
+            ps.setObject(++n, getDiverseBtw());
+            ps.execute();
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        ResultSet rs = null;
+        if (getVerkoopId().intValue() == 0) {
+            stmt = "SELECT max(verkoop_id) FROM verkoop";
+            try {
+                ps = getConnection().prepareStatement(stmt);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    setVerkoopId(new Integer(rs.getInt(1)));
+                }
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                } finally {
+                    if (ps != null) {
+                        ps.close();
+                    }
+                }
+            }
+        }
+        setNew(false);
+        setWasChanged(false);
+        if (getTriggers() != null) {
+            getTriggers().afterInsert(this);
+        }
     }
 
     public void save() throws SQLException, ForeignKeyViolationException {
@@ -276,10 +253,10 @@ public class Verkoop extends DbObject  {
                 getTriggers().beforeUpdate(this);
             }
             PreparedStatement ps = null;
-            String stmt =
-                    "UPDATE verkoop " +
-                    "SET klant_id = ?, r_leverancier = ?, l_reverancier = ?, r_type_glas = ?, l_type_glas = ?, r_coating = ?, l_coating = ?, r_kleur_glazen = ?, l_kleur_glazen = ?, r_diameter = ?, l_diameter = ?, r_prijs_glas = ?, l_prijs_glas = ?, r_btw = ?, l_btw = ?, montuur_merk = ?, montuur_model = ?, montuur_kleur = ?, montuur_maat = ?, montuur_prijs = ?, montuur_btw = ?, montuur_type = ?, materiaal = ?, korting = ?, totaal = ?, total_btw = ?, verkoopdatum = ?, diverse = ?, id_montuur = ?, breedte = ?, hoogte = ?, neusmaat = ?, soort_glas = ?, diverse_prijs = ?, diverse_btw = ?" + 
-                    " WHERE verkoop_id = " + getVerkoopId();
+            String stmt
+                    = "UPDATE verkoop "
+                    + "SET klant_id = ?, r_leverancier = ?, l_reverancier = ?, r_type_glas = ?, l_type_glas = ?, r_coating = ?, l_coating = ?, r_kleur_glazen = ?, l_kleur_glazen = ?, r_diameter = ?, l_diameter = ?, r_prijs_glas = ?, l_prijs_glas = ?, r_btw = ?, l_btw = ?, montuur_merk = ?, montuur_model = ?, montuur_kleur = ?, montuur_maat = ?, montuur_prijs = ?, montuur_btw = ?, montuur_type = ?, materiaal = ?, korting = ?, totaal = ?, total_btw = ?, verkoopdatum = ?, diverse = ?, id_montuur = ?, breedte = ?, hoogte = ?, neusmaat = ?, soort_glas = ?, diverse_prijs = ?, diverse_btw = ?"
+                    + " WHERE verkoop_id = " + getVerkoopId();
             try {
                 ps = getConnection().prepareStatement(stmt);
                 ps.setObject(1, getKlantId());
@@ -319,7 +296,9 @@ public class Verkoop extends DbObject  {
                 ps.setObject(35, getDiverseBtw());
                 ps.execute();
             } finally {
-                if (ps != null) ps.close();
+                if (ps != null) {
+                    ps.close();
+                }
             }
             setWasChanged(false);
             if (getTriggers() != null) {
@@ -333,14 +312,16 @@ public class Verkoop extends DbObject  {
             getTriggers().beforeDelete(this);
         }
         PreparedStatement ps = null;
-        String stmt =
-                "DELETE FROM verkoop " +
-                "WHERE verkoop_id = " + getVerkoopId();
+        String stmt
+                = "DELETE FROM verkoop "
+                + "WHERE verkoop_id = " + getVerkoopId();
         try {
             ps = getConnection().prepareStatement(stmt);
             ps.execute();
         } finally {
-            if (ps != null) ps.close();
+            if (ps != null) {
+                ps.close();
+            }
         }
         setVerkoopId(new Integer(-getVerkoopId().intValue()));
         if (getTriggers() != null) {
@@ -352,28 +333,32 @@ public class Verkoop extends DbObject  {
         return (getVerkoopId().intValue() < 0);
     }
 
-    public static DbObject[] load(Connection con,String whereCondition,String orderCondition) throws SQLException {
+    public static DbObject[] load(Connection con, String whereCondition, String orderCondition) throws SQLException {
         ArrayList lst = new ArrayList();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String stmt = "SELECT verkoop_id,klant_id,r_leverancier,l_reverancier,r_type_glas,l_type_glas,r_coating,l_coating,r_kleur_glazen,l_kleur_glazen,r_diameter,l_diameter,r_prijs_glas,l_prijs_glas,r_btw,l_btw,montuur_merk,montuur_model,montuur_kleur,montuur_maat,montuur_prijs,montuur_btw,montuur_type,materiaal,korting,totaal,total_btw,verkoopdatum,diverse,id_montuur,breedte,hoogte,neusmaat,soort_glas,diverse_prijs,diverse_btw FROM verkoop " +
-                ((whereCondition != null && whereCondition.length() > 0) ?
-                " WHERE " + whereCondition : "") +
-                ((orderCondition != null && orderCondition.length() > 0) ?
-                " ORDER BY " + orderCondition : "");
+        String stmt = "SELECT verkoop_id,klant_id,r_leverancier,l_reverancier,r_type_glas,l_type_glas,r_coating,l_coating,r_kleur_glazen,l_kleur_glazen,r_diameter,l_diameter,r_prijs_glas,l_prijs_glas,r_btw,l_btw,montuur_merk,montuur_model,montuur_kleur,montuur_maat,montuur_prijs,montuur_btw,montuur_type,materiaal,korting,totaal,total_btw,verkoopdatum,diverse,id_montuur,breedte,hoogte,neusmaat,soort_glas,diverse_prijs,diverse_btw FROM verkoop "
+                + ((whereCondition != null && whereCondition.length() > 0)
+                        ? " WHERE " + whereCondition : "")
+                + ((orderCondition != null && orderCondition.length() > 0)
+                        ? " ORDER BY " + orderCondition : "");
         try {
             ps = con.prepareStatement(stmt);
             rs = ps.executeQuery();
             while (rs.next()) {
                 DbObject dbObj;
-                lst.add(dbObj=new Verkoop(con,new Integer(rs.getInt(1)),new Integer(rs.getInt(2)),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),new Integer(rs.getInt(11)),new Integer(rs.getInt(12)),rs.getDouble(13),rs.getDouble(14),rs.getDouble(15),rs.getDouble(16),rs.getString(17),rs.getString(18),rs.getString(19),rs.getString(20),rs.getDouble(21),rs.getDouble(22),rs.getString(23),rs.getString(24),rs.getDouble(25),rs.getDouble(26),rs.getDouble(27),rs.getDate(28),rs.getString(29),rs.getString(30),new Integer(rs.getInt(31)),new Integer(rs.getInt(32)),new Integer(rs.getInt(33)),rs.getString(34),rs.getDouble(35),rs.getDouble(36)));
+                lst.add(dbObj = new Verkoop(con, new Integer(rs.getInt(1)), new Integer(rs.getInt(2)), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), new Integer(rs.getInt(11)), new Integer(rs.getInt(12)), rs.getDouble(13), rs.getDouble(14), rs.getDouble(15), rs.getDouble(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20), rs.getDouble(21), rs.getDouble(22), rs.getString(23), rs.getString(24), rs.getDouble(25), rs.getDouble(26), rs.getDouble(27), rs.getDate(28), rs.getString(29), rs.getString(30), new Integer(rs.getInt(31)), new Integer(rs.getInt(32)), new Integer(rs.getInt(33)), rs.getString(34), rs.getDouble(35), rs.getDouble(36)));
                 dbObj.setNew(false);
             }
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null) {
+                    rs.close();
+                }
             } finally {
-                if (ps != null) ps.close();
+                if (ps != null) {
+                    ps.close();
+                }
             }
         }
         Verkoop[] objects = new Verkoop[lst.size()];
@@ -391,18 +376,22 @@ public class Verkoop extends DbObject  {
         boolean ok = false;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String stmt = "SELECT verkoop_id FROM verkoop " +
-                ((whereCondition != null && whereCondition.length() > 0) ?
-                "WHERE " + whereCondition : "");
+        String stmt = "SELECT verkoop_id FROM verkoop "
+                + ((whereCondition != null && whereCondition.length() > 0)
+                        ? "WHERE " + whereCondition : "");
         try {
             ps = con.prepareStatement(stmt);
             rs = ps.executeQuery();
             ok = rs.next();
         } finally {
             try {
-                if (rs != null) rs.close();
+                if (rs != null) {
+                    rs.close();
+                }
             } finally {
-                if (ps != null) ps.close();
+                if (ps != null) {
+                    ps.close();
+                }
             }
         }
         return ok;
@@ -411,7 +400,6 @@ public class Verkoop extends DbObject  {
     //public String toString() {
     //    return getVerkoopId() + getDelimiter();
     //}
-
     public Integer getPK_ID() {
         return verkoopId;
     }
@@ -437,7 +425,7 @@ public class Verkoop extends DbObject  {
     }
 
     public void setKlantId(Integer klantId) throws SQLException, ForeignKeyViolationException {
-        if (klantId!=null && !Klant.exists(getConnection(),"klant_id = " + klantId)) {
+        if (klantId != null && !Klant.exists(getConnection(), "klant_id = " + klantId)) {
             throw new ForeignKeyViolationException("Can't set klant_id, foreign key violation: verkoop_klant_fk");
         }
         setWasChanged(this.klantId != null && !this.klantId.equals(klantId));
@@ -521,8 +509,9 @@ public class Verkoop extends DbObject  {
     }
 
     public void setRDiameter(Integer rDiameter) throws SQLException, ForeignKeyViolationException {
-        if (null != rDiameter)
+        if (null != rDiameter) {
             rDiameter = rDiameter == 0 ? null : rDiameter;
+        }
         setWasChanged(this.rDiameter != null && !this.rDiameter.equals(rDiameter));
         this.rDiameter = rDiameter;
     }
@@ -532,8 +521,9 @@ public class Verkoop extends DbObject  {
     }
 
     public void setLDiameter(Integer lDiameter) throws SQLException, ForeignKeyViolationException {
-        if (null != lDiameter)
+        if (null != lDiameter) {
             lDiameter = lDiameter == 0 ? null : lDiameter;
+        }
         setWasChanged(this.lDiameter != null && !this.lDiameter.equals(lDiameter));
         this.lDiameter = lDiameter;
     }
@@ -705,8 +695,9 @@ public class Verkoop extends DbObject  {
     }
 
     public void setBreedte(Integer breedte) throws SQLException, ForeignKeyViolationException {
-        if (null != breedte)
+        if (null != breedte) {
             breedte = breedte == 0 ? null : breedte;
+        }
         setWasChanged(this.breedte != null && !this.breedte.equals(breedte));
         this.breedte = breedte;
     }
@@ -716,8 +707,9 @@ public class Verkoop extends DbObject  {
     }
 
     public void setHoogte(Integer hoogte) throws SQLException, ForeignKeyViolationException {
-        if (null != hoogte)
+        if (null != hoogte) {
             hoogte = hoogte == 0 ? null : hoogte;
+        }
         setWasChanged(this.hoogte != null && !this.hoogte.equals(hoogte));
         this.hoogte = hoogte;
     }
@@ -727,8 +719,9 @@ public class Verkoop extends DbObject  {
     }
 
     public void setNeusmaat(Integer neusmaat) throws SQLException, ForeignKeyViolationException {
-        if (null != neusmaat)
+        if (null != neusmaat) {
             neusmaat = neusmaat == 0 ? null : neusmaat;
+        }
         setWasChanged(this.neusmaat != null && !this.neusmaat.equals(neusmaat));
         this.neusmaat = neusmaat;
     }
@@ -759,6 +752,7 @@ public class Verkoop extends DbObject  {
         setWasChanged(this.diverseBtw != null && !this.diverseBtw.equals(diverseBtw));
         this.diverseBtw = diverseBtw;
     }
+
     public Object[] getAsRow() {
         Object[] columnValues = new Object[36];
         columnValues[0] = getVerkoopId();
@@ -814,12 +808,12 @@ public class Verkoop extends DbObject  {
         String[] flds = splitStr(row, delimiter);
         try {
             setVerkoopId(Integer.parseInt(flds[0]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setVerkoopId(null);
         }
         try {
             setKlantId(Integer.parseInt(flds[1]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setKlantId(null);
         }
         setRLeverancier(flds[2]);
@@ -832,32 +826,32 @@ public class Verkoop extends DbObject  {
         setLKleurGlazen(flds[9]);
         try {
             setRDiameter(Integer.parseInt(flds[10]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setRDiameter(null);
         }
         try {
             setLDiameter(Integer.parseInt(flds[11]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setLDiameter(null);
         }
         try {
             setRPrijsGlas(Double.parseDouble(flds[12]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setRPrijsGlas(null);
         }
         try {
             setLPrijsGlas(Double.parseDouble(flds[13]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setLPrijsGlas(null);
         }
         try {
             setRBtw(Double.parseDouble(flds[14]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setRBtw(null);
         }
         try {
             setLBtw(Double.parseDouble(flds[15]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setLBtw(null);
         }
         setMontuurMerk(flds[16]);
@@ -866,29 +860,29 @@ public class Verkoop extends DbObject  {
         setMontuurMaat(flds[19]);
         try {
             setMontuurPrijs(Double.parseDouble(flds[20]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setMontuurPrijs(null);
         }
         try {
             setMontuurBtw(Double.parseDouble(flds[21]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setMontuurBtw(null);
         }
         setMontuurType(flds[22]);
         setMateriaal(flds[23]);
         try {
             setKorting(Double.parseDouble(flds[24]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setKorting(null);
         }
         try {
             setTotaal(Double.parseDouble(flds[25]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setTotaal(null);
         }
         try {
             setTotalBtw(Double.parseDouble(flds[26]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setTotalBtw(null);
         }
         setVerkoopdatum(toDate(flds[27]));
@@ -896,28 +890,28 @@ public class Verkoop extends DbObject  {
         setIdMontuur(flds[29]);
         try {
             setBreedte(Integer.parseInt(flds[30]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setBreedte(null);
         }
         try {
             setHoogte(Integer.parseInt(flds[31]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setHoogte(null);
         }
         try {
             setNeusmaat(Integer.parseInt(flds[32]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setNeusmaat(null);
         }
         setSoortGlas(flds[33]);
         try {
             setDiversePrijs(Double.parseDouble(flds[34]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setDiversePrijs(null);
         }
         try {
             setDiverseBtw(Double.parseDouble(flds[35]));
-        } catch(NumberFormatException ne) {
+        } catch (NumberFormatException ne) {
             setDiverseBtw(null);
         }
     }
