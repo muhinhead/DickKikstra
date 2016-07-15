@@ -29,10 +29,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
@@ -42,7 +45,9 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 /**
  *
@@ -397,11 +402,11 @@ public class FXMLDashboardController implements Initializable {
     private static TitledPane fisrtPane;
 
     private Brilvoorschrift currentBrilvoorschrift = null;
-    private ArrayList<Brilvoorschrift> brilvoorschriftArray = new ArrayList<Brilvoorschrift>();
+    private static ArrayList<Brilvoorschrift> brilvoorschriftArray = new ArrayList<Brilvoorschrift>();
     private int brilvoorschriftIndex;
 
     private Verkoop currentVerkoop = null;
-    private ArrayList<Verkoop> verkoopArray = new ArrayList<Verkoop>();
+    private static ArrayList<Verkoop> verkoopArray = new ArrayList<Verkoop>();
     private int verkoopIndex;
 
     static void expandeFirst() {
@@ -424,7 +429,7 @@ public class FXMLDashboardController implements Initializable {
             }
         }
 
-        clearTab2();
+        //clearTab2();
 
         for (Label lbl : new Label[]{klntIdLabel, klntNameLabel, klntAdresLabel,
             klntPostCodePlaatsLabel, klntteleFoonLabel, klntMobielLabel,
@@ -519,8 +524,8 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private void goLastTab2() {
-        if (brilvoorschriftArray.size() > 0) {
-            setCurrentBrilvoorschrift(brilvoorschriftArray.get(brilvoorschriftArray.size() - 1));
+        if (getBrilvoorschriftArray().size() > 0) {
+            setCurrentBrilvoorschrift(getBrilvoorschriftArray().get(getBrilvoorschriftArray().size() - 1));
             loadBrilvoorschrift();
         } else {
             clearTab2();
@@ -538,8 +543,8 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private void goFirstTab2() {
-        if (brilvoorschriftArray.size() > 0) {
-            setCurrentBrilvoorschrift(brilvoorschriftArray.get(0));
+        if (getBrilvoorschriftArray().size() > 0) {
+            setCurrentBrilvoorschrift(getBrilvoorschriftArray().get(0));
             loadBrilvoorschrift();
         } else {
             clearTab2();
@@ -558,7 +563,7 @@ public class FXMLDashboardController implements Initializable {
 
     private void goPrevTab2() {
         if (brilvoorschriftIndex > 0) {
-            setCurrentBrilvoorschrift(brilvoorschriftArray.get(brilvoorschriftIndex - 1));
+            setCurrentBrilvoorschrift(getBrilvoorschriftArray().get(brilvoorschriftIndex - 1));
             loadBrilvoorschrift();
         }
     }
@@ -571,8 +576,8 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private void goNextTab2() {
-        if (brilvoorschriftIndex < brilvoorschriftArray.size() - 1) {
-            setCurrentBrilvoorschrift(brilvoorschriftArray.get(brilvoorschriftIndex + 1));
+        if (brilvoorschriftIndex < getBrilvoorschriftArray().size() - 1) {
+            setCurrentBrilvoorschrift(getBrilvoorschriftArray().get(brilvoorschriftIndex + 1));
             loadBrilvoorschrift();
         }
     }
@@ -776,7 +781,7 @@ public class FXMLDashboardController implements Initializable {
                     }
                     fillCurrentBrilvoorschriftAndSave();
                     if (added) {
-                        brilvoorschriftArray.add(getCurrentBrilvoorschrift());
+                        getBrilvoorschriftArray().add(getCurrentBrilvoorschrift());
                         goLastTab2();
                     }
                 } catch (Exception ex) {
@@ -791,7 +796,7 @@ public class FXMLDashboardController implements Initializable {
                         + getCurrentBrilvoorschrift().getPK_ID() + ")")) {
                     try {
                         OpticStore.getExchanger().deleteObject(getCurrentBrilvoorschrift());
-                        brilvoorschriftArray.remove(getCurrentBrilvoorschrift());
+                        getBrilvoorschriftArray().remove(getCurrentBrilvoorschrift());
                         goLastTab2();
                     } catch (RemoteException ex) {
                         OpticStore.logAndShowErrorMessage(ex);
@@ -1001,16 +1006,16 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private void loadLastBrilvoorschriftList(Klant klant) throws RemoteException {
-        brilvoorschriftArray.clear();
+        getBrilvoorschriftArray().clear();
         setCurrentBrilvoorschrift(null);
         if (klant != null) {
             DbObject[] recs = OpticStore.getExchanger().getDbObjects(Brilvoorschrift.class,
                     "klant_id=" + klant.getKlantId(), "brilvoorschrift_id");
             for (DbObject rec : recs) {
-                brilvoorschriftArray.add((Brilvoorschrift) rec);
+                getBrilvoorschriftArray().add((Brilvoorschrift) rec);
             }
-            if (brilvoorschriftArray.size() > 0) {
-                setCurrentBrilvoorschrift(brilvoorschriftArray.get(brilvoorschriftArray.size() - 1));
+            if (getBrilvoorschriftArray().size() > 0) {
+                setCurrentBrilvoorschrift(getBrilvoorschriftArray().get(getBrilvoorschriftArray().size() - 1));
             }
         }
         loadLastBrilvoorschrift();
@@ -1048,7 +1053,7 @@ public class FXMLDashboardController implements Initializable {
     private void loadBrilvoorschrift() {
         if (getCurrentBrilvoorschrift() != null) {
             //vidLabel.setText(getCurrentBrilvoorschrift().getBrilvoorschriftId().toString());
-            vidLabel.setText("" + (brilvoorschriftIndex + 1) + "/" + brilvoorschriftArray.size());
+            vidLabel.setText("" + (brilvoorschriftIndex + 1) + "/" + getBrilvoorschriftArray().size());
             fillFieldWithValue(datumRefractieInput, getCurrentBrilvoorschrift().getDatumRefractie());
             fillFieldWithValue(odAddInput, getCurrentBrilvoorschrift().getOdAdd());
             fillFieldWithValue(osAddInput, getCurrentBrilvoorschrift().getOsAdd());
@@ -1217,25 +1222,25 @@ public class FXMLDashboardController implements Initializable {
 
     @FXML
     private void handleAnamnesButton() {
-        OpticStore.logAndShowErrorMessage("Deze knop niet werkt, ga dan naar [oogmeting]");
-//        try {
-//            FXMLLoader compLoader = new FXMLLoader(getClass().getResource("AnamnesPane.fxml"));
-//            Parent anamnesPane = (Parent) compLoader.load();
-//            Callback<Void, Void> myCallback = new Callback<Void, Void>() {
-//                @Override
-//                public Void call(Void param) {
-//                    return null;
-//                }
-//            };
-//            Dialogs.DialogResponse resp
-//                    = Dialogs.showCustomDialog(OpticStore.mainStage,
-//                            (Pane) anamnesPane, "", "Anamnese", Dialogs.DialogOptions.OK, myCallback);
-//            if (resp.equals(Dialogs.DialogResponse.OK)) {
-//                //TODO: save text
-//            }
-//        } catch (Exception ex) {
-//            OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
-//        }
+        //OpticStore.logAndShowErrorMessage("Deze knop niet werkt, ga dan naar [oogmeting]");
+        try {
+            FXMLLoader compLoader = new FXMLLoader(getClass().getResource("AnamnesPane.fxml"));
+            Parent anamnesPane = (Parent) compLoader.load();
+            Callback<Void, Void> myCallback = new Callback<Void, Void>() {
+                @Override
+                public Void call(Void param) {
+                    return null;
+                }
+            };
+            Dialogs.DialogResponse resp
+                    = Dialogs.showCustomDialog(OpticStore.mainStage,
+                            (Pane) anamnesPane, "", "Anamnese", Dialogs.DialogOptions.OK, myCallback);
+            if (resp.equals(Dialogs.DialogResponse.OK)) {
+                //TODO: save text
+            }
+        } catch (Exception ex) {
+            OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
+        }
     }
 
     private void fillKlantFromEdits(Klant klant) throws SQLException, ForeignKeyViolationException, ParseException {
@@ -1571,8 +1576,8 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private void loadLastBrilvoorschrift() throws RemoteException {
-        if (brilvoorschriftArray.size() > 0) {
-            Brilvoorschrift bs = brilvoorschriftArray.get(brilvoorschriftArray.size() - 1);
+        if (getBrilvoorschriftArray().size() > 0) {
+            Brilvoorschrift bs = getBrilvoorschriftArray().get(getBrilvoorschriftArray().size() - 1);
             Date dt = bs.getDatumRefractie();
             odSphLabel.setText(bs.getOdSph().toString());
             odCylLabel.setText(bs.getOdCyl().toString());
@@ -1617,7 +1622,7 @@ public class FXMLDashboardController implements Initializable {
      */
     private void setCurrentBrilvoorschrift(Brilvoorschrift currentBrilvoorschrift) {
         this.currentBrilvoorschrift = currentBrilvoorschrift;
-        brilvoorschriftIndex = brilvoorschriftArray.indexOf(this.currentBrilvoorschrift);
+        brilvoorschriftIndex = getBrilvoorschriftArray().indexOf(this.currentBrilvoorschrift);
     }
 
     /**
@@ -1633,5 +1638,11 @@ public class FXMLDashboardController implements Initializable {
     private void setCurrentVerkoop(Verkoop currentVerkoop) {
         this.currentVerkoop = currentVerkoop;
         verkoopIndex = verkoopArray.indexOf(this.currentVerkoop);
+    }
+    /**
+     * @return the brilvoorschriftArray
+     */
+    public static ArrayList<Brilvoorschrift> getBrilvoorschriftArray() {
+        return brilvoorschriftArray;
     }
 }

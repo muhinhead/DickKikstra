@@ -48,15 +48,5 @@ public class VerkoopTrigger extends TriggerAdapter {
         vk.setRBtw(getBTW(vk.getRPrijsGlas()));
         vk.setMontuurBtw(getBTW(vk.getMontuurPrijs()));
         vk.setDiverseBtw(getBTW(vk.getDiversePrijs()));
-//                System.out.println("vk.getLPrijsGlas()="+vk.getLPrijsGlas());
-//                System.out.println("vk.getRPrijsGlas()="+vk.getRPrijsGlas());
-//                System.out.println("vk.getMontuurPrijs()="+vk.getMontuurPrijs());
-//                System.out.println("vk.getDiversePrijs()="+vk.getDiversePrijs());
-//                vk.setTotaal(vk.getLPrijsGlas().doubleValue() + vk.getRPrijsGlas().doubleValue() 
-//                        + vk.getMontuurPrijs().doubleValue() + vk.getDiversePrijs().doubleValue());
-//                System.out.println("-----------------------------------------------");
-//                System.out.println("vk.getTotaal()="+vk.getTotaal());
-//                vk.setTotalBtw(getBTW(vk.getTotaal()));
-//                System.out.println("vk.getTotalBtw()="+vk.getTotalBtw());                
     }
 }

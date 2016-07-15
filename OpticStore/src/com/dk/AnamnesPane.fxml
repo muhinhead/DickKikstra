@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dk.AnamnesPaneController">
    <children>
-      <TextArea layoutX="14.0" layoutY="14.0" prefHeight="460.0" prefWidth="638.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0" />
+      <TextArea fx:id="anamneseTextArea" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="460.0" prefWidth="638.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0" />
       <HBox fx:id="downButtonPane" layoutX="14.0" layoutY="474.0" prefHeight="100.0" prefWidth="439.0" />
+      <Label fx:id="idLabel" layoutX="585.0" layoutY="487.0" prefHeight="17.0" prefWidth="64.0" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="18.0" />
    </children>
 </AnchorPane>
