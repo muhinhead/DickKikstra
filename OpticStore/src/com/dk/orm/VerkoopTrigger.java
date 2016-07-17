@@ -16,6 +16,11 @@ import java.sql.SQLException;
  */
 public class VerkoopTrigger extends TriggerAdapter {
 
+    /*After regeneration of ORM, add next block to Verkoop.java:
+     static {
+     setTriggers(new VerkoopTrigger());
+     }
+     */
     private static final double NDS = 21.0;
 
     @Override
@@ -48,5 +53,8 @@ public class VerkoopTrigger extends TriggerAdapter {
         vk.setRBtw(getBTW(vk.getRPrijsGlas()));
         vk.setMontuurBtw(getBTW(vk.getMontuurPrijs()));
         vk.setDiverseBtw(getBTW(vk.getDiversePrijs()));
+        vk.setTotaal(vk.getLPrijsGlas().doubleValue() + vk.getRPrijsGlas().doubleValue() 
+                + vk.getMontuurPrijs().doubleValue() + vk.getDiversePrijs().doubleValue());
+        vk.setTotalBtw(getBTW(vk.getTotaal()));
     }
 }

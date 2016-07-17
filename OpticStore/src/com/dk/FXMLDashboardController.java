@@ -62,6 +62,9 @@ public class FXMLDashboardController implements Initializable {
     private HBox logoutBox;
 
     @FXML
+    private VBox adminBox;
+
+    @FXML
     private VBox searchClientBox;
 
     @FXML
@@ -412,6 +415,7 @@ public class FXMLDashboardController implements Initializable {
     static void expandeFirst() {
         fisrtPane.setExpanded(true);
     }
+    public static Node adminNode;
 
     private void clearKlantForm(boolean withDeselect) {
         if (searchFields == null) {
@@ -430,7 +434,6 @@ public class FXMLDashboardController implements Initializable {
         }
 
         //clearTab2();
-
         for (Label lbl : new Label[]{klntIdLabel, klntNameLabel, klntAdresLabel,
             klntPostCodePlaatsLabel, klntteleFoonLabel, klntMobielLabel,
             klntEmailLabel, klntVerkoolDatumLabel,
@@ -615,6 +618,31 @@ public class FXMLDashboardController implements Initializable {
             rPrijsGlasInput, lPrijsGlasInput,
             breedteInput, hoogteInput, neusmaatInput, kortingInput, diversenPrijsInput
         });
+
+        adminNode = FXutils.createButton(getClass(), "admin.png", new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    FXMLLoader compLoader = new FXMLLoader(getClass().getResource("FXMLusersForm.fxml"));
+                    Parent usersPane = (Parent) compLoader.load();
+                    Callback<Void, Void> myCallback = new Callback<Void, Void>() {
+                        @Override
+                        public Void call(Void param) {
+                            return null;
+                        }
+                    };
+                    Dialogs.DialogResponse resp
+                            = Dialogs.showCustomDialog(OpticStore.mainStage,
+                                    (Pane) usersPane, "", "Users", Dialogs.DialogOptions.OK, myCallback);
+//                    if (resp.equals(Dialogs.DialogResponse.OK)) {
+//                        //TODO: save text
+//                    }
+                } catch (Exception ex) {
+                    OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
+                }
+            }
+        });
+        adminBox.getChildren().add(adminNode);
 
         Node logoutNode = FXutils.createButton(getClass(), "exit.png", new Runnable() {
             @Override
@@ -1235,9 +1263,10 @@ public class FXMLDashboardController implements Initializable {
             Dialogs.DialogResponse resp
                     = Dialogs.showCustomDialog(OpticStore.mainStage,
                             (Pane) anamnesPane, "", "Anamnese", Dialogs.DialogOptions.OK, myCallback);
-            if (resp.equals(Dialogs.DialogResponse.OK)) {
-                //TODO: save text
-            }
+//            if (resp.equals(Dialogs.DialogResponse.OK)) {
+//                //TODO: save text
+//                zzz
+//            }
         } catch (Exception ex) {
             OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
         }
@@ -1639,6 +1668,7 @@ public class FXMLDashboardController implements Initializable {
         this.currentVerkoop = currentVerkoop;
         verkoopIndex = verkoopArray.indexOf(this.currentVerkoop);
     }
+
     /**
      * @return the brilvoorschriftArray
      */

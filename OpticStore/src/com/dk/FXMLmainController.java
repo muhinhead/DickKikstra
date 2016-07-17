@@ -26,9 +26,16 @@ import javafx.scene.control.PasswordField;
  */
 public class FXMLmainController implements Initializable {
 
-    private static Collection<User> users = null;
+    private static ArrayList<User> users = null;
     public static User currentUser = null;
     static PasswordField staticPwdField;
+
+    /**
+     * @return the users
+     */
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
 
     @FXML
     private ComboBox userCB;
@@ -39,7 +46,7 @@ public class FXMLmainController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         Object itm = userCB.getValue();
         currentUser = null;
-        for (User u : users) {
+        for (User u : getUsers()) {
             if (u.getLogin().equals(itm) && u.getPasswd().equals(pwdField.getText())) {
                 currentUser = u;
                 break;
@@ -50,6 +57,9 @@ public class FXMLmainController implements Initializable {
             //Platform.exit();
         } else {
             //OpticStore.mainApp.resize2(1100.0, 800.0);
+            if(currentUser.getIsAdmin().intValue()!=1) {
+                FXMLDashboardController.adminNode.setVisible(false);
+            }
             OpticStore.mainApp.hideLoginAndShowDashboard();
         }
     }
@@ -66,7 +76,7 @@ public class FXMLmainController implements Initializable {
         DbObject[] lst = OpticStore.getExchanger().getDbObjects(User.class, null, "login");
         users = new ArrayList<User>(lst.length);
         for (int i=0; i<lst.length; i++) {
-            users.add((User) lst[i]);
+            getUsers().add((User) lst[i]);
             userCB.getItems().add(((User) lst[i]).getLogin());
         }
     }
