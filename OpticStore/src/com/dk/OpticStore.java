@@ -12,7 +12,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -186,7 +188,7 @@ public class OpticStore extends Application {
         Dialogs.showErrorDialog(mainApp.mainStage, th.getLocalizedMessage(), "Fout", th.getCause().getLocalizedMessage());
         log(th);
     }
-    
+
     public static void logAndShowErrorMessage(String msg) {
         Dialogs.showErrorDialog(mainApp.mainStage, msg, "Fout", "Helaas!");
         log(msg);
@@ -307,6 +309,14 @@ public class OpticStore extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        try {
+            Class<?> macFontFinderClass = Class.forName("com.sun.t2k.MacFontFinder");
+            Field psNameToPathMap = macFontFinderClass.getDeclaredField("psNameToPathMap");
+            psNameToPathMap.setAccessible(true);
+            psNameToPathMap.set(null, new HashMap<String, String>());
+        } catch (Exception e) {
+            // ignore
+        }
         launch(args);
     }
 
@@ -315,6 +325,5 @@ public class OpticStore extends Application {
         exchanger = ExchangeFactory.getExchanger(connectString, props);
         return getExchanger() != null;
     }
-
 
 }

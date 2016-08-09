@@ -15,6 +15,7 @@ import com.dk.util.AutoCompleteComboBoxListener;
 import com.dk.util.FXutils;
 import com.dk.util.TableGridPanel;
 import com.sun.javafx.collections.ObservableListWrapper;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -23,6 +24,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Vector;
 import javafx.beans.value.ChangeListener;
@@ -37,16 +39,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 //import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.HTMLEditor;
 import javafx.util.Callback;
 
 /**
@@ -396,6 +402,18 @@ public class FXMLDashboardController implements Initializable {
     private TextField btwInput;
     @FXML
     private TextField diversenPrijsInput;
+//    @FXML
+//    private BorderPane mailingBorderPane;
+    @FXML
+    private RadioButton klantRB;
+    @FXML
+    private RadioButton listRB;
+    @FXML
+    private RadioButton ageRB;
+    @FXML
+    private TextField vanDeInput;
+    @FXML
+    private TextField totDeInput;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
@@ -598,6 +616,12 @@ public class FXMLDashboardController implements Initializable {
         montuurTab.setDisable(true);
         glazenTab.setDisable(true);
 
+        ToggleGroup group = new ToggleGroup();
+        klantRB.setSelected(true);
+        klantRB.setToggleGroup(group);
+        listRB.setToggleGroup(group);
+        ageRB.setToggleGroup(group);
+        
         fisrtPane = zoekenPane;
 
         for (ComboBox cb : new ComboBox[]{merkCombo, modelCombo, kleurCombo, diversenCombo}) {
@@ -616,7 +640,8 @@ public class FXMLDashboardController implements Initializable {
             oogmetinggDoorInput,
             rDiameterInput, lDiameterInput,
             rPrijsGlasInput, lPrijsGlasInput,
-            breedteInput, hoogteInput, neusmaatInput, kortingInput, diversenPrijsInput
+            breedteInput, hoogteInput, neusmaatInput, kortingInput, diversenPrijsInput,
+            vanDeInput, totDeInput
         });
 
         adminNode = FXutils.createButton(getClass(), "admin.png", new Runnable() {
