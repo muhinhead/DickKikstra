@@ -81,12 +81,21 @@ public class FXMLDashboardController implements Initializable {
     private TextField klantIDfield;
     @FXML
     private TextField aanhefField;
+
     @FXML
     private TextField voorlettersField;
     @FXML
     private TextField tussenvoegselField;
     @FXML
     private TextField achternaamField;
+    
+    @FXML
+    private Label voorlettersLabel;
+    @FXML
+    private Label emailLabel;
+    @FXML
+    private Label achternaamLabel;
+    
     @FXML
     private TextField adresField;
     @FXML
@@ -468,7 +477,8 @@ public class FXMLDashboardController implements Initializable {
             kleurLabel, maatLabel, prijsmontuurLabel, btwLabel,
             soortglasLabel, montuurtypeLabel, materiaalLabel, kortingLabel,
             totaalBtwLabel, totaalLabel,
-            breedteLabel, hoogteLabel, neusmaatLabel, diversenLabel, vidLabel
+            breedteLabel, hoogteLabel, neusmaatLabel, diversenLabel, vidLabel,
+            voorlettersLabel, emailLabel, achternaamLabel
         }) {
             lbl.setText("");
         }
@@ -1492,6 +1502,10 @@ public class FXMLDashboardController implements Initializable {
                 String klid;
                 klantIDfield.setText(klid = klant.getKlantId().toString());
                 aanhefField.setText(klant.getAanhef() == null ? "" : klant.getAanhef());
+                
+                voorlettersLabel.setText(klant.getVoorletters() == null ? "" : klant.getVoorletters());
+                achternaamLabel.setText(klant.getAchternaam() == null ? "" : klant.getAchternaam());
+                
                 voorlettersField.setText(klant.getVoorletters() == null ? "" : klant.getVoorletters());
                 tussenvoegselField.setText(klant.getTussenvoegsel() == null ? "" : klant.getTussenvoegsel());
                 achternaamField.setText(klant.getAchternaam() == null ? "" : klant.getAchternaam());
@@ -1509,6 +1523,7 @@ public class FXMLDashboardController implements Initializable {
                 mobileField.setText(mbl = klant.getMobiel() == null ? "" : klant.getMobiel());
                 String eml;
                 emailField.setText(eml = klant.getEmail() == null ? "" : klant.getEmail());
+                emailLabel.setText("e-mail:" + eml);
                 String postPlaats = (klant.getPostcode() == null ? "" : (klant.getPostcode() + " "))
                         + (klant.getPlaats() == null ? "" : klant.getPlaats());
                 klntIdLabel.setText(klid);

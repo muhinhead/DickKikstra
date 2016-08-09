@@ -951,6 +951,9 @@
                                     <TextField fx:id="totDeInput" maxWidth="60.0" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
+                              <Label fx:id="voorlettersLabel" prefHeight="17.0" prefWidth="160.0" GridPane.columnIndex="2" />
+                              <Label fx:id="achternaamLabel" prefHeight="17.0" prefWidth="160.0" GridPane.columnIndex="3" />
+                              <Label fx:id="emailLabel" prefHeight="17.0" prefWidth="653.0" GridPane.columnIndex="4" />
                            </children>
                         </GridPane>
                         <Label layoutX="14.0" layoutY="14.0" prefHeight="34.0" prefWidth="331.0" text="de parameters van de verdeling" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
