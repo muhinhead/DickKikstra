@@ -15,7 +15,6 @@ import com.dk.util.AutoCompleteComboBoxListener;
 import com.dk.util.FXutils;
 import com.dk.util.TableGridPanel;
 import com.sun.javafx.collections.ObservableListWrapper;
-import java.lang.reflect.Field;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -24,9 +23,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import javafx.application.HostServices;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -42,17 +41,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
-//import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.HTMLEditor;
 import javafx.util.Callback;
 
 /**
@@ -88,14 +84,18 @@ public class FXMLDashboardController implements Initializable {
     private TextField tussenvoegselField;
     @FXML
     private TextField achternaamField;
-    
+
     @FXML
-    private Label voorlettersLabel;
+    private TextField voorlettersInput;
     @FXML
-    private Label emailLabel;
+    private TextField emailInput;
     @FXML
-    private Label achternaamLabel;
-    
+    private TextField achternaamInput;
+    @FXML
+    private TextField emailsInput;
+    @FXML
+    private TextField emailssInput;
+
     @FXML
     private TextField adresField;
     @FXML
@@ -423,6 +423,12 @@ public class FXMLDashboardController implements Initializable {
     private TextField vanDeInput;
     @FXML
     private TextField totDeInput;
+    @FXML
+    private Button sendEmailButton;
+    @FXML
+    private TextArea emailBodyField;
+    @FXML
+    private TextField emailSubjectField;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
@@ -477,11 +483,16 @@ public class FXMLDashboardController implements Initializable {
             kleurLabel, maatLabel, prijsmontuurLabel, btwLabel,
             soortglasLabel, montuurtypeLabel, materiaalLabel, kortingLabel,
             totaalBtwLabel, totaalLabel,
-            breedteLabel, hoogteLabel, neusmaatLabel, diversenLabel, vidLabel,
-            voorlettersLabel, emailLabel, achternaamLabel
+            breedteLabel, hoogteLabel, neusmaatLabel, diversenLabel, vidLabel
+
         }) {
             lbl.setText("");
         }
+        voorlettersInput.setText("");
+        emailInput.setText("");
+        achternaamInput.setText("");
+        emailsInput.setText("");
+        emailssInput.setText("");
 
         oogmetingTab.setDisable(true);
         montuurTab.setDisable(true);
@@ -622,6 +633,7 @@ public class FXMLDashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         oogmetingTab.setDisable(true);
         montuurTab.setDisable(true);
         glazenTab.setDisable(true);
@@ -631,7 +643,7 @@ public class FXMLDashboardController implements Initializable {
         klantRB.setToggleGroup(group);
         listRB.setToggleGroup(group);
         ageRB.setToggleGroup(group);
-        
+
         fisrtPane = zoekenPane;
 
         for (ComboBox cb : new ComboBox[]{merkCombo, modelCombo, kleurCombo, diversenCombo}) {
@@ -1284,6 +1296,38 @@ public class FXMLDashboardController implements Initializable {
     }
 
     @FXML
+    private void handleSendEmailButton() {
+        //System.out.println("!!!SEND EMAIL!!!");
+        String email = klantRB.isSelected() ? emailInput.getText() : (listRB.isSelected() ? emailsInput.getText() : emailssInput.getText());
+        if (email == null || email.trim().length() == 0) {
+            OpticStore.logAndShowErrorMessage("E-mail address is empty");
+        } else {
+            try {
+            HostServices hostService = OpticStore.mainApp.getHostServices();
+            hostService.showDocument(
+                    "mailto:" + email + "?subject=" 
+                            + (emailSubjectField.getText()==null?"":emailSubjectField.getText()) 
+                            + "&body=" + (emailBodyField.getText()==null?"":emailBodyField.getText()));
+            } catch (Exception e) {
+                OpticStore.logAndShowErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    @FXML
+    private void handleKlantRBaction() {
+        emailInput.setText(emailField.getText());
+    }
+    @FXML
+    private void handleListRBaction() {
+        emailInput.setText("");
+    }
+    @FXML
+    private void handleAgeRBaction() {
+        emailInput.setText("");
+    }
+    
+    @FXML
     private void handleAnamnesButton() {
         //OpticStore.logAndShowErrorMessage("Deze knop niet werkt, ga dan naar [oogmeting]");
         try {
@@ -1502,10 +1546,10 @@ public class FXMLDashboardController implements Initializable {
                 String klid;
                 klantIDfield.setText(klid = klant.getKlantId().toString());
                 aanhefField.setText(klant.getAanhef() == null ? "" : klant.getAanhef());
-                
-                voorlettersLabel.setText(klant.getVoorletters() == null ? "" : klant.getVoorletters());
-                achternaamLabel.setText(klant.getAchternaam() == null ? "" : klant.getAchternaam());
-                
+
+                voorlettersInput.setText(klant.getVoorletters() == null ? "" : klant.getVoorletters());
+                achternaamInput.setText(klant.getAchternaam() == null ? "" : klant.getAchternaam());
+
                 voorlettersField.setText(klant.getVoorletters() == null ? "" : klant.getVoorletters());
                 tussenvoegselField.setText(klant.getTussenvoegsel() == null ? "" : klant.getTussenvoegsel());
                 achternaamField.setText(klant.getAchternaam() == null ? "" : klant.getAchternaam());
@@ -1523,7 +1567,7 @@ public class FXMLDashboardController implements Initializable {
                 mobileField.setText(mbl = klant.getMobiel() == null ? "" : klant.getMobiel());
                 String eml;
                 emailField.setText(eml = klant.getEmail() == null ? "" : klant.getEmail());
-                emailLabel.setText("e-mail:" + eml);
+                emailInput.setText(eml);
                 String postPlaats = (klant.getPostcode() == null ? "" : (klant.getPostcode() + " "))
                         + (klant.getPlaats() == null ? "" : klant.getPlaats());
                 klntIdLabel.setText(klid);

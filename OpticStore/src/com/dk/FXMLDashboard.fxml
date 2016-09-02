@@ -922,9 +922,9 @@
                           </rowConstraints>
                            <children>
                               <Label prefHeight="17.0" prefWidth="121.0" text="selectie criteria" />
-                              <RadioButton fx:id="klantRB" mnemonicParsing="false" prefHeight="18.0" prefWidth="159.0" text="geselecteerde klant" GridPane.columnIndex="1" />
-                              <RadioButton fx:id="listRB" mnemonicParsing="false" text="geselecteerde lijst" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="ageRB" mnemonicParsing="false" text="cliënten door leeftijd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="klantRB" mnemonicParsing="false" onAction="#handleKlantRBaction" prefHeight="18.0" prefWidth="159.0" text="geselecteerde klant" GridPane.columnIndex="1" />
+                              <RadioButton fx:id="listRB" mnemonicParsing="false" onAction="#handleListRBaction" text="geselecteerde lijst" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="ageRB" mnemonicParsing="false" onAction="#handleAgeRBaction" text="cliënten door leeftijd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="102.0" />
@@ -951,9 +951,11 @@
                                     <TextField fx:id="totDeInput" maxWidth="60.0" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
-                              <Label fx:id="voorlettersLabel" prefHeight="17.0" prefWidth="160.0" GridPane.columnIndex="2" />
-                              <Label fx:id="achternaamLabel" prefHeight="17.0" prefWidth="160.0" GridPane.columnIndex="3" />
-                              <Label fx:id="emailLabel" prefHeight="17.0" prefWidth="653.0" GridPane.columnIndex="4" />
+                              <TextField fx:id="voorlettersInput" editable="false" GridPane.columnIndex="2" />
+                              <TextField fx:id="achternaamInput" editable="false" GridPane.columnIndex="3" />
+                              <TextField fx:id="emailInput" editable="false" GridPane.columnIndex="4" />
+                              <TextField fx:id="emailsInput" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <TextField fx:id="emailssInput" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                         <Label layoutX="14.0" layoutY="14.0" prefHeight="34.0" prefWidth="331.0" text="de parameters van de verdeling" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
@@ -961,6 +963,9 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
+                        <TextArea fx:id="emailBodyField" layoutX="14.0" layoutY="208.0" prefHeight="400.0" prefWidth="1170.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="208.0" />
+                        <Button layoutX="1046.0" layoutY="637.0" mnemonicParsing="false" onAction="#handleSendEmailButton" prefHeight="27.0" prefWidth="138.0" text="verzenden..." AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="22.0" />
+                        <TextField fx:id="emailSubjectField" layoutX="126.0" layoutY="163.0" prefHeight="27.0" prefWidth="1058.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="163.0" />
                      </children>
                   </AnchorPane>
                </content></Tab>
