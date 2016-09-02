@@ -23,7 +23,9 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.Vector;
 import javafx.application.HostServices;
 import javafx.beans.value.ChangeListener;
@@ -1297,7 +1299,6 @@ public class FXMLDashboardController implements Initializable {
 
     @FXML
     private void handleSendEmailButton() {
-        //System.out.println("!!!SEND EMAIL!!!");
         String email = klantRB.isSelected() ? emailInput.getText() : (listRB.isSelected() ? emailsInput.getText() : emailssInput.getText());
         if (email == null || email.trim().length() == 0) {
             OpticStore.logAndShowErrorMessage("E-mail address is empty");
@@ -1315,16 +1316,33 @@ public class FXMLDashboardController implements Initializable {
     }
 
     @FXML
+    private void handleEmailTabSelected() {
+        if(klantRB.isSelected()) {
+            handleKlantRBaction();
+        } else if(listRB.isSelected()) {
+            handleListRBaction();
+        } else {
+            handleAgeRBaction();
+        }
+    }
+    
+    @FXML
     private void handleKlantRBaction() {
         emailInput.setText(emailField.getText());
+        emailsInput.setText("");
+        emailssInput.setText("");
     }
     @FXML
     private void handleListRBaction() {
         emailInput.setText("");
+        emailsInput.setText(getCurListEmails());
+        emailssInput.setText("");
     }
     @FXML
     private void handleAgeRBaction() {
         emailInput.setText("");
+        emailsInput.setText("");
+        emailssInput.setText(getAgeRangeEmails());
     }
     
     @FXML
@@ -1758,5 +1776,26 @@ public class FXMLDashboardController implements Initializable {
      */
     public static ArrayList<Brilvoorschrift> getBrilvoorschriftArray() {
         return brilvoorschriftArray;
+    }
+
+    private String getCurListEmails() {
+        StringBuilder sb = new StringBuilder();
+        Set set = new HashSet();
+        Vector[] body = klantGrid.getTableBody();
+        Vector lines = body[1];
+        for (int i=0; i<lines.size(); i++) {
+            Vector line = (Vector) lines.get(i);
+            set.add(line.get(6));
+        }
+        for (Object o : set) {
+            if(sb.length()>0)
+                sb.append(",");
+            sb.append(o.toString());
+        }
+        return sb.toString();
+    }
+
+    private String getAgeRangeEmails() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

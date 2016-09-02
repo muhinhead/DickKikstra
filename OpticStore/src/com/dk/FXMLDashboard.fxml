@@ -903,7 +903,7 @@
                      </children>
                   </AnchorPane>
                </content></Tab>
-            <Tab fx:id="mailingTab" text="mailing">
+            <Tab fx:id="mailingTab" onSelectionChanged="#handleEmailTabSelected" text="mailing">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
