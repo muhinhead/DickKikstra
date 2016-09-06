@@ -935,7 +935,7 @@
                                  </rowConstraints>
                                  <children>
                                     <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="95.0" text="van de" />
-                                    <TextField fx:id="vanDeInput" maxWidth="60.0" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
+                                    <TextField fx:id="vanDeInput" maxWidth="60.0" onKeyTyped="#handleEmailTabSelected" onMouseClicked="#handleEmailTabSelected" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane prefHeight="27.0" prefWidth="167.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
@@ -948,7 +948,7 @@
                                  </rowConstraints>
                                  <children>
                                     <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="89.0" text="tot de" />
-                                    <TextField fx:id="totDeInput" maxWidth="60.0" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
+                                    <TextField fx:id="totDeInput" maxWidth="60.0" onKeyTyped="#handleEmailTabSelected" onMouseClicked="#handleEmailTabSelected" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                               <TextField fx:id="voorlettersInput" editable="false" GridPane.columnIndex="2" />
@@ -966,6 +966,7 @@
                         <TextArea fx:id="emailBodyField" layoutX="14.0" layoutY="208.0" prefHeight="400.0" prefWidth="1170.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="208.0" />
                         <Button layoutX="1046.0" layoutY="637.0" mnemonicParsing="false" onAction="#handleSendEmailButton" prefHeight="27.0" prefWidth="138.0" text="verzenden..." AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="22.0" />
                         <TextField fx:id="emailSubjectField" layoutX="126.0" layoutY="163.0" prefHeight="27.0" prefWidth="1058.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="163.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="21.0" layoutY="168.0" prefHeight="17.0" prefWidth="86.0" text="subject" />
                      </children>
                   </AnchorPane>
                </content></Tab>

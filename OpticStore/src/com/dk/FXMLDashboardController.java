@@ -15,6 +15,8 @@ import com.dk.util.AutoCompleteComboBoxListener;
 import com.dk.util.FXutils;
 import com.dk.util.TableGridPanel;
 import com.sun.javafx.collections.ObservableListWrapper;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -27,6 +29,8 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.HostServices;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -1300,15 +1304,31 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private void handleSendEmailButton() {
         String email = klantRB.isSelected() ? emailInput.getText() : (listRB.isSelected() ? emailsInput.getText() : emailssInput.getText());
+        //System.out.println("!!EMAIL:"+email);
         if (email == null || email.trim().length() == 0) {
             OpticStore.logAndShowErrorMessage("E-mail address is empty");
         } else {
             try {
-            HostServices hostService = OpticStore.mainApp.getHostServices();
-            hostService.showDocument(
-                    "mailto:" + email + "?subject=" 
-                            + (emailSubjectField.getText()==null?"":emailSubjectField.getText()) 
-                            + "&body=" + (emailBodyField.getText()==null?"":emailBodyField.getText()));
+                //HostServices hostService = OpticStore.mainApp.getHostServices();
+                String emailArg="mailto:" + email + "?subject="
+                        + (emailSubjectField.getText() == null ? "" : emailSubjectField.getText())
+                        + "&body=" + (emailBodyField.getText() == null ? "" : emailBodyField.getText().replace("\"","\\\""));
+                //hostService.showDocument(emailArg);
+                System.out.println("!!!: "+"open \""+emailArg+"\"");
+                Process res = Runtime.getRuntime().exec(new String[]{"open",emailArg});//"open \""+emailArg+"\"");
+                InputStream ers = res.getErrorStream();
+                InputStream sout = res.getInputStream();
+                res.waitFor();
+//                int b;
+//                System.out.println("\n!!!ERR:!!!");
+//                while((b=ers.read()) != -1) {
+//                    System.out.print((char)b);
+//                }
+//                System.out.println("\n!!!OUT:!!!");
+//                while((b=sout.read()) != -1) {
+//                    System.out.print((char)b);
+//                }
+                
             } catch (Exception e) {
                 OpticStore.logAndShowErrorMessage(e.getMessage());
             }
@@ -1317,34 +1337,36 @@ public class FXMLDashboardController implements Initializable {
 
     @FXML
     private void handleEmailTabSelected() {
-        if(klantRB.isSelected()) {
+        if (klantRB.isSelected()) {
             handleKlantRBaction();
-        } else if(listRB.isSelected()) {
+        } else if (listRB.isSelected()) {
             handleListRBaction();
         } else {
             handleAgeRBaction();
         }
     }
-    
+
     @FXML
     private void handleKlantRBaction() {
         emailInput.setText(emailField.getText());
         emailsInput.setText("");
         emailssInput.setText("");
     }
+
     @FXML
     private void handleListRBaction() {
         emailInput.setText("");
-        emailsInput.setText(getCurListEmails());
+        emailsInput.setText(getCurListEmails(klantGrid.getTableBody(), 6));
         emailssInput.setText("");
     }
+
     @FXML
     private void handleAgeRBaction() {
         emailInput.setText("");
         emailsInput.setText("");
         emailssInput.setText(getAgeRangeEmails());
     }
-    
+
     @FXML
     private void handleAnamnesButton() {
         //OpticStore.logAndShowErrorMessage("Deze knop niet werkt, ga dan naar [oogmeting]");
@@ -1360,10 +1382,6 @@ public class FXMLDashboardController implements Initializable {
             Dialogs.DialogResponse resp
                     = Dialogs.showCustomDialog(OpticStore.mainStage,
                             (Pane) anamnesPane, "", "Anamnese", Dialogs.DialogOptions.OK, myCallback);
-//            if (resp.equals(Dialogs.DialogResponse.OK)) {
-//                //TODO: save text
-//                zzz
-//            }
         } catch (Exception ex) {
             OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
         }
@@ -1778,24 +1796,43 @@ public class FXMLDashboardController implements Initializable {
         return brilvoorschriftArray;
     }
 
-    private String getCurListEmails() {
+    private String getCurListEmails(Vector[] body, int col) {
         StringBuilder sb = new StringBuilder();
         Set set = new HashSet();
-        Vector[] body = klantGrid.getTableBody();
+        //Vector[] body = klantGrid.getTableBody();
         Vector lines = body[1];
-        for (int i=0; i<lines.size(); i++) {
+        for (int i = 0; i < lines.size(); i++) {
             Vector line = (Vector) lines.get(i);
-            set.add(line.get(6));
+            set.add(line.get(col));
         }
         for (Object o : set) {
-            if(sb.length()>0)
+            if (sb.length() > 0) {
                 sb.append(",");
+            }
             sb.append(o.toString());
         }
         return sb.toString();
     }
 
     private String getAgeRangeEmails() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder condition = new StringBuilder();
+        if (vanDeInput.getText() != null && vanDeInput.getText().length() > 0) {
+            condition.append("months_between(now(),geboortedatum)/12 >= " + vanDeInput.getText());
+        }
+        if (totDeInput.getText() != null && totDeInput.getText().length() > 0) {
+            if (condition.length() > 0) {
+                condition.append(" and ");
+            }
+            condition.append("months_between(now(),geboortedatum)/12 <= " + totDeInput.getText());
+        }
+        if (condition.length() > 0) {
+            condition.insert(0, "select distinct email from klant where ");
+        }
+        try {
+            return getCurListEmails(OpticStore.getExchanger().getTableBody(condition.toString()), 0);
+        } catch (RemoteException ex) {
+            OpticStore.log(ex.getLocalizedMessage());
+        }
+        return "";
     }
 }
