@@ -71,8 +71,8 @@ public class DbConnection {
             }
         }
     }
-    private static final int DB_VERSION_ID = 1;
-    public static final String DB_VERSION = "0.1";
+    private static final int DB_VERSION_ID = 2;
+    public static final String DB_VERSION = "0.2";
     private static boolean isFirstTime = true;
     private static Properties props = new Properties();
     private static String[] createLocalDBsqls = loadDDLscript("crebas.sql", ";");
@@ -143,7 +143,7 @@ public class DbConnection {
         }
         if (isFirstTime) {
             initLocalDB(connection);
-//            fixLocalDB(connection);
+            fixLocalDB(connection);
             Timer timer = new Timer();
             timer.schedule(new ConnectionTouchTask(false), 1000, 30 * 1000);
             isFirstTime = false;
