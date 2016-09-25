@@ -89,7 +89,7 @@
                                                             <TextField fx:id="telefonField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                                                             <TextField fx:id="mobileField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                                                             <TextField fx:id="emailField" promptText="mymail@mailserver.com" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                                                            <TextField fx:id="gebortedatumField" promptText="JJJJ-MM-DD" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                                            <TextField fx:id="gebortedatumField" promptText="DD-MM-JJJJ" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                                                          </children>
                                                       </GridPane>
                                                       <VBox fx:id="searchClientBox" layoutX="335.0" layoutY="27.0" prefHeight="183.0" prefWidth="85.0" spacing="30.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="27.0" />
@@ -433,7 +433,7 @@
                                                       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <TextField fx:id="datumRefractieInput" prefHeight="27.0" prefWidth="132.0" promptText="JJJJ-MM-DD" />
+                                                      <TextField fx:id="datumRefractieInput" prefHeight="27.0" prefWidth="132.0" promptText="DD-MM-JJJJ" />
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -553,7 +553,7 @@
                                                             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                                          </rowConstraints>
                                                          <children>
-                                                            <TextField fx:id="montuurDatumInput" prefHeight="27.0" promptText="JJJJ-MM-DD" />
+                                                            <TextField fx:id="montuurDatumInput" prefHeight="27.0" promptText="DD-MM-JJJJ" />
                                                          </children>
                                                       </GridPane>
                                                       <TextField fx:id="diversenPrijsInput" maxWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
@@ -842,7 +842,7 @@
                                                          </rowConstraints>
                                                          <children>
                                                             <TextField fx:id="kortingInput" maxWidth="100.0" prefHeight="27.0" GridPane.columnIndex="1" />
-                                                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="187.0" text="kortug" />
+                                                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="187.0" text="korting" />
                                                          </children>
                                                       </GridPane>
                                                    </children>

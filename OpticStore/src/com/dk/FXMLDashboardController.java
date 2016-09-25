@@ -665,7 +665,7 @@ public class FXMLDashboardController implements Initializable {
             osSphInput, osCylInput, osAsInput, osAddInput, osNabijInput,
             osPrInput, osBasisInput, osPr1Input, osBasis1Input,
             osVisInput, osLhInput, osHaInput, osIodInput,
-            oogmetinggDoorInput,
+            //oogmetinggDoorInput,
             rDiameterInput, lDiameterInput,
             rPrijsGlasInput, lPrijsGlasInput,
             breedteInput, hoogteInput, neusmaatInput, kortingInput, diversenPrijsInput,
@@ -1001,6 +1001,8 @@ public class FXMLDashboardController implements Initializable {
                     if (added) {
                         verkoopArray.add(getCurrentVerkoop());
                         goLastTab3();
+                    } else {
+                        loadVerkoop();
                     }
                 } catch (Exception ex) {
                     OpticStore.logAndShowErrorMessage(ex);
@@ -1072,18 +1074,24 @@ public class FXMLDashboardController implements Initializable {
 
     private static Integer ifNullInteger(TextField tf) {
         if (tf != null && tf.getText() != null) {
-            return Integer.parseInt(tf.getText());
-        } else {
-            return 0;
+            try {
+                return Integer.parseInt(tf.getText());
+            } catch (NumberFormatException ne) {
+                tf.setText("0");
+            }
         }
+        return 0;
     }
 
     private static Double ifNullDouble(TextField tf) {
         if (tf != null && tf.getText() != null) {
-            return Double.parseDouble(tf.getText());
-        } else {
-            return 0.0;
+            try {
+                return Double.parseDouble(tf.getText());
+            } catch (NumberFormatException ne) {
+                tf.setText("0.0");
+            }
         }
+        return 0.0;
     }
 
     private void loadLastBrilvoorschriftList(Klant klant) throws RemoteException {
@@ -1310,12 +1318,12 @@ public class FXMLDashboardController implements Initializable {
         } else {
             try {
                 //HostServices hostService = OpticStore.mainApp.getHostServices();
-                String emailArg="mailto:" + email + "?subject="
+                String emailArg = "mailto:" + email + "?subject="
                         + (emailSubjectField.getText() == null ? "" : emailSubjectField.getText())
-                        + "&body=" + (emailBodyField.getText() == null ? "" : emailBodyField.getText().replace("\"","\\\""));
+                        + "&body=" + (emailBodyField.getText() == null ? "" : emailBodyField.getText().replace("\"", "\\\""));
                 //hostService.showDocument(emailArg);
-                System.out.println("!!!: "+"open \""+emailArg+"\"");
-                Process res = Runtime.getRuntime().exec(new String[]{"open",emailArg});//"open \""+emailArg+"\"");
+                System.out.println("!!!: " + "open \"" + emailArg + "\"");
+                Process res = Runtime.getRuntime().exec(new String[]{"open", emailArg});//"open \""+emailArg+"\"");
                 InputStream ers = res.getErrorStream();
                 InputStream sout = res.getInputStream();
                 res.waitFor();
@@ -1328,7 +1336,7 @@ public class FXMLDashboardController implements Initializable {
 //                while((b=sout.read()) != -1) {
 //                    System.out.print((char)b);
 //                }
-                
+
             } catch (Exception e) {
                 OpticStore.logAndShowErrorMessage(e.getMessage());
             }

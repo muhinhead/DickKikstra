@@ -56,7 +56,7 @@ public class OpticStore extends Application {
             + "achternaam \"achternaam\","
             + "geboortedatum \"geboortedatum\","
             + "email \"e-mail\" from klant order by klant_id";
-    static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private static Logger logger;
     private static FileHandler fh;
     private static IMessageSender exchanger;
