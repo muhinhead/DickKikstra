@@ -1,0 +1,24 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+-fx-background-color: lightslategray
+}
+
+.leftFxmlClass {
+    -fx-background-color: #333239
+}
+
+.rightFxmlClass {
+    -fx-background-color: #585569
+}
+
+.radio-button {
+    -fx-background-color: #333239;
+    -fx-background-radius: 1 1 1 1;
+}
+
+.radio-button:selected {
+    -fx-background-color: rgba(52,135,247,0.7);
+}

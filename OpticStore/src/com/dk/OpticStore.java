@@ -214,7 +214,7 @@ public class OpticStore extends Application {
             }
         });
         if (initExchanger()) {
-            FXMLLoader dbLoader = new FXMLLoader(getClass().getResource("FXMLDashboard.fxml"));
+            FXMLLoader dbLoader = new FXMLLoader(getClass().getResource("FXMLDashboard2.fxml"));
             dashboardPane = (Parent) dbLoader.load();
             dashboardPane.setVisible(false);
             FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("FXMLmain.fxml"));

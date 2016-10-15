@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="708.0" prefWidth="989.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.dk.FXMLDashboard2Controller">
+  <children>
+    <BorderPane prefHeight="708.0" prefWidth="989.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0">
+          <left>
+            <VBox prefHeight="708.0" prefWidth="220.0" styleClass="leftFxmlClass">
+              <children>
+                <RadioButton minHeight="50.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="253.0" selected="true" text="Klant" textAlignment="LEFT">
+                  <font>
+                    <Font size="16.0" fx:id="x1" />
+                  </font>
+                  <stylesheets>
+                    <URL value="@fxmldashboard2.css" />
+                  </stylesheets>
+                  <textFill>
+                    <Color blue="1.000" green="0.880" red="0.800" fx:id="x2" />
+                  </textFill>
+                  <toggleGroup>
+                    <ToggleGroup fx:id="grp" />
+                  </toggleGroup>
+                  <VBox.margin>
+                    <Insets top="10.0" fx:id="x3" />
+                  </VBox.margin>
+                </RadioButton>
+                <RadioButton font="$x1" minHeight="50.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="253.0" text="Oogmeting" textFill="$x2" toggleGroup="$grp" VBox.margin="$x3">
+                  <stylesheets>
+                    <URL value="@fxmldashboard2.css" />
+                  </stylesheets>
+                </RadioButton>
+                <RadioButton font="$x1" minHeight="50.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="253.0" text="Montuur" textFill="$x2" toggleGroup="$grp" VBox.margin="$x3">
+                  <stylesheets>
+                    <URL value="@fxmldashboard2.css" />
+                  </stylesheets>
+                </RadioButton>
+                <RadioButton font="$x1" minHeight="50.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="253.0" text="Glazen" textFill="$x2" toggleGroup="$grp" VBox.margin="$x3">
+                  <stylesheets>
+                    <URL value="@fxmldashboard2.css" />
+                  </stylesheets>
+                </RadioButton>
+                <RadioButton font="$x1" minHeight="50.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="253.0" text="Mailing" textFill="$x2" toggleGroup="$grp" VBox.margin="$x3">
+                  <stylesheets>
+                    <URL value="@fxmldashboard2.css" />
+                  </stylesheets>
+                </RadioButton>
+                <RadioButton font="$x1" minHeight="50.0" minWidth="-1.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="253.0" text="Artikelbeheer" textFill="$x2" toggleGroup="$grp" VBox.margin="$x3">
+                  <stylesheets>
+                    <URL value="@fxmldashboard2.css" />
+                  </stylesheets>
+                </RadioButton>
+              </children>
+            </VBox>
+          </left>
+        </BorderPane>
+      </center>
+    </BorderPane>
+  </children>
+  <stylesheets>
+    <URL value="@fxmldashboard2.css" />
+  </stylesheets>
+</AnchorPane>

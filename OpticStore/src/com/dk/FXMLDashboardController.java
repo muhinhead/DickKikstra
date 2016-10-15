@@ -452,7 +452,9 @@ public class FXMLDashboardController implements Initializable {
     private int verkoopIndex;
 
     static void expandeFirst() {
-        fisrtPane.setExpanded(true);
+        if (fisrtPane != null) {
+            fisrtPane.setExpanded(true);
+        }
     }
     public static Node adminNode;
 
