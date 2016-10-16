@@ -57,8 +57,16 @@ public class FXMLmainController implements Initializable {
             //Platform.exit();
         } else {
             //OpticStore.mainApp.resize2(1100.0, 800.0);
-            if(currentUser.getIsAdmin().intValue()!=1) {
-                FXMLDashboardController.adminNode.setVisible(false);
+            if (currentUser.getIsAdmin().intValue() != 1) {
+                if (FXMLDashboardController.adminNode != null) {
+                    FXMLDashboardController.adminNode.setVisible(false);
+                }
+//                if (FXMLDashboard2Controller.instance.setupMenu != null) {
+//                    FXMLDashboard2Controller.instance.setupMenu.setDisable(true);
+//                }
+//                if (FXMLDashboard2Controller.instance.usersMenu != null) {
+//                    FXMLDashboard2Controller.instance.usersMenu.setDisable(true);
+//                }
             }
             OpticStore.mainApp.hideLoginAndShowDashboard();
         }
@@ -75,7 +83,7 @@ public class FXMLmainController implements Initializable {
     void setData() throws RemoteException {
         DbObject[] lst = OpticStore.getExchanger().getDbObjects(User.class, null, "login");
         users = new ArrayList<User>(lst.length);
-        for (int i=0; i<lst.length; i++) {
+        for (int i = 0; i < lst.length; i++) {
             getUsers().add((User) lst[i]);
             userCB.getItems().add(((User) lst[i]).getLogin());
         }

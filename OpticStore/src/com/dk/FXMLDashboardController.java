@@ -1552,7 +1552,7 @@ public class FXMLDashboardController implements Initializable {
                 if (isThere) {
                     sb.append(" and ");
                 }
-                sb.append("geboortedatum like '" + gebortedatumField.getText() + "%'");
+                sb.append("to_char(geboortedatum,'"+OpticStore.dateFormat.toPattern().toUpperCase()+"') like '" + gebortedatumField.getText() + "%'");
                 isThere = true;
             }
             if (!telefonField.getText().isEmpty()) {
@@ -1605,7 +1605,7 @@ public class FXMLDashboardController implements Initializable {
                 plaatsField.setText(klant.getPlaats() == null ? "" : klant.getPlaats());
                 landField.setText(klant.getLand() == null ? "" : klant.getLand());
                 if (klant.getGeboortedatum() != null) {
-                    gebortedatumField.setText(klant.getGeboortedatum().toString());
+                    gebortedatumField.setText(OpticStore.dateFormat.format(klant.getGeboortedatum()));
                 }
                 String tlfn;
                 telefonField.setText(tlfn = klant.getTelefoon() == null ? "" : klant.getTelefoon());

@@ -186,7 +186,9 @@ public class OpticStore extends Application {
     }
 
     public static void logAndShowErrorMessage(Throwable th) {
-        Dialogs.showErrorDialog(mainApp.mainStage, th.getLocalizedMessage(), "Fout", th.getCause().getLocalizedMessage());
+        String locMsg = th.getLocalizedMessage()==null?th.getMessage():th.getLocalizedMessage();
+        String causeLocMsg = th.getCause()==null?"CAUSE NULL":th.getCause().getLocalizedMessage()==null?th.getCause().getMessage():th.getCause().getLocalizedMessage();
+        Dialogs.showErrorDialog(mainApp.mainStage, locMsg, "Fout", causeLocMsg);
         log(th);
     }
 
@@ -259,12 +261,13 @@ public class OpticStore extends Application {
                 ? //OpticStore.class.getProtectionDomain().getCodeSource().getLocation().getPath()//f.getAbsolutePath()/*
                 "Login" : "de oogkas");
         if (!showLogin) {
-            FXMLDashboardController.expandeFirst();
+            //FXMLDashboardController.expandeFirst();
+            FXMLDashboard2Controller.expandeFirst();
         }
     }
 
     public void hideLoginAndShowDashboard() {
-        resize2(1200.0, 750.0);
+        resize2(1400.0, 780.0);
         swapLoginAndDashboard(false);
     }
 
