@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="739.0" prefWidth="1104.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.dk.FXMLDashboard2Controller">
+<AnchorPane id="AnchorPane" prefHeight="739.0" prefWidth="1104.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dk.FXMLDashboard2Controller">
   <children>
     <BorderPane prefHeight="708.0" prefWidth="989.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <center>
@@ -368,7 +379,7 @@
           <children>
             <MenuBar styleClass="leftToggleButton">
               <menus>
-                <Menu mnemonicParsing="false" text="" fx:id="menuFile">
+                <Menu fx:id="menuFile" mnemonicParsing="false" text="">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Setup" />
                     <MenuItem mnemonicParsing="false" onAction="#handleUsersMenu" text="Users" />
@@ -384,7 +395,7 @@
                 <Insets left="-10.0" />
               </VBox.margin>
             </MenuBar>
-            <ToggleButton fx:id="klantBtn" alignment="TOP_LEFT" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#klantPress" prefWidth="299.0" styleClass="leftToggleButton" text="Klant">
+            <ToggleButton fx:id="klantBtn" alignment="CENTER_LEFT" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#klantPress" prefWidth="299.0" styleClass="leftToggleButton" text="Klant">
               <font>
                 <Font size="16.0" fx:id="x1" />
               </font>
@@ -395,27 +406,27 @@
                 <Insets top="10.0" />
               </VBox.margin>
             </ToggleButton>
-            <ToggleButton fx:id="oogmetingBtn" alignment="TOP_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#oogmetingPress" prefWidth="220.0" styleClass="leftToggleButton" text="Oogmetting">
+            <ToggleButton fx:id="oogmetingBtn" alignment="CENTER_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#oogmetingPress" prefWidth="220.0" styleClass="leftToggleButton" text="Oogmetting">
               <stylesheets>
                 <URL value="@fxmldashboard2.css" />
               </stylesheets>
             </ToggleButton>
-            <ToggleButton fx:id="montuurBtn" alignment="TOP_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#montuurPress" prefWidth="220.0" styleClass="leftToggleButton" text="Montuur">
+            <ToggleButton fx:id="montuurBtn" alignment="CENTER_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#montuurPress" prefWidth="220.0" styleClass="leftToggleButton" text="Montuur">
               <stylesheets>
                 <URL value="@fxmldashboard2.css" />
               </stylesheets>
             </ToggleButton>
-            <ToggleButton fx:id="glazenBtn" alignment="TOP_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#glazenPress" prefWidth="269.0" styleClass="leftToggleButton" text="Glazen">
+            <ToggleButton fx:id="glazenBtn" alignment="CENTER_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#glazenPress" prefWidth="269.0" styleClass="leftToggleButton" text="Glazen">
               <stylesheets>
                 <URL value="@fxmldashboard2.css" />
               </stylesheets>
             </ToggleButton>
-            <ToggleButton fx:id="mailingBtn" alignment="TOP_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#mailingPress" prefWidth="220.0" styleClass="leftToggleButton" text="Mailing">
+            <ToggleButton fx:id="mailingBtn" alignment="CENTER_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#mailingPress" prefWidth="220.0" styleClass="leftToggleButton" text="Mailing">
               <stylesheets>
                 <URL value="@fxmldashboard2.css" />
               </stylesheets>
             </ToggleButton>
-            <ToggleButton fx:id="artikelbeheerBtn" alignment="TOP_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#artikelbeheerPress" prefWidth="220.0" styleClass="leftToggleButton" text="Artikelbeheer">
+            <ToggleButton fx:id="artikelbeheerBtn" alignment="CENTER_LEFT" font="$x1" graphicTextGap="8.0" minHeight="50.0" mnemonicParsing="false" onAction="#artikelbeheerPress" prefWidth="220.0" styleClass="leftToggleButton" text="Artikelbeheer">
               <stylesheets>
                 <URL value="@fxmldashboard2.css" />
               </stylesheets>
