@@ -260,6 +260,12 @@ public class FXMLDashboard2Controller implements Initializable {
                 }
             }
         });
+        klantPane.setVisible(true);
+        oogmetingPane.setVisible(false);
+        montuurPane.setVisible(false);
+        glazenPane.setVisible(false);
+        mailingPane.setVisible(false);
+        artikelbeheerPane.setVisible(false);
     }
 
     private boolean validateFields() {
@@ -634,7 +640,7 @@ public class FXMLDashboard2Controller implements Initializable {
         glazenBtn.setSelected(false);
         mailingBtn.setSelected(false);
         artikelbeheerBtn.setSelected(false);
-        //TODO: klant selected
+        klantPane.setVisible(true);
         oogmetingPane.setVisible(false);
         montuurPane.setVisible(false);
         glazenPane.setVisible(false);
@@ -651,6 +657,7 @@ public class FXMLDashboard2Controller implements Initializable {
         mailingBtn.setSelected(false);
         artikelbeheerBtn.setSelected(false);
         klantPane.setVisible(false);
+        oogmetingPane.setVisible(true);
         montuurPane.setVisible(false);
         glazenPane.setVisible(false);
         mailingPane.setVisible(false);
@@ -665,9 +672,9 @@ public class FXMLDashboard2Controller implements Initializable {
         glazenBtn.setSelected(false);
         mailingBtn.setSelected(false);
         artikelbeheerBtn.setSelected(false);
-
         klantPane.setVisible(false);
         oogmetingPane.setVisible(false);
+        montuurPane.setVisible(true);
         glazenPane.setVisible(false);
         mailingPane.setVisible(false);
         artikelbeheerPane.setVisible(false);
@@ -680,10 +687,10 @@ public class FXMLDashboard2Controller implements Initializable {
         oogmetingBtn.setSelected(false);
         montuurBtn.setSelected(false);
         mailingBtn.setSelected(false);
-
         klantPane.setVisible(false);
         oogmetingPane.setVisible(false);
         montuurPane.setVisible(false);
+        glazenPane.setVisible(true);
         mailingPane.setVisible(false);
         artikelbeheerPane.setVisible(false);
         setOnTop(glazenPane);
@@ -696,11 +703,11 @@ public class FXMLDashboard2Controller implements Initializable {
         montuurBtn.setSelected(false);
         glazenBtn.setSelected(false);
         artikelbeheerBtn.setSelected(false);
-
         klantPane.setVisible(false);
         oogmetingPane.setVisible(false);
         montuurPane.setVisible(false);
         glazenPane.setVisible(false);
+        mailingPane.setVisible(true);
         artikelbeheerPane.setVisible(false);
         setOnTop(mailingPane);
     }
@@ -712,13 +719,12 @@ public class FXMLDashboard2Controller implements Initializable {
         montuurBtn.setSelected(false);
         glazenBtn.setSelected(false);
         mailingBtn.setSelected(false);
-        
         klantPane.setVisible(false);
         oogmetingPane.setVisible(false);
         montuurPane.setVisible(false);
         glazenPane.setVisible(false);
         mailingPane.setVisible(false);
-
+        artikelbeheerPane.setVisible(true);
         setOnTop(artikelbeheerPane);
     }
 }
