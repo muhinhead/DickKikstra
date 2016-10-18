@@ -7,7 +7,8 @@
 }
 
 .leftFxmlClass {
-    -fx-background-color: #333239
+    -fx-background-color: #333239;
+    -fx-text-fill: #cce0ff;
 }
 
 .rightFxmlClass {

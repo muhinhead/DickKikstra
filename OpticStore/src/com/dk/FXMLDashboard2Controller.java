@@ -9,13 +9,16 @@ import static com.dk.FXMLmainController.currentUser;
 import com.dk.orm.Brilvoorschrift;
 import com.dk.orm.Klant;
 import com.dk.orm.Verkoop;
+import com.dk.orm.dbobject.ComboItem;
 import com.dk.orm.dbobject.DbObject;
 import com.dk.orm.dbobject.ForeignKeyViolationException;
+import com.dk.util.AutoCompleteComboBoxListener;
 import com.dk.util.FXutils;
 import com.dk.util.TableGridPanel;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -49,6 +52,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -65,7 +69,7 @@ public class FXMLDashboard2Controller implements Initializable {
     private static final String graylabelStyle = "-fx-background-color: gray;";
 
     public static FXMLDashboard2Controller instance;
-    private static ArrayList<Brilvoorschrift> brilvoorschriftArray;
+    private static ArrayList<Brilvoorschrift> brilvoorschriftArray = new ArrayList<Brilvoorschrift>();
     @FXML
     private MenuItem menuFile;
     @FXML
@@ -209,7 +213,6 @@ public class FXMLDashboard2Controller implements Initializable {
     private Label klntAdresLabel;
     @FXML
     private Label klntPostCodePlaatsLabel;
-
     @FXML
     private Label klntteleFoonLabel;
     @FXML
@@ -355,6 +358,11 @@ public class FXMLDashboard2Controller implements Initializable {
     @FXML
     private Label vidLabel;
     @FXML
+    private HBox navigationBox;
+    @FXML
+    private HBox montuurNavigationBox;
+
+    @FXML
     private RadioButton klantRB;
     @FXML
     private RadioButton listRB;
@@ -456,6 +464,254 @@ public class FXMLDashboard2Controller implements Initializable {
     private static ArrayList<Verkoop> verkoopArray = new ArrayList<Verkoop>();
     private int verkoopIndex;
 
+    private static void fillCombos(ComboBox[] cbs, String select, boolean withID) {
+        Vector[] v;
+        try {
+            for (ComboBox cb : cbs) {
+                if (cb != null) {
+                    cb.getItems().clear();
+                }
+            }
+            v = OpticStore.getExchanger().getTableBody(select);
+            Vector lines = v[1];
+            for (int i = 0; i < lines.size(); i++) {
+                Vector line = (Vector) lines.get(i);
+                for (ComboBox cb : cbs) {
+                    if (cb != null) {
+                        if (withID) {
+                            cb.getItems().add(new ComboItem(Integer.parseInt((String) line.get(0)), (String) line.get(1)));
+                        } else {
+                            cb.getItems().add((String) line.get(0));
+                        }
+                    }
+                }
+            }
+        } catch (RemoteException ex) {
+            OpticStore.logAndShowErrorMessage(ex);
+        }
+    }
+
+    private static void fillCombo(ComboBox cb, String select, boolean withID) {
+        fillCombos(new ComboBox[]{cb}, select, withID);
+    }
+
+    private void fillCombos() {
+        fillCombo(merkCombo, "select distinct montuur_merk from verkoop order by montuur_merk", false);
+        fillCombo(modelCombo, "select distinct montuur_model from verkoop order by montuur_model", false);
+        fillCombo(kleurCombo, "select distinct montuur_kleur from verkoop order by montuur_kleur", false);
+        fillCombo(diversenCombo, "select distinct diverse from verkoop order by diverse", false);
+        fillCombos(new ComboBox[]{lLeverancierCombo, rLeverancierCombo},
+                "select distinct l_reverancier from verkoop "
+                + "union select distinct r_leverancier from verkoop", false);
+        fillCombos(new ComboBox[]{lTypeGlasCombo, rTypeGlasCombo}, "select distinct l_type_glas from verkoop "
+                + "union select distinct r_type_glas from verkoop", false);
+        fillCombos(new ComboBox[]{lCoatingCombo, rCoatingCombo}, "select distinct l_type_glas from verkoop "
+                + "union select distinct r_type_glas from verkoop", false);
+        fillCombos(new ComboBox[]{lKleurGlasCombo, rKleurGlasCombo}, "select distinct r_coating from verkoop "
+                + "union select distinct r_coating from verkoop", false);
+    }
+
+    private void clearTab4() {
+        verkoop1Label.setText("");
+        rLeverancierCombo.getEditor().setText("");
+        lLeverancierCombo.getEditor().setText("");
+        rTypeGlasCombo.getEditor().setText("");
+        lTypeGlasCombo.getEditor().setText("");
+        rCoatingCombo.getEditor().setText("");
+        lCoatingCombo.getEditor().setText("");
+        rKleurGlasCombo.getEditor().setText("");
+        lKleurGlasCombo.getEditor().setText("");
+        rDiameterInput.setText("0");
+        lDiameterInput.setText("0");
+        rPrijsGlasInput.setText("0.0");
+        lPrijsGlasInput.setText("0.0");
+        breedteInput.setText("");
+        hoogteInput.setText("");
+        neusmaatInput.setText("");
+        soortGlasCombo.setValue("");
+        kortingInput.setText("0.0");
+        totaalInput.setText("0.0");
+        btwInput.setText("0.0");
+    }
+
+    private void clearTab3() {
+        verkoopLabel.setText("");
+        merkCombo.getEditor().setText("");
+        modelCombo.getEditor().setText("");
+        kleurCombo.getEditor().setText("");
+        maatInput.setText("");
+        prijsMontuurInput.setText("");
+        montuurTypeCombo.setValue("");
+        materiallCombo.setValue("");
+        diversenCombo.setValue("");
+        idMontuurInput.setText("");
+        diversenPrijsInput.setText("0.0");
+        montuurDatumInput.setText(OpticStore.dateFormat.format(Calendar.getInstance().getTime()));
+        fillCombos();
+    }
+
+    private void goLastTab2() {
+        if (getBrilvoorschriftArray().size() > 0) {
+            setCurrentBrilvoorschrift(getBrilvoorschriftArray().get(getBrilvoorschriftArray().size() - 1));
+            loadBrilvoorschrift();
+        } else {
+            clearTab2();
+        }
+    }
+
+    private void goLastTab3() {
+        if (verkoopArray.size() > 0) {
+            setCurrentVerkoop(verkoopArray.get(verkoopArray.size() - 1));
+            loadVerkoop();
+        } else {
+            clearTab3();
+            clearTab4();
+        }
+    }
+
+    private void goFirstTab2() {
+        if (getBrilvoorschriftArray().size() > 0) {
+            setCurrentBrilvoorschrift(getBrilvoorschriftArray().get(0));
+            loadBrilvoorschrift();
+        } else {
+            clearTab2();
+        }
+    }
+
+    private void goFirstTab3() {
+        if (verkoopArray.size() > 0) {
+            setCurrentVerkoop(verkoopArray.get(0));
+            loadVerkoop();
+        } else {
+            clearTab3();
+            clearTab4();
+        }
+    }
+
+    private void goPrevTab2() {
+        if (brilvoorschriftIndex > 0) {
+            setCurrentBrilvoorschrift(getBrilvoorschriftArray().get(brilvoorschriftIndex - 1));
+            loadBrilvoorschrift();
+        }
+    }
+
+    private void goPrevTab3() {
+        if (verkoopIndex > 0) {
+            setCurrentVerkoop(verkoopArray.get(verkoopIndex - 1));
+            loadVerkoop();
+        }
+    }
+
+    private void goNextTab2() {
+        if (brilvoorschriftIndex < getBrilvoorschriftArray().size() - 1) {
+            setCurrentBrilvoorschrift(getBrilvoorschriftArray().get(brilvoorschriftIndex + 1));
+            loadBrilvoorschrift();
+        }
+    }
+
+    private void goNextTab3() {
+        if (verkoopIndex < verkoopArray.size() - 1) {
+            setCurrentVerkoop(verkoopArray.get(verkoopIndex + 1));
+            loadVerkoop();
+        }
+    }
+
+    private void fillNavigationBox() {
+        Node firstButton = FXutils.createButton(getClass(), "first.png", new Runnable() {
+            @Override
+            public void run() {
+                goFirstTab2();
+            }
+        });
+        Node prevButton = FXutils.createButton(getClass(), "prev.png", new Runnable() {
+            @Override
+            public void run() {
+                goPrevTab2();
+            }
+        });
+        Node nextButton = FXutils.createButton(getClass(), "next.png", new Runnable() {
+            @Override
+            public void run() {
+                goNextTab2();
+            }
+        }
+        );
+        Node lastButton = FXutils.createButton(getClass(), "last.png", new Runnable() {
+            @Override
+            public void run() {
+                goLastTab2();
+            }
+        });
+        Node addButton = FXutils.createButton(getClass(), "add.png", new Runnable() {
+            @Override
+            public void run() {
+                setCurrentBrilvoorschrift(null);
+                clearTab2();
+            }
+        });
+        Node okButton = FXutils.createButton(getClass(), "ok.png", new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    boolean added = false;
+                    if (getCurrentBrilvoorschrift() == null) {
+                        setCurrentBrilvoorschrift(new Brilvoorschrift(null));
+                        getCurrentBrilvoorschrift().setBrilvoorschriftId(0);
+                        getCurrentBrilvoorschrift().setNew(true);
+                        added = true;
+                    }
+                    fillCurrentBrilvoorschriftAndSave();
+                    if (added) {
+                        getBrilvoorschriftArray().add(getCurrentBrilvoorschrift());
+                        goLastTab2();
+                    }
+                } catch (Exception ex) {
+                    OpticStore.logAndShowErrorMessage(ex);
+                }
+            }
+        });
+        Node delButton = FXutils.createButton(getClass(), "delete.png", new Runnable() {
+            @Override
+            public void run() {
+                if (getCurrentBrilvoorschrift() != null && OpticStore.yesOrNoDialog("Bent u zeker dat u wilt verwijderen van dit record?\n(brilvoorschrift_id="
+                        + getCurrentBrilvoorschrift().getPK_ID() + ")")) {
+                    try {
+                        OpticStore.getExchanger().deleteObject(getCurrentBrilvoorschrift());
+                        getBrilvoorschriftArray().remove(getCurrentBrilvoorschrift());
+                        goLastTab2();
+                    } catch (RemoteException ex) {
+                        OpticStore.logAndShowErrorMessage(ex);
+                    }
+                }
+            }
+        });
+
+        navigationBox.getChildren().add(firstButton);
+        navigationBox.getChildren().add(prevButton);
+        navigationBox.getChildren().add(nextButton);
+        navigationBox.getChildren().add(lastButton);
+        navigationBox.getChildren().add(addButton);
+        navigationBox.getChildren().add(okButton);
+        navigationBox.getChildren().add(delButton);
+    }
+
+    private void fillMontuurNavigationBox() {
+        Node firstButton = FXutils.createButton(getClass(), "first.png", firstVerkoopAction());
+        Node prevButton = FXutils.createButton(getClass(), "prev.png", prevVerkoopAction());
+        Node nextButton = FXutils.createButton(getClass(), "next.png", nextVerkoopAction());
+        Node lastButton = FXutils.createButton(getClass(), "last.png", lastVerkoopAction());
+        Node addButton = FXutils.createButton(getClass(), "add.png", addVerkoopAction());
+        Node okButton = FXutils.createButton(getClass(), "ok.png", okVerkoopAction());
+        Node delButton = FXutils.createButton(getClass(), "delete.png", delVerkoopAction());
+        montuurNavigationBox.getChildren().add(firstButton);
+        montuurNavigationBox.getChildren().add(prevButton);
+        montuurNavigationBox.getChildren().add(nextButton);
+        montuurNavigationBox.getChildren().add(lastButton);
+        montuurNavigationBox.getChildren().add(addButton);
+        montuurNavigationBox.getChildren().add(okButton);
+        montuurNavigationBox.getChildren().add(delButton);
+    }
+
     /**
      * Initializes the controller class.
      */
@@ -467,6 +723,11 @@ public class FXMLDashboard2Controller implements Initializable {
         sysMenuView.setFitWidth(32);
         sysMenuView.setFitHeight(32);
         menuFile.setGraphic(sysMenuView);
+        for (ComboBox cb : new ComboBox[]{merkCombo, modelCombo, kleurCombo, diversenCombo}) {
+            new AutoCompleteComboBoxListener(cb);
+            cb.getItems().clear();
+        }
+        fillCombos();
 //        if (currentUser != null && currentUser.getIsAdmin().intValue() != 1) {
 //            usersMenu.setDisable(true);
 //            setupMenu.setDisable(true);
@@ -580,6 +841,8 @@ public class FXMLDashboard2Controller implements Initializable {
                 }
             }
         });
+        fillNavigationBox();
+        fillMontuurNavigationBox();
         klantPane.setVisible(true);
         oogmetingPane.setVisible(false);
         montuurPane.setVisible(false);
@@ -637,6 +900,49 @@ public class FXMLDashboard2Controller implements Initializable {
         fillKlantFromEdits(klant);
         klant = (Klant) OpticStore.getExchanger().saveDbObject(klant);
         return klid;
+    }
+
+    private void fillCurrentBrilvoorschriftAndSave() throws SQLException, ForeignKeyViolationException, ParseException, RemoteException {
+        if (getCurrentBrilvoorschrift().isNew()) {
+            getCurrentBrilvoorschrift().setKlantId(selectedKlantID);
+        }
+        getCurrentBrilvoorschrift().setAnamnese(anamneseField.getText());
+        if (!datumRefractieInput.getText().isEmpty()) {
+            java.util.Date dt = OpticStore.dateFormat.parse(datumRefractieInput.getText());
+            getCurrentBrilvoorschrift().setDatumRefractie(new Date(dt.getTime()));
+        } else {
+            getCurrentBrilvoorschrift().setDatumRefractie(null);
+        }
+        getCurrentBrilvoorschrift().setOdAdd(OpticStore.ifNullDouble(odAddInput));
+        getCurrentBrilvoorschrift().setOsAdd(OpticStore.ifNullDouble(odAddInput));
+        getCurrentBrilvoorschrift().setOdAs(OpticStore.ifNullInteger(odAsInput));
+        getCurrentBrilvoorschrift().setOsAs(OpticStore.ifNullInteger(osAsInput));
+        getCurrentBrilvoorschrift().setOdBasis(OpticStore.ifNullInteger(odBasisInput));
+        getCurrentBrilvoorschrift().setOsBasis(OpticStore.ifNullInteger(osBasisInput));
+        getCurrentBrilvoorschrift().setOdBasis1(OpticStore.ifNullInteger(odBasis1Input));
+        getCurrentBrilvoorschrift().setOsBasis1(OpticStore.ifNullInteger(osBasis1Input));
+        getCurrentBrilvoorschrift().setOdCyl(OpticStore.ifNullDouble(odCylInput));
+        getCurrentBrilvoorschrift().setOsCyl(OpticStore.ifNullDouble(osCylInput));
+        getCurrentBrilvoorschrift().setOdHa(OpticStore.ifNullInteger(odHaInput));
+        getCurrentBrilvoorschrift().setOsHa(OpticStore.ifNullInteger(osHaInput));
+        getCurrentBrilvoorschrift().setOdIod(OpticStore.ifNullInteger(odIodInput));
+        getCurrentBrilvoorschrift().setOsIod(OpticStore.ifNullInteger(osIodInput));
+        getCurrentBrilvoorschrift().setOdLh(OpticStore.ifNullInteger(odLhInput));
+        getCurrentBrilvoorschrift().setOsLh(OpticStore.ifNullInteger(osLhInput));
+        getCurrentBrilvoorschrift().setOdNabil(OpticStore.ifNullDouble(odNabijInput));
+        getCurrentBrilvoorschrift().setOsNabil(OpticStore.ifNullDouble(osNabijInput));
+        getCurrentBrilvoorschrift().setOdPddn(odPdDnInput.getText());
+        getCurrentBrilvoorschrift().setOsPddn(osPdDnInput.getText());
+        getCurrentBrilvoorschrift().setOdPr(OpticStore.ifNullInteger(odPrInput));
+        getCurrentBrilvoorschrift().setOsPr(OpticStore.ifNullInteger(osPrInput));
+        getCurrentBrilvoorschrift().setOdPr1(OpticStore.ifNullInteger(odPr1Input));
+        getCurrentBrilvoorschrift().setOsPr1(OpticStore.ifNullInteger(osPr1Input));
+        getCurrentBrilvoorschrift().setOdSph(OpticStore.ifNullDouble(odSphInput));
+        getCurrentBrilvoorschrift().setOsSph(OpticStore.ifNullDouble(osSphInput));
+        getCurrentBrilvoorschrift().setOdVis(OpticStore.ifNullDouble(odVisInput));
+        getCurrentBrilvoorschrift().setOsVis(OpticStore.ifNullDouble(osVisInput));
+        getCurrentBrilvoorschrift().setOogmetingDoor(oogmetinggDoorInput.getText());
+        setCurrentBrilvoorschrift((Brilvoorschrift) OpticStore.getExchanger().saveDbObject(getCurrentBrilvoorschrift()));
     }
 
     private void fillKlantFromEdits(Klant klant) throws SQLException, ForeignKeyViolationException, ParseException {
@@ -717,11 +1023,21 @@ public class FXMLDashboard2Controller implements Initializable {
                 lbl.setText("");
             }
         }
-        voorlettersInput.setText("");
-        emailInput.setText("");
-        achternaamInput.setText("");
-        emailsInput.setText("");
-        emailssInput.setText("");
+        if (voorlettersInput != null) {
+            voorlettersInput.setText("");
+        }
+        if (emailInput != null) {
+            emailInput.setText("");
+        }
+        if (achternaamInput != null) {
+            achternaamInput.setText("");
+        }
+        if (emailsInput != null) {
+            emailsInput.setText("");
+        }
+        if (emailssInput != null) {
+            emailssInput.setText("");
+        }
 
 //        oogmetingTab.setDisable(true);
 //        montuurTab.setDisable(true);
@@ -1031,12 +1347,14 @@ public class FXMLDashboard2Controller implements Initializable {
     }
 
     private static void fillFieldWithValue(TextField fld, Object val) {
-        if (val == null) {
-            fld.setText("");
-        } else if (val instanceof java.util.Date) {
-            fld.setText(OpticStore.dateFormat.format(val));
-        } else {
-            fld.setText(val.toString());
+        if (fld != null) {
+            if (val == null) {
+                fld.setText("");
+            } else if (val instanceof java.util.Date) {
+                fld.setText(OpticStore.dateFormat.format(val));
+            } else {
+                fld.setText(val.toString());
+            }
         }
     }
 
@@ -1093,7 +1411,9 @@ public class FXMLDashboard2Controller implements Initializable {
         if (getCurrentVerkoop() != null) {
             String num = " " + (verkoopIndex + 1) + "/" + verkoopArray.size();
             verkoopLabel.setText(num);
-            verkoop1Label.setText(num);
+            if (verkoop1Label != null) {
+                verkoop1Label.setText(num);
+            }
             merkCombo.getEditor().setText(getCurrentVerkoop().getMontuurMerk());
             modelCombo.getEditor().setText(getCurrentVerkoop().getMontuurModel());
             kleurCombo.getEditor().setText(getCurrentVerkoop().getMontuurKleur());
@@ -1101,29 +1421,52 @@ public class FXMLDashboard2Controller implements Initializable {
             fillFieldWithValue(prijsMontuurInput, getCurrentVerkoop().getMontuurPrijs());
             montuurTypeCombo.setValue(getCurrentVerkoop().getMontuurType());
             materiallCombo.setValue(getCurrentVerkoop().getMateriaal());
-            soortGlasCombo.setValue(getCurrentVerkoop().getSoortGlas());
+            if (soortGlasCombo != null) {
+                soortGlasCombo.setValue(getCurrentVerkoop().getSoortGlas());
+            }
 
             diversenCombo.getEditor().setText(getCurrentVerkoop().getDiverse());
             fillFieldWithValue(idMontuurInput, getCurrentVerkoop().getIdMontuur());
             fillFieldWithValue(montuurDatumInput, getCurrentVerkoop().getVerkoopdatum());
 
-            lPrijsGlasInput.setText(getCurrentVerkoop().getLPrijsGlas() == null ? "" : getCurrentVerkoop().getLPrijsGlas().toString());
-            rPrijsGlasInput.setText(getCurrentVerkoop().getRPrijsGlas() == null ? "" : getCurrentVerkoop().getRPrijsGlas().toString());
-
-            rLeverancierCombo.getEditor().setText(getCurrentVerkoop().getRLeverancier());
-            lLeverancierCombo.getEditor().setText(getCurrentVerkoop().getLReverancier());
-            rTypeGlasCombo.getEditor().setText(getCurrentVerkoop().getRTypeGlas());
-            lTypeGlasCombo.getEditor().setText(getCurrentVerkoop().getLTypeGlas());
-            rCoatingCombo.getEditor().setText(getCurrentVerkoop().getRCoating());
-            lCoatingCombo.getEditor().setText(getCurrentVerkoop().getLCoating());
-            rKleurGlasCombo.getEditor().setText(getCurrentVerkoop().getRKleurGlazen());
-            lKleurGlasCombo.getEditor().setText(getCurrentVerkoop().getLKleurGlazen());
+            if (lPrijsGlasInput != null) {
+                lPrijsGlasInput.setText(getCurrentVerkoop().getLPrijsGlas() == null ? "" : getCurrentVerkoop().getLPrijsGlas().toString());
+            }
+            if (rPrijsGlasInput != null) {
+                rPrijsGlasInput.setText(getCurrentVerkoop().getRPrijsGlas() == null ? "" : getCurrentVerkoop().getRPrijsGlas().toString());
+            }
+            if (rLeverancierCombo != null) {
+                rLeverancierCombo.getEditor().setText(getCurrentVerkoop().getRLeverancier());
+            }
+            if (lLeverancierCombo != null) {
+                lLeverancierCombo.getEditor().setText(getCurrentVerkoop().getLReverancier());
+            }
+            if (rTypeGlasCombo != null) {
+                rTypeGlasCombo.getEditor().setText(getCurrentVerkoop().getRTypeGlas());
+            }
+            if (lTypeGlasCombo != null) {
+                lTypeGlasCombo.getEditor().setText(getCurrentVerkoop().getLTypeGlas());
+            }
+            if (rCoatingCombo != null) {
+                rCoatingCombo.getEditor().setText(getCurrentVerkoop().getRCoating());
+            }
+            if (lCoatingCombo != null) {
+                lCoatingCombo.getEditor().setText(getCurrentVerkoop().getLCoating());
+            }
+            if (rKleurGlasCombo != null) {
+                rKleurGlasCombo.getEditor().setText(getCurrentVerkoop().getRKleurGlazen());
+            }
+            if (lKleurGlasCombo != null) {
+                lKleurGlasCombo.getEditor().setText(getCurrentVerkoop().getLKleurGlazen());
+            }
             fillFieldWithValue(rDiameterInput, getCurrentVerkoop().getRDiameter());
             fillFieldWithValue(lDiameterInput, getCurrentVerkoop().getLDiameter());
             fillFieldWithValue(breedteInput, getCurrentVerkoop().getBreedte());
             fillFieldWithValue(hoogteInput, getCurrentVerkoop().getHoogte());
             fillFieldWithValue(neusmaatInput, getCurrentVerkoop().getNeusmaat());
-            soortGlasCombo.setValue(getCurrentVerkoop().getSoortGlas());
+            if (soortGlasCombo != null) {
+                soortGlasCombo.setValue(getCurrentVerkoop().getSoortGlas());
+            }
             fillFieldWithValue(kortingInput, getCurrentVerkoop().getKorting());
             fillFieldWithValue(totaalInput, getCurrentVerkoop().getTotaal());
             fillFieldWithValue(btwInput, getCurrentVerkoop().getTotalBtw());
@@ -1319,7 +1662,7 @@ public class FXMLDashboard2Controller implements Initializable {
         artikelbeheerPane.setVisible(true);
         setOnTop(artikelbeheerPane);
     }
-    
+
     /**
      * @return the currentBrilvoorschrift
      */
@@ -1395,5 +1738,141 @@ public class FXMLDashboard2Controller implements Initializable {
             OpticStore.log(ex.getLocalizedMessage());
         }
         return "";
+    }
+
+    private Runnable firstVerkoopAction() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                goFirstTab3();
+            }
+        };
+    }
+
+    private Runnable prevVerkoopAction() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                goPrevTab3();
+            }
+        };
+    }
+
+    private Runnable nextVerkoopAction() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                goNextTab3();
+            }
+        };
+    }
+
+    private Runnable lastVerkoopAction() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                goLastTab3();
+            }
+        };
+    }
+
+    private Runnable addVerkoopAction() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                setCurrentVerkoop(null);
+                clearTab3();
+                clearTab4();
+            }
+        };
+    }
+
+    private Runnable okVerkoopAction() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    boolean added = false;
+                    if (getCurrentVerkoop() == null) {
+                        setCurrentVerkoop(new Verkoop((Connection) null));
+                        getCurrentVerkoop().setVerkoopId(0);
+                        getCurrentVerkoop().setNew(true);
+                        added = true;
+                    }
+                    fillCurrentVerkoopAndSave();
+                    if (added) {
+                        verkoopArray.add(getCurrentVerkoop());
+                        goLastTab3();
+                    } else {
+                        loadVerkoop();
+                    }
+                } catch (Exception ex) {
+                    OpticStore.logAndShowErrorMessage(ex);
+                }
+            }
+        };
+    }
+
+    private Runnable delVerkoopAction() {
+        return new Runnable() {
+            @Override
+            public void run() {
+                if (getCurrentVerkoop() != null && OpticStore.yesOrNoDialog("Bent u zeker dat u wilt verwijderen van dit record?\n(vorkoop_id="
+                        + getCurrentVerkoop().getPK_ID() + ")")) {
+                    try {
+                        OpticStore.getExchanger().deleteObject(getCurrentBrilvoorschrift());
+                        verkoopArray.remove(getCurrentVerkoop());
+                        goLastTab3();
+                    } catch (RemoteException ex) {
+                        OpticStore.logAndShowErrorMessage(ex);
+                    }
+                }
+            }
+        };
+    }
+
+    private void fillCurrentVerkoopAndSave() throws SQLException, ForeignKeyViolationException, ParseException, RemoteException {
+        if (getCurrentVerkoop().isNew()) {
+            getCurrentVerkoop().setKlantId(selectedKlantID);
+        }
+        getCurrentVerkoop().setDiverse(diversenCombo.getEditor().getText());
+        getCurrentVerkoop().setDiversePrijs(OpticStore.ifNullDouble(diversenPrijsInput)); //TODO - 
+        getCurrentVerkoop().setIdMontuur(idMontuurInput.getText());
+        getCurrentVerkoop().setKorting(OpticStore.ifNullDouble(kortingInput)); //TODO
+        getCurrentVerkoop().setLCoating(lCoatingCombo.getEditor().getText());
+        getCurrentVerkoop().setLDiameter(OpticStore.ifNullInteger(lDiameterInput));
+        getCurrentVerkoop().setLKleurGlazen(lKleurGlasCombo.getEditor().getText());
+        getCurrentVerkoop().setLPrijsGlas(OpticStore.ifNullDouble(lPrijsGlasInput));
+        getCurrentVerkoop().setLReverancier(lLeverancierCombo.getEditor().getText());
+        getCurrentVerkoop().setLTypeGlas(lTypeGlasCombo.getEditor().getText());
+        getCurrentVerkoop().setMateriaal(materiallCombo.getValue().toString());
+//        getCurrentVerkoop().setMontuurBtw(0.0); //TODO - calc
+//        getCurrentVerkoop().setKorting(0.0); //TODO - 
+        getCurrentVerkoop().setMontuurKleur(kleurCombo.getEditor().getText());
+        getCurrentVerkoop().setMontuurMaat(maatInput.getText());
+        getCurrentVerkoop().setMontuurMerk(merkCombo.getEditor().getText());
+        getCurrentVerkoop().setMontuurModel(modelCombo.getEditor().getText());
+        getCurrentVerkoop().setMontuurPrijs(OpticStore.ifNullDouble(prijsMontuurInput));
+        getCurrentVerkoop().setMontuurType(montuurTypeCombo.getValue().toString());
+        //getCurrentVerkoop().setRBtw(0.0); //TODO - glazen calc
+        getCurrentVerkoop().setRCoating(rCoatingCombo.getEditor().getText());
+        getCurrentVerkoop().setRDiameter(OpticStore.ifNullInteger(rDiameterInput));
+        getCurrentVerkoop().setRKleurGlazen(rKleurGlasCombo.getEditor().getText());
+        getCurrentVerkoop().setRPrijsGlas(OpticStore.ifNullDouble(rPrijsGlasInput));
+        getCurrentVerkoop().setRLeverancier(rLeverancierCombo.getEditor().getText());
+        getCurrentVerkoop().setRTypeGlas(rTypeGlasCombo.getEditor().getText());
+        getCurrentVerkoop().setBreedte(OpticStore.ifNullInteger(breedteInput));
+        getCurrentVerkoop().setHoogte(OpticStore.ifNullInteger(hoogteInput));
+        getCurrentVerkoop().setNeusmaat(OpticStore.ifNullInteger(neusmaatInput));
+        getCurrentVerkoop().setSoortGlas(soortGlasCombo.getValue().toString());
+//        getCurrentVerkoop().setTotaal(999.0); //TODO - calc
+//        getCurrentVerkoop().setTotalBtw(0.0); //TODO - calc
+        if (montuurDatumInput.getText() != null && !montuurDatumInput.getText().isEmpty()) {
+            java.util.Date dt = OpticStore.dateFormat.parse(montuurDatumInput.getText());
+            getCurrentVerkoop().setVerkoopdatum(new Date(dt.getTime()));
+        }
+        getCurrentVerkoop().setKorting(OpticStore.ifNullDouble(kortingInput));
+        setCurrentVerkoop((Verkoop) OpticStore.getExchanger().saveDbObject(getCurrentVerkoop()));
+        fillLastVerkoop(verkoopArray.get(verkoopArray.size() - 1));
     }
 }

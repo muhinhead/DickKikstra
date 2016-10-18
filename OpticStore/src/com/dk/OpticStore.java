@@ -33,6 +33,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Dialogs;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -203,6 +204,29 @@ public class OpticStore extends Application {
         return ans == Dialogs.DialogResponse.YES;
     }
 
+    public static Integer ifNullInteger(TextField tf) {
+        if (tf != null && tf.getText() != null) {
+            try {
+                return Integer.parseInt(tf.getText());
+            } catch (NumberFormatException ne) {
+                tf.setText("0");
+            }
+        }
+        return 0;
+    }
+
+    public static Double ifNullDouble(TextField tf) {
+        if (tf != null && tf.getText() != null) {
+            try {
+                return Double.parseDouble(tf.getText());
+            } catch (NumberFormatException ne) {
+                tf.setText("0.0");
+            }
+        }
+        return 0.0;
+    }
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
         mainApp = this;
@@ -216,7 +240,7 @@ public class OpticStore extends Application {
             }
         });
         if (initExchanger()) {
-            FXMLLoader dbLoader = new FXMLLoader(getClass().getResource("FXMLDashboard2.fxml"));
+            FXMLLoader dbLoader = new FXMLLoader(getClass().getResource("FXMLDashboard.fxml"));
             dashboardPane = (Parent) dbLoader.load();
             dashboardPane.setVisible(false);
             FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("FXMLmain.fxml"));
