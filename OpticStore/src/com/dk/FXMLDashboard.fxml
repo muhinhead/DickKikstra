@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -12,970 +15,972 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="730.0" prefWidth="1293.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dk.FXMLDashboardController">
+<AnchorPane id="AnchorPane" prefHeight="730.0" prefWidth="1293.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.dk.FXMLDashboardController">
   <children>
-    <HBox fx:id="logoutBox" layoutX="545.0" layoutY="174.0" prefHeight="56.0" prefWidth="56.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-      <TabPane prefHeight="730.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="0.0">
-        <tabs>
-            <Tab text="klant">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <panes>
-                            <TitledPane fx:id="zoekenPane" animated="false" text="zoeken en bewerken">
-                                 <content>
-                                    <AnchorPane>
-                                       <children>
-                                          <ScrollPane prefHeight="697.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <content>
-                                              <AnchorPane fx:id="innerAnchorPane" minHeight="550.0" minWidth="1100.0" prefWidth="1100.0">
-                                                   <children>
-                                                      <GridPane layoutX="24.0" layoutY="15.0" prefHeight="437.0" prefWidth="305.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="15.0">
-                                                        <columnConstraints>
-                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="107.0" />
-                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
-                                                        </columnConstraints>
-                                                        <rowConstraints>
-                                                          <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                                                        </rowConstraints>
-                                                         <children>
-                                                            <Label contentDisplay="TOP" prefHeight="17.0" prefWidth="87.0" text="id klant" />
-                                                            <Label text="aanhef" GridPane.rowIndex="1" />
-                                                            <Label text="voorletters" GridPane.rowIndex="2" />
-                                                            <Label text="tussenvoegsel" GridPane.rowIndex="3" />
-                                                            <Label text="achternaam" GridPane.rowIndex="4" />
-                                                            <Label text="adres" GridPane.rowIndex="5" />
-                                                            <Label text="huisnummer" GridPane.rowIndex="6" />
-                                                            <Label text="postcode" GridPane.rowIndex="7" />
-                                                            <Label text="plaats" GridPane.rowIndex="8" />
-                                                            <Label text="land" GridPane.rowIndex="9" />
-                                                            <Label text="geboortedatum" GridPane.rowIndex="10" />
-                                                            <Label text="telefoon" GridPane.rowIndex="11" />
-                                                            <Label text="mobiel" GridPane.rowIndex="12" />
-                                                            <Label text="e-mail" GridPane.rowIndex="13" />
-                                                            <TextField fx:id="klantIDfield" maxWidth="70.0" promptText="123456" GridPane.columnIndex="1" />
-                                                            <TextField fx:id="aanhefField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                            <TextField fx:id="voorlettersField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                            <TextField fx:id="tussenvoegselField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                            <TextField fx:id="achternaamField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                            <TextField fx:id="adresField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                            <TextField fx:id="huisnummerField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                            <TextField fx:id="postcodeField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                            <TextField fx:id="plaatsField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                                            <TextField fx:id="landField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                                            <TextField fx:id="telefonField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                                                            <TextField fx:id="mobileField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                                                            <TextField fx:id="emailField" promptText="mymail@mailserver.com" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                                                            <TextField fx:id="gebortedatumField" promptText="DD-MM-JJJJ" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                                         </children>
-                                                      </GridPane>
-                                                      <VBox fx:id="searchClientBox" layoutX="335.0" layoutY="27.0" prefHeight="183.0" prefWidth="85.0" spacing="30.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="27.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                            </content>
-                                          </ScrollPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </TitledPane>
-                            <TitledPane animated="false" text="bijzonderheden">
-                                 <content>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <ScrollPane layoutX="20.4" layoutY="20.4" prefHeight="620.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <content>
-                                                <VBox fx:id="detailsVbox" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="320.0" prefWidth="1200.0">
-                                                   <children>
-                                                      <GridPane>
-                                                        <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="100.99999809265137" />
-                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.0000076293945" minWidth="10.0" prefWidth="176.00000190734863" />
-                                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="628.9999694824219" minWidth="10.0" prefWidth="192.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="478.0" />
-                                                        </columnConstraints>
-                                                        <rowConstraints>
-                                                          <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        </rowConstraints>
-                                                         <children>
-                                                            <Label fx:id="klntIdLabel" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                                                            <Label fx:id="klntNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                            <Label fx:id="klntAdresLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                            <Label fx:id="klntPostCodePlaatsLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                            <Label fx:id="klntteleFoonLabel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                            <Label fx:id="klntMobielLabel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                            <Label fx:id="klntEmailLabel" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                            <Label fx:id="klntVerkoolDatumLabel" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                         </children>
-                                                      </GridPane>
-                                                      <Label fx:id="brilvoorschriftLabel" maxWidth="1.7976931348623157E308" style="-fx-background-color: lightgray;" text="              brilvoorschrift" textAlignment="CENTER" textFill="WHITE" />
-                                                      <GridPane>
-                                                        <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                        </columnConstraints>
-                                                        <rowConstraints>
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        </rowConstraints>
-                                                         <children>
-                                                            <Label text="Sph" GridPane.columnIndex="1" />
-                                                            <Label text="OD" GridPane.rowIndex="1" />
-                                                            <Label text="OS" GridPane.rowIndex="3" />
-                                                            <Label text="Cyl" GridPane.columnIndex="2" />
-                                                            <Label text="As" GridPane.columnIndex="3" />
-                                                            <Label text="Add" GridPane.columnIndex="4" />
-                                                            <Label text="Nabij" GridPane.columnIndex="5" />
-                                                            <Label text="Pr" GridPane.columnIndex="6" />
-                                                            <Label text="Basis" GridPane.columnIndex="7" />
-                                                            <Label text="Vis" GridPane.columnIndex="8" />
-                                                            <Label text="PD D/N" GridPane.columnIndex="9" />
-                                                            <Label text="LH" GridPane.columnIndex="10" />
-                                                            <Label text="HA" GridPane.columnIndex="11" />
-                                                            <Label text="IOD" GridPane.columnIndex="12" />
-                                                            <Label fx:id="odSphLabel" prefHeight="17.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odCylLabel" prefHeight="17.0" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odAsLabel" prefHeight="17.0" prefWidth="137.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odAddLabel" prefHeight="17.0" prefWidth="167.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odNabijLabel" prefHeight="17.0" prefWidth="118.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odPrLabel" prefHeight="17.0" prefWidth="151.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odBasisLabel" prefHeight="17.0" prefWidth="108.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odVisLabel" prefHeight="17.0" prefWidth="148.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odPdDnLabel" prefHeight="17.0" prefWidth="159.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odLhLabel" prefHeight="17.0" prefWidth="161.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odHaLabel" prefHeight="17.0" prefWidth="163.0" GridPane.columnIndex="11" GridPane.rowIndex="1" />
-                                                            <Label fx:id="odIodLabel" prefHeight="17.0" prefWidth="117.0" GridPane.columnIndex="12" GridPane.rowIndex="1" />
-                                                            <Label fx:id="osSphLabel" prefHeight="17.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osCylLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osAsLabel" prefHeight="17.0" prefWidth="144.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osAddLabel" prefHeight="17.0" prefWidth="106.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osNabijLabel" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osPrLabel" prefHeight="17.0" prefWidth="161.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osBasisLabel" prefHeight="17.0" prefWidth="184.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osVisLabel" prefHeight="17.0" prefWidth="166.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osPdDnLabel" prefHeight="17.0" prefWidth="147.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osLhLabel" prefHeight="17.0" prefWidth="118.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osHaLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="11" GridPane.rowIndex="3" />
-                                                            <Label fx:id="osIodLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="12" GridPane.rowIndex="3" />
-                                                            <Label fx:id="odPr1Label" prefHeight="17.0" prefWidth="111.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                                                            <Label fx:id="odBasis1Label" prefHeight="17.0" prefWidth="160.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-                                                            <Label fx:id="osPr1Label" prefHeight="17.0" prefWidth="142.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-                                                            <Label fx:id="osBasis1Label" prefHeight="17.0" prefWidth="123.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-                                                         </children>
-                                                      </GridPane>
-                                                      <GridPane alignment="TOP_RIGHT" prefHeight="44.0" prefWidth="1197.0">
-                                                        <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                        </columnConstraints>
-                                                        <rowConstraints>
-                                                            <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        </rowConstraints>
-                                                         <children>
-                                                            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="266.0" text="oogmeting door" textAlignment="RIGHT" />
-                                                            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="271.0" text="datum refractie" textAlignment="RIGHT" GridPane.columnIndex="1" />
-                                                            <Label contentDisplay="RIGHT" prefHeight="17.0" prefWidth="264.0" text="2016-06-18" GridPane.columnIndex="2" />
-                                                            <Button fx:id="anamneseButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAnamnesButton" text="anamnese" GridPane.columnIndex="3" />
-                                                         </children>
-                                                      </GridPane>
-                                                      <GridPane fx:id="glazenGridPane">
-                                                        <columnConstraints>
-                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                        </columnConstraints>
-                                                        <rowConstraints>
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                            <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        </rowConstraints>
-                                                         <children>
-                                                            <Label prefHeight="17.0" prefWidth="347.0" style="-fx-background-color: lightgray;" text="glazen" textFill="WHITE" />
-                                                            <Label prefHeight="17.0" prefWidth="137.0" style="-fx-background-color: lightgray;" text="leverancier" textFill="WHITE" GridPane.columnIndex="1" />
-                                                            <Label prefHeight="17.0" prefWidth="131.0" style="-fx-background-color: lightgray;" text="type glas" textFill="WHITE" GridPane.columnIndex="2" />
-                                                            <Label prefHeight="17.0" prefWidth="144.0" style="-fx-background-color: lightgray;" text="coating" textFill="WHITE" GridPane.columnIndex="4" />
-                                                            <Label prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: lightgray;" text="kleur glazen" textFill="WHITE" GridPane.columnIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="134.0" style="-fx-background-color: lightgray;" text="diameter" textFill="WHITE" GridPane.columnIndex="7" />
-                                                            <Label prefHeight="17.0" prefWidth="140.0" style="-fx-background-color: lightgray;" text="prijs glas" textFill="WHITE" GridPane.columnIndex="8" />
-                                                            <Label prefHeight="17.0" prefWidth="210.0" style="-fx-background-color: lightgray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" />
-                                                            <Label prefHeight="17.0" prefWidth="197.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="3" />
-                                                            <Label prefHeight="17.0" prefWidth="147.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="6" />
-                                                            <Label prefHeight="17.0" prefWidth="182.0" style="-fx-background-color: lightgray;" text="breedte" textFill="WHITE" GridPane.rowIndex="3" />
-                                                            <Label prefHeight="17.0" prefWidth="148.0" style="-fx-background-color: lightgray;" text="hoogte" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                            <Label prefHeight="17.0" prefWidth="143.0" style="-fx-background-color: lightgray;" text="neusmaat" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                                                            <Label prefHeight="17.0" prefWidth="159.0" text="rechts" GridPane.rowIndex="1" />
-                                                            <Label prefHeight="17.0" prefWidth="156.0" text="links" GridPane.rowIndex="2" />
-                                                            <Label fx:id="montuurgegevensLabel" text="montuurgegevens" GridPane.rowIndex="4" />
-                                                            <Label prefHeight="17.0" prefWidth="155.0" style="-fx-background-color: lightgray;" text="merk" textFill="WHITE" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="181.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="153.0" style="-fx-background-color: lightgray;" text="model" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="181.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="146.0" style="-fx-background-color: lightgray;" text="kleur" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="223.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="147.0" style="-fx-background-color: lightgray;" text="maat" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="149.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="158.0" style="-fx-background-color: lightgray;" text="prijs montuur" textFill="WHITE" GridPane.columnIndex="8" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="203.0" style="-fx-background-color: lightgray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" GridPane.rowIndex="5" />
-                                                            <Label prefHeight="17.0" prefWidth="183.0" style="-fx-background-color: lightgray;" text="diversen" textFill="WHITE" GridPane.rowIndex="7" />
-                                                            <Label prefHeight="17.0" prefWidth="219.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                            <Label prefHeight="17.0" prefWidth="185.0" style="-fx-background-color: lightgray;" text="soort glas" textFill="WHITE" GridPane.rowIndex="8" />
-                                                            <Label prefHeight="17.0" prefWidth="183.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                                            <Label prefHeight="17.0" prefWidth="252.0" style="-fx-background-color: lightgray;" text="montuur type" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                                                            <Label prefHeight="17.0" prefWidth="151.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-                                                            <Label prefHeight="17.0" prefWidth="157.0" style="-fx-background-color: lightgray;" text="materiaal" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="8" />
-                                                            <Label fx:id="r_leverancierLabel" prefHeight="17.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                            <Label fx:id="l_leverancierLabel" prefHeight="17.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                            <Label fx:id="r_typeglasLabel" prefHeight="17.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                            <Label fx:id="l_typeglasLabel" prefHeight="17.0" prefWidth="218.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                            <Label fx:id="r_coatingLabel" prefHeight="17.0" prefWidth="190.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                                            <Label fx:id="l_coatingLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                                            <Label fx:id="r_kleurglazenLabel" prefHeight="17.0" prefWidth="186.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                                            <Label fx:id="l_kleurglazenLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                                            <Label fx:id="r_diameterLabel" prefHeight="17.0" prefWidth="132.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                                                            <Label fx:id="l_diameterLabel" prefHeight="17.0" prefWidth="147.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-                                                            <Label fx:id="r_prijsglasLabel" prefHeight="17.0" prefWidth="135.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-                                                            <Label fx:id="l_prijsglasLabel" prefHeight="17.0" prefWidth="185.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
-                                                            <Label fx:id="r_btwLabel" prefHeight="17.0" prefWidth="140.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-                                                            <Label fx:id="l_btwLabel" prefHeight="17.0" prefWidth="129.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
-                                                            <Label fx:id="breedteLabel" prefHeight="17.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                            <Label fx:id="hoogteLabel" prefHeight="17.0" prefWidth="182.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                            <Label fx:id="neusmaatLabel" prefHeight="17.0" prefWidth="208.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                                                            <Label fx:id="merkLabel" prefHeight="17.0" prefWidth="159.0" GridPane.rowIndex="6" />
-                                                            <Label fx:id="modelLabel" prefHeight="17.0" prefWidth="224.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                                            <Label fx:id="diversenLabel" prefHeight="17.0" prefWidth="197.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                                            <Label fx:id="soortglasLabel" prefHeight="17.0" prefWidth="163.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                                                            <Label fx:id="montuurtypeLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
-                                                            <Label fx:id="materiaalLabel" prefHeight="17.0" prefWidth="154.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
-                                                            <Label fx:id="kleurLabel" prefHeight="17.0" prefWidth="193.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-                                                            <Label fx:id="maatLabel" prefHeight="17.0" prefWidth="228.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-                                                            <Label fx:id="prijsmontuurLabel" prefHeight="17.0" prefWidth="148.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
-                                                            <Label fx:id="btwLabel" prefHeight="17.0" prefWidth="108.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
-                                                            <Label text="korting" GridPane.columnIndex="7" GridPane.rowIndex="9" />
-                                                            <Label text="totaal" GridPane.columnIndex="7" GridPane.rowIndex="10" />
-                                                            <Label fx:id="kortingLabel" prefHeight="17.0" prefWidth="181.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
-                                                            <Label fx:id="totaalLabel" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="8" GridPane.rowIndex="10" />
-                                                            <Label fx:id="totaalBtwLabel" prefHeight="17.0" prefWidth="131.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
-                                                            <Label fx:id="diversePrijsLabel" prefHeight="17.0" prefWidth="122.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
-                                                            <Label fx:id="diverseBtwLabel" prefHeight="17.0" prefWidth="102.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
-                                                         </children>
-                                                      </GridPane>
-                                                   </children>
-                                                </VBox>
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                    </AnchorPane>
-                                 </content></TitledPane>
-                          </panes>
-                        </Accordion>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-          <Tab fx:id="oogmetingTab" text="oogmeting">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <ScrollPane layoutX="14.0" layoutY="14.0" prefHeight="607.0" prefWidth="1107.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <content>
-                              <AnchorPane prefHeight="685.0" prefWidth="1100.0">
-                                 <children>
-                                    <VBox prefHeight="252.0" prefWidth="1186.0" AnchorPane.bottomAnchor="433.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <GridPane>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Label text="Sph" GridPane.columnIndex="1" />
-                                                <Label alignment="CENTER" prefHeight="17.0" prefWidth="91.0" text="OD" GridPane.rowIndex="1" />
-                                                <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="OS" GridPane.rowIndex="3" />
-                                                <Label text="Cyl" GridPane.columnIndex="2" />
-                                                <Label text="As" GridPane.columnIndex="3" />
-                                                <Label text="Add" GridPane.columnIndex="4" />
-                                                <Label text="Nabij" GridPane.columnIndex="5" />
-                                                <Label text="Pr" GridPane.columnIndex="6" />
-                                                <Label text="Basis" GridPane.columnIndex="7" />
-                                                <Label text="Vis" GridPane.columnIndex="8" />
-                                                <Label text="PD D/N" GridPane.columnIndex="9" />
-                                                <Label text="LH" GridPane.columnIndex="10" />
-                                                <Label text="HA" GridPane.columnIndex="11" />
-                                                <Label text="IOD" GridPane.columnIndex="12" />
-                                                <TextField fx:id="odSphInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odCylInput" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odAsInput" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odAddInput" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odNabijInput" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odPrInput" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odBasisInput" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odVisInput" GridPane.columnIndex="8" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odPdDnInput" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odLhInput" GridPane.columnIndex="10" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odHaInput" GridPane.columnIndex="11" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odIodInput" GridPane.columnIndex="12" GridPane.rowIndex="1" />
-                                                <TextField fx:id="odPr1Input" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                                                <TextField fx:id="odBasis1Input" GridPane.columnIndex="7" GridPane.rowIndex="2" />
-                                                <TextField fx:id="osSphInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osCylInput" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osAsInput" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osAddInput" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osNabijInput" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osPrInput" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osBasisInput" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osVisInput" GridPane.columnIndex="8" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osPdDnInput" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osLhInput" GridPane.columnIndex="10" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osHaInput" GridPane.columnIndex="11" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osIodInput" GridPane.columnIndex="12" GridPane.rowIndex="3" />
-                                                <TextField fx:id="osPr1Input" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-                                                <TextField fx:id="osBasis1Input" GridPane.columnIndex="7" GridPane.rowIndex="4" />
-                                                <Label fx:id="vidLabel" text="id" textFill="#00000063" />
-                                             </children>
-                                          </GridPane>
-                                          <GridPane>
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="258.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="180.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                             <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="255.0" text="oogmeting door" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="255.0" text="datum refractie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField fx:id="oogmetinggDoorInput" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <TextField fx:id="datumRefractieInput" prefHeight="27.0" prefWidth="132.0" promptText="DD-MM-JJJJ" />
-                                                   </children>
-                                                </GridPane>
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                    </VBox>
-                                    <HBox fx:id="navigationBox" layoutX="417.0" layoutY="557.0" prefHeight="75.0" prefWidth="352.0" />
-                                    <TitledPane animated="false" layoutX="92.0" layoutY="252.0" prefHeight="296.0" prefWidth="995.0" text="anamnese" AnchorPane.bottomAnchor="137.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="252.0">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <TextArea fx:id="anamneseField" layoutX="8.4" layoutY="9.4" prefHeight="272.0" prefWidth="999.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="-1.0" />
-                                             </children>
-                                          </AnchorPane>
-                                      </content>
-                                    </TitledPane>
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </AnchorPane>
-               </content></Tab>
-          <Tab fx:id="montuurTab" text="montuur">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <ScrollPane prefHeight="697.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="685.0" prefWidth="1100.0">
-                                 <children>
-                                    <AnchorPane prefHeight="682.0" prefWidth="1195.0">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Label prefHeight="17.0" prefWidth="1201.0" style="-fx-background-color: lightgray;" text="montuurgegevens" textFill="WHITE" />
-                                                <GridPane>
-                                                  <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="471.0" minWidth="10.0" prefWidth="249.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="135.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="517.0" minWidth="10.0" prefWidth="340.0" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="418.0" />
-                                                  </columnConstraints>
-                                                  <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                  </rowConstraints>
-                                                   <children>
-                                                      <Label text="merk" GridPane.columnIndex="1" />
-                                                      <Label text="model" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <Label text="kleur" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Label text="maat" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                      <Label text="prijs montuur" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                      <Label text="montuur type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                      <Label text="materiaal" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                      <Label text="diversen" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                      <Label text="id montuur" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                                      <Label text="datum van aankoop" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                                      <ComboBox fx:id="merkCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" />
-                                                      <ComboBox fx:id="modelCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                      <ComboBox fx:id="kleurCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                      <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                                         <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="141.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="213.0" />
-                                                         </columnConstraints>
-                                                         <rowConstraints>
-                                                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                         </rowConstraints>
-                                                         <children>
-                                                            <TextField fx:id="maatInput" prefHeight="27.0" prefWidth="152.0" />
-                                                         </children>
-                                                      </GridPane>
-                                                      <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                                         <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="141.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="213.0" />
-                                                         </columnConstraints>
-                                                         <rowConstraints>
-                                                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                         </rowConstraints>
-                                                         <children>
-                                                            <TextField fx:id="prijsMontuurInput" prefHeight="27.0" prefWidth="148.0" />
-                                                         </children>
-                                                      </GridPane>
-                                                      <ComboBox fx:id="montuurTypeCombo" prefHeight="27.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                                      <ComboBox fx:id="materiallCombo" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                                      <ComboBox fx:id="diversenCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                                      <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
-                                                         <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="139.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="215.0" />
-                                                         </columnConstraints>
-                                                         <rowConstraints>
-                                                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                         </rowConstraints>
-                                                         <children>
-                                                            <TextField fx:id="idMontuurInput" prefHeight="27.0" />
-                                                         </children>
-                                                      </GridPane>
-                                                      <Label fx:id="verkoopLabel" text="ID" textFill="#0000005c" />
-                                                      <GridPane GridPane.columnIndex="2" GridPane.rowIndex="10">
-                                                         <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="139.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="215.0" />
-                                                         </columnConstraints>
-                                                         <rowConstraints>
-                                                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                         </rowConstraints>
-                                                         <children>
-                                                            <TextField fx:id="montuurDatumInput" prefHeight="27.0" promptText="DD-MM-JJJJ" />
-                                                         </children>
-                                                      </GridPane>
-                                                      <TextField fx:id="diversenPrijsInput" maxWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane>
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="423.0" minWidth="10.0" prefWidth="373.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="962.0" minWidth="10.0" prefWidth="363.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="498.0" minWidth="10.0" prefWidth="448.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <HBox fx:id="montuurNavigationBox" prefHeight="100.0" prefWidth="300.0" GridPane.columnIndex="1" />
-                                                   </children>
-                                                </GridPane>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                     </children>
-                  </AnchorPane>
-               </content></Tab>
-            <Tab fx:id="glazenTab" text="glazen">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <ScrollPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="685.0" prefWidth="1100.0">
-                                 <children>
-                                    <VBox layoutX="7.0" layoutY="7.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Label prefHeight="17.0" prefWidth="1103.0" style="-fx-background-color: lightgray;" text="glas rechts" textFill="WHITE" />
-                                          <GridPane>
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="260.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="145.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="567.0" minWidth="10.0" prefWidth="567.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                             <children>
-                                                <Label text="leverancier" GridPane.columnIndex="1" />
-                                                <Label text="type glas" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="coating" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="kleur glas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Label text="diameter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <Label text="prijs glas" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <GridPane GridPane.columnIndex="2">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="277.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="290.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <ComboBox fx:id="rLeverancierCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="277.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="290.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <ComboBox fx:id="rTypeGlasCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="277.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="290.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <ComboBox fx:id="rCoatingCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="368.0" minWidth="10.0" prefWidth="278.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="289.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <ComboBox fx:id="rKleurGlasCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="97.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="471.0" minWidth="10.0" prefWidth="470.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <TextField fx:id="rDiameterInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="97.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="470.0" minWidth="10.0" prefWidth="470.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <TextField fx:id="rPrijsGlasInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <Label fx:id="verkoop1Label" text="ID" textFill="#0000005f" />
-                                             </children>
-                                          </GridPane>
-                                          <Label prefHeight="17.0" prefWidth="1104.0" style="-fx-background-color: lightgray;" text="glas links" textFill="WHITE" />
-                                          <GridPane>
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="0.0" prefWidth="257.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="589.0" minWidth="10.0" prefWidth="152.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="584.0" minWidth="10.0" prefWidth="584.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="91.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="26.0" minHeight="10.0" prefHeight="11.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                             <children>
-                                                <Label text="leverancier" GridPane.columnIndex="1" />
-                                                <Label text="type glas" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label text="coating" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="kleur glas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Label text="diameter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <Label text="prijs glas" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <GridPane GridPane.columnIndex="2">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="308.0" minWidth="10.0" prefWidth="274.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="294.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <ComboBox fx:id="lLeverancierCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="274.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="294.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <ComboBox fx:id="lTypeGlasCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="274.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="294.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <ComboBox fx:id="lCoatingCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="368.0" minWidth="10.0" prefWidth="277.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="296.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <ComboBox fx:id="lKleurGlasCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="98.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="475.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <TextField fx:id="lDiameterInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="98.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.0" minWidth="10.0" prefWidth="475.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <TextField fx:id="lPrijsGlasInput" maxWidth="100.0" prefHeight="27.0" prefWidth="98.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <Label text="breedte" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                <Label text="hoogte" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                                <Label text="neusmaat" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                                <Label text="soort glas" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="7">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="98.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.0" minWidth="10.0" prefWidth="475.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <TextField fx:id="breedteInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="98.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.0" minWidth="10.0" prefWidth="475.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <TextField fx:id="hoogteInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="98.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="475.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <TextField fx:id="neusmaatInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
-                                                      <GridPane GridPane.columnIndex="1">
-                                                         <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="181.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="219.0" />
-                                                         </columnConstraints>
-                                                         <rowConstraints>
-                                                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                         </rowConstraints>
-                                                         <children>
-                                                            <TextField fx:id="kortingInput" maxWidth="100.0" prefHeight="27.0" GridPane.columnIndex="1" />
-                                                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="187.0" text="korting" />
-                                                         </children>
-                                                      </GridPane>
-                                                   </children>
-                                                </GridPane>
-                                                <GridPane prefHeight="30.0" prefWidth="495.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="233.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="351.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
-                                                   <children>
-                                                      <ComboBox fx:id="soortGlasCombo" prefWidth="150.0" />
-                                                      <GridPane GridPane.columnIndex="1">
-                                                         <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="71.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="101.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="40.0" />
-                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="139.0" />
-                                                         </columnConstraints>
-                                                         <rowConstraints>
-                                                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                         </rowConstraints>
-                                                         <children>
-                                                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="62.0" text="totaal" />
-                                                            <TextField fx:id="totaalInput" maxWidth="100.0" GridPane.columnIndex="1" />
-                                                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="36.0" text="btw" GridPane.columnIndex="2" />
-                                                            <TextField fx:id="btwInput" editable="false" maxWidth="100.0" prefHeight="27.0" prefWidth="100.0" GridPane.columnIndex="3" />
-                                                         </children>
-                                                      </GridPane>
-                                                   </children>
-                                                </GridPane>
-                                             </children>
-                                          </GridPane>
-                                          <GridPane prefHeight="86.0" prefWidth="1090.0">
-                                            <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                             <children>
-                                                <HBox fx:id="glazenNavigationBox" prefHeight="86.0" prefWidth="415.0" GridPane.columnIndex="1" />
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                                       </padding>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                     </children>
-                  </AnchorPane>
-               </content></Tab>
-            <Tab fx:id="mailingTab" onSelectionChanged="#handleEmailTabSelected" text="mailing">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <GridPane layoutX="14.0" layoutY="13.0" prefHeight="80.0" prefWidth="1171.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="60.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="109.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="352.0" minWidth="10.0" prefWidth="167.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="487.0" minWidth="10.0" prefWidth="157.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="437.0" minWidth="10.0" prefWidth="155.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="601.0" minWidth="10.0" prefWidth="581.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label prefHeight="17.0" prefWidth="121.0" text="selectie criteria" />
-                              <RadioButton fx:id="klantRB" mnemonicParsing="false" onAction="#handleKlantRBaction" prefHeight="18.0" prefWidth="159.0" text="geselecteerde klant" GridPane.columnIndex="1" />
-                              <RadioButton fx:id="listRB" mnemonicParsing="false" onAction="#handleListRBaction" text="geselecteerde lijst" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="ageRB" mnemonicParsing="false" onAction="#handleAgeRBaction" text="cliënten door leeftijd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="102.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="161.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
+    <HBox fx:id="logoutBox" prefHeight="56.0" prefWidth="56.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+    <TabPane prefHeight="730.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="0.0">
+      <effect>
+        <InnerShadow />
+      </effect>
+      <tabs>
+        <Tab text="klant">
+          <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <panes>
+                    <TitledPane fx:id="zoekenPane" animated="false" text="zoeken en bewerken">
+                      <content>
+                        <AnchorPane fx:id="innerAnchorPane" minHeight="550.0" minWidth="1100.0" prefWidth="1100.0">
+                          <children>
+                            <GridPane prefHeight="437.0" prefWidth="305.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="15.0">
+                              <children>
+                                <Label contentDisplay="TOP" prefHeight="17.0" prefWidth="87.0" text="id klant" />
+                                <Label text="aanhef" GridPane.rowIndex="1" />
+                                <Label text="voorletters" GridPane.rowIndex="2" />
+                                <Label text="tussenvoegsel" GridPane.rowIndex="3" />
+                                <Label text="achternaam" GridPane.rowIndex="4" />
+                                <Label text="adres" GridPane.rowIndex="5" />
+                                <Label text="huisnummer" GridPane.rowIndex="6" />
+                                <Label text="postcode" GridPane.rowIndex="7" />
+                                <Label text="plaats" GridPane.rowIndex="8" />
+                                <Label text="land" GridPane.rowIndex="9" />
+                                <Label text="geboortedatum" GridPane.rowIndex="10" />
+                                <Label text="telefoon" GridPane.rowIndex="11" />
+                                <Label text="mobiel" GridPane.rowIndex="12" />
+                                <Label text="e-mail" GridPane.rowIndex="13" />
+                                <TextField fx:id="klantIDfield" maxWidth="70.0" promptText="123456" GridPane.columnIndex="1" />
+                                <TextField fx:id="aanhefField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="voorlettersField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <TextField fx:id="tussenvoegselField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <TextField fx:id="achternaamField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <TextField fx:id="adresField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <TextField fx:id="huisnummerField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <TextField fx:id="postcodeField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <TextField fx:id="plaatsField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                <TextField fx:id="landField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                <TextField fx:id="telefonField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                <TextField fx:id="mobileField" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                                <TextField fx:id="emailField" promptText="mymail@mailserver.com" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                                <TextField fx:id="gebortedatumField" promptText="DD-MM-JJJJ" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="107.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="198.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                            <VBox fx:id="searchClientBox" prefHeight="183.0" prefWidth="85.0" spacing="30.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="27.0" />
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </TitledPane>
+                    <TitledPane animated="false" text="bijzonderheden">
+                      <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                          <children>
+                            <ScrollPane prefHeight="620.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <content>
+                                <VBox fx:id="detailsVbox" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="320.0" prefWidth="1200.0">
+                                  <children>
+                                    <GridPane>
+                                      <children>
+                                        <Label fx:id="klntIdLabel" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                                        <Label fx:id="klntNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label fx:id="klntAdresLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label fx:id="klntPostCodePlaatsLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label fx:id="klntteleFoonLabel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <Label fx:id="klntMobielLabel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                        <Label fx:id="klntEmailLabel" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <Label fx:id="klntVerkoolDatumLabel" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="13.999998092651367" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.0000076293945" minWidth="10.0" prefWidth="257.00000190734863" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="628.9999694824219" minWidth="10.0" prefWidth="448.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="481.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                    <Label fx:id="brilvoorschriftLabel" maxWidth="1.7976931348623157E308" style="-fx-background-color: lightgray;" text="              brilvoorschrift" textAlignment="CENTER" textFill="WHITE" />
+                                    <GridPane>
+                                      <children>
+                                        <Label text="Sph" GridPane.columnIndex="1" />
+                                        <Label text="OD" GridPane.rowIndex="1" />
+                                        <Label text="OS" GridPane.rowIndex="3" />
+                                        <Label text="Cyl" GridPane.columnIndex="2" />
+                                        <Label text="As" GridPane.columnIndex="3" />
+                                        <Label text="Add" GridPane.columnIndex="4" />
+                                        <Label text="Nabij" GridPane.columnIndex="5" />
+                                        <Label text="Pr" GridPane.columnIndex="6" />
+                                        <Label text="Basis" GridPane.columnIndex="7" />
+                                        <Label text="Vis" GridPane.columnIndex="8" />
+                                        <Label text="PD D/N" GridPane.columnIndex="9" />
+                                        <Label text="LH" GridPane.columnIndex="10" />
+                                        <Label text="HA" GridPane.columnIndex="11" />
+                                        <Label text="IOD" GridPane.columnIndex="12" />
+                                        <Label fx:id="odSphLabel" prefHeight="17.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label fx:id="odCylLabel" prefHeight="17.0" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <Label fx:id="odAsLabel" prefHeight="17.0" prefWidth="137.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                        <Label fx:id="odAddLabel" prefHeight="17.0" prefWidth="167.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                        <Label fx:id="odNabijLabel" prefHeight="17.0" prefWidth="118.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                        <Label fx:id="odPrLabel" prefHeight="17.0" prefWidth="151.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                        <Label fx:id="odBasisLabel" prefHeight="17.0" prefWidth="108.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                        <Label fx:id="odVisLabel" prefHeight="17.0" prefWidth="148.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                        <Label fx:id="odPdDnLabel" prefHeight="17.0" prefWidth="159.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                        <Label fx:id="odLhLabel" prefHeight="17.0" prefWidth="161.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                                        <Label fx:id="odHaLabel" prefHeight="17.0" prefWidth="163.0" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                                        <Label fx:id="odIodLabel" prefHeight="17.0" prefWidth="117.0" GridPane.columnIndex="12" GridPane.rowIndex="1" />
+                                        <Label fx:id="osSphLabel" prefHeight="17.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label fx:id="osCylLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <Label fx:id="osAsLabel" prefHeight="17.0" prefWidth="144.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                        <Label fx:id="osAddLabel" prefHeight="17.0" prefWidth="106.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                        <Label fx:id="osNabijLabel" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                        <Label fx:id="osPrLabel" prefHeight="17.0" prefWidth="161.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                                        <Label fx:id="osBasisLabel" prefHeight="17.0" prefWidth="184.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                                        <Label fx:id="osVisLabel" prefHeight="17.0" prefWidth="166.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                                        <Label fx:id="osPdDnLabel" prefHeight="17.0" prefWidth="147.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                                        <Label fx:id="osLhLabel" prefHeight="17.0" prefWidth="118.0" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                                        <Label fx:id="osHaLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="11" GridPane.rowIndex="3" />
+                                        <Label fx:id="osIodLabel" prefHeight="17.0" prefWidth="141.0" GridPane.columnIndex="12" GridPane.rowIndex="3" />
+                                        <Label fx:id="odPr1Label" prefHeight="17.0" prefWidth="111.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                        <Label fx:id="odBasis1Label" prefHeight="17.0" prefWidth="160.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                        <Label fx:id="osPr1Label" prefHeight="17.0" prefWidth="142.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                                        <Label fx:id="osBasis1Label" prefHeight="17.0" prefWidth="123.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                    <GridPane alignment="TOP_RIGHT" prefHeight="44.0" prefWidth="1197.0">
+                                      <children>
+                                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="266.0" text="oogmeting door:" textAlignment="RIGHT" />
+                                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="330.0" text="datum refractie" textAlignment="RIGHT" GridPane.columnIndex="2" />
+                                        <Label fx:id="datumRefractieLbl" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="264.0" text="2016-06-18" GridPane.columnIndex="3" />
+                                        <Button fx:id="anamneseButton" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAnamnesButton" text="anamnese" GridPane.columnIndex="4" />
+                                        <Label fx:id="oogmetingDoorLbl" prefWidth="189.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="139.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="488.0" minWidth="10.0" prefWidth="187.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="488.0" minWidth="10.0" prefWidth="276.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="436.0" minWidth="10.0" prefWidth="367.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="231.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                    <GridPane fx:id="glazenGridPane">
+                                      <children>
+                                        <Label prefHeight="17.0" prefWidth="347.0" style="-fx-background-color: lightgray;" text="glazen" textFill="WHITE" />
+                                        <Label prefHeight="17.0" prefWidth="137.0" style="-fx-background-color: lightgray;" text="leverancier" textFill="WHITE" GridPane.columnIndex="1" />
+                                        <Label prefHeight="17.0" prefWidth="131.0" style="-fx-background-color: lightgray;" text="type glas" textFill="WHITE" GridPane.columnIndex="2" />
+                                        <Label prefHeight="17.0" prefWidth="144.0" style="-fx-background-color: lightgray;" text="coating" textFill="WHITE" GridPane.columnIndex="4" />
+                                        <Label prefHeight="17.0" prefWidth="164.0" style="-fx-background-color: lightgray;" text="kleur glazen" textFill="WHITE" GridPane.columnIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="134.0" style="-fx-background-color: lightgray;" text="diameter" textFill="WHITE" GridPane.columnIndex="7" />
+                                        <Label prefHeight="17.0" prefWidth="140.0" style="-fx-background-color: lightgray;" text="prijs glas" textFill="WHITE" GridPane.columnIndex="8" />
+                                        <Label prefHeight="17.0" prefWidth="210.0" style="-fx-background-color: lightgray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" />
+                                        <Label prefHeight="17.0" prefWidth="197.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="3" />
+                                        <Label prefHeight="17.0" prefWidth="147.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="6" />
+                                        <Label prefHeight="17.0" prefWidth="182.0" style="-fx-background-color: lightgray;" text="breedte" textFill="WHITE" GridPane.rowIndex="3" />
+                                        <Label prefHeight="17.0" prefWidth="148.0" style="-fx-background-color: lightgray;" text="hoogte" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <Label prefHeight="17.0" prefWidth="143.0" style="-fx-background-color: lightgray;" text="neusmaat" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                        <Label prefHeight="17.0" prefWidth="159.0" text="rechts" GridPane.rowIndex="1" />
+                                        <Label prefHeight="17.0" prefWidth="156.0" text="links" GridPane.rowIndex="2" />
+                                        <Label fx:id="montuurgegevensLabel" text="montuurgegevens" GridPane.rowIndex="4" />
+                                        <Label prefHeight="17.0" prefWidth="155.0" style="-fx-background-color: lightgray;" text="merk" textFill="WHITE" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="181.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="153.0" style="-fx-background-color: lightgray;" text="model" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="181.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="146.0" style="-fx-background-color: lightgray;" text="kleur" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="223.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="147.0" style="-fx-background-color: lightgray;" text="maat" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="149.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="158.0" style="-fx-background-color: lightgray;" text="prijs montuur" textFill="WHITE" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="203.0" style="-fx-background-color: lightgray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" GridPane.rowIndex="5" />
+                                        <Label prefHeight="17.0" prefWidth="183.0" style="-fx-background-color: lightgray;" text="diversen" textFill="WHITE" GridPane.rowIndex="7" />
+                                        <Label prefHeight="17.0" prefWidth="219.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                        <Label prefHeight="17.0" prefWidth="185.0" style="-fx-background-color: lightgray;" text="soort glas" textFill="WHITE" GridPane.rowIndex="8" />
+                                        <Label prefHeight="17.0" prefWidth="183.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                        <Label prefHeight="17.0" prefWidth="252.0" style="-fx-background-color: lightgray;" text="montuur type" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                                        <Label prefHeight="17.0" prefWidth="151.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+                                        <Label prefHeight="17.0" prefWidth="157.0" style="-fx-background-color: lightgray;" text="materiaal" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+                                        <Label fx:id="r_leverancierLabel" prefHeight="17.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label fx:id="l_leverancierLabel" prefHeight="17.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label fx:id="r_typeglasLabel" prefHeight="17.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <Label fx:id="l_typeglasLabel" prefHeight="17.0" prefWidth="218.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                        <Label fx:id="r_coatingLabel" prefHeight="17.0" prefWidth="190.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                        <Label fx:id="l_coatingLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                        <Label fx:id="r_kleurglazenLabel" prefHeight="17.0" prefWidth="186.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                        <Label fx:id="l_kleurglazenLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                        <Label fx:id="r_diameterLabel" prefHeight="17.0" prefWidth="132.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                        <Label fx:id="l_diameterLabel" prefHeight="17.0" prefWidth="147.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                        <Label fx:id="r_prijsglasLabel" prefHeight="17.0" prefWidth="135.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                        <Label fx:id="l_prijsglasLabel" prefHeight="17.0" prefWidth="185.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                                        <Label fx:id="r_btwLabel" prefHeight="17.0" prefWidth="140.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                        <Label fx:id="l_btwLabel" prefHeight="17.0" prefWidth="129.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+                                        <Label fx:id="breedteLabel" prefHeight="17.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label fx:id="hoogteLabel" prefHeight="17.0" prefWidth="182.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                        <Label fx:id="neusmaatLabel" prefHeight="17.0" prefWidth="208.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                        <Label fx:id="merkLabel" prefHeight="17.0" prefWidth="159.0" GridPane.rowIndex="6" />
+                                        <Label fx:id="modelLabel" prefHeight="17.0" prefWidth="224.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                        <Label fx:id="diversenLabel" prefHeight="17.0" prefWidth="197.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                        <Label fx:id="soortglasLabel" prefHeight="17.0" prefWidth="163.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                        <Label fx:id="montuurtypeLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+                                        <Label fx:id="materiaalLabel" prefHeight="17.0" prefWidth="154.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+                                        <Label fx:id="kleurLabel" prefHeight="17.0" prefWidth="193.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                                        <Label fx:id="maatLabel" prefHeight="17.0" prefWidth="228.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+                                        <Label fx:id="prijsmontuurLabel" prefHeight="17.0" prefWidth="148.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+                                        <Label fx:id="btwLabel" prefHeight="17.0" prefWidth="108.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                                        <Label text="korting" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+                                        <Label text="totaal" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+                                        <Label fx:id="kortingLabel" prefHeight="17.0" prefWidth="181.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
+                                        <Label fx:id="totaalLabel" prefHeight="17.0" prefWidth="138.0" GridPane.columnIndex="8" GridPane.rowIndex="10" />
+                                        <Label fx:id="totaalBtwLabel" prefHeight="17.0" prefWidth="131.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
+                                        <Label fx:id="diversePrijsLabel" prefHeight="17.0" prefWidth="122.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+                                        <Label fx:id="diverseBtwLabel" prefHeight="17.0" prefWidth="102.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                  </children>
+                                </VBox>
+                              </content>
+                            </ScrollPane>
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </TitledPane>
+                  </panes>
+                </Accordion>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab fx:id="oogmetingTab" text="oogmeting">
+          <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+              <children>
+                <ScrollPane prefHeight="607.0" prefWidth="1107.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <content>
+                    <AnchorPane prefHeight="685.0" prefWidth="1100.0">
+                      <children>
+                        <VBox prefHeight="252.0" prefWidth="1186.0" AnchorPane.bottomAnchor="433.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <children>
+                            <GridPane>
+                              <children>
+                                <Label text="Sph" GridPane.columnIndex="1" />
+                                <Label alignment="CENTER" prefHeight="17.0" prefWidth="91.0" text="OD" GridPane.rowIndex="1" />
+                                <Label alignment="CENTER" prefHeight="17.0" prefWidth="107.0" text="OS" GridPane.rowIndex="3" />
+                                <Label text="Cyl" GridPane.columnIndex="2" />
+                                <Label text="As" GridPane.columnIndex="3" />
+                                <Label text="Add" GridPane.columnIndex="4" />
+                                <Label text="Nabij" GridPane.columnIndex="5" />
+                                <Label text="Pr" GridPane.columnIndex="6" />
+                                <Label text="Basis" GridPane.columnIndex="7" />
+                                <Label text="Vis" GridPane.columnIndex="8" />
+                                <Label text="PD D/N" GridPane.columnIndex="9" />
+                                <Label text="LH" GridPane.columnIndex="10" />
+                                <Label text="HA" GridPane.columnIndex="11" />
+                                <Label text="IOD" GridPane.columnIndex="12" />
+                                <TextField fx:id="odSphInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="odCylInput" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <TextField fx:id="odAsInput" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                <TextField fx:id="odAddInput" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                <TextField fx:id="odNabijInput" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                <TextField fx:id="odPrInput" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                <TextField fx:id="odBasisInput" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                <TextField fx:id="odVisInput" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                <TextField fx:id="odPdDnInput" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                <TextField fx:id="odLhInput" GridPane.columnIndex="10" GridPane.rowIndex="1" />
+                                <TextField fx:id="odHaInput" GridPane.columnIndex="11" GridPane.rowIndex="1" />
+                                <TextField fx:id="odIodInput" GridPane.columnIndex="12" GridPane.rowIndex="1" />
+                                <TextField fx:id="odPr1Input" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                <TextField fx:id="odBasis1Input" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                                <TextField fx:id="osSphInput" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <TextField fx:id="osCylInput" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                <TextField fx:id="osAsInput" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                <TextField fx:id="osAddInput" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                <TextField fx:id="osNabijInput" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                <TextField fx:id="osPrInput" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                                <TextField fx:id="osBasisInput" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                                <TextField fx:id="osVisInput" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                                <TextField fx:id="osPdDnInput" GridPane.columnIndex="9" GridPane.rowIndex="3" />
+                                <TextField fx:id="osLhInput" GridPane.columnIndex="10" GridPane.rowIndex="3" />
+                                <TextField fx:id="osHaInput" GridPane.columnIndex="11" GridPane.rowIndex="3" />
+                                <TextField fx:id="osIodInput" GridPane.columnIndex="12" GridPane.rowIndex="3" />
+                                <TextField fx:id="osPr1Input" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                                <TextField fx:id="osBasis1Input" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                                <Label fx:id="vidLabel" text="id" textFill="#00000063" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                            <GridPane>
+                              <children>
+                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="255.0" text="oogmeting door" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="255.0" text="datum refractie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <TextField fx:id="oogmetinggDoorInput" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                  <children>
+                                    <TextField fx:id="datumRefractieInput" prefHeight="27.0" prefWidth="132.0" promptText="DD-MM-JJJJ" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="95.0" text="van de" />
-                                    <TextField fx:id="vanDeInput" maxWidth="60.0" onKeyTyped="#handleEmailTabSelected" onMouseClicked="#handleEmailTabSelected" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
-                                 </children>
-                              </GridPane>
-                              <GridPane prefHeight="27.0" prefWidth="167.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="95.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="161.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
+                                  </rowConstraints>
+                                </GridPane>
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="258.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="180.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                          </children>
+                        </VBox>
+                        <HBox fx:id="navigationBox" layoutX="417.0" layoutY="557.0" prefHeight="75.0" prefWidth="352.0" />
+                        <TitledPane animated="false" prefHeight="296.0" prefWidth="995.0" text="anamnese" AnchorPane.bottomAnchor="137.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="252.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                <TextArea fx:id="anamneseField" prefHeight="272.0" prefWidth="999.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="-1.0" />
+                              </children>
+                            </AnchorPane>
+                          </content>
+                        </TitledPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </ScrollPane>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab fx:id="montuurTab" text="montuur">
+          <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+              <children>
+                <ScrollPane prefHeight="697.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="685.0" prefWidth="1100.0">
+                      <children>
+                        <AnchorPane prefHeight="682.0" prefWidth="1195.0">
+                          <children>
+                            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <children>
+                                <Label prefHeight="17.0" prefWidth="1201.0" style="-fx-background-color: lightgray;" text="montuurgegevens" textFill="WHITE" />
+                                <GridPane>
+                                  <children>
+                                    <Label text="merk" GridPane.columnIndex="1" />
+                                    <Label text="model" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="kleur" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="maat" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="prijs montuur" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="montuur type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label text="materiaal" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label text="diversen" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Label text="id montuur" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Label text="datum van aankoop" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                    <ComboBox fx:id="merkCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" />
+                                    <ComboBox fx:id="modelCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="kleurCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                      <children>
+                                        <TextField fx:id="maatInput" prefHeight="27.0" prefWidth="152.0" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="141.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="213.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                      <children>
+                                        <TextField fx:id="prijsMontuurInput" prefHeight="27.0" prefWidth="148.0" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="141.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="213.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                    <ComboBox fx:id="montuurTypeCombo" prefHeight="27.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="materiallCombo" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="diversenCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                      <children>
+                                        <TextField fx:id="idMontuurInput" prefHeight="27.0" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="139.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="215.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                    <Label fx:id="verkoopLabel" text="ID" textFill="#0000005c" />
+                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                      <children>
+                                        <TextField fx:id="montuurDatumInput" prefHeight="27.0" promptText="DD-MM-JJJJ" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="139.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="215.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                    <TextField fx:id="diversenPrijsInput" maxWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="471.0" minWidth="10.0" prefWidth="249.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="135.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="517.0" minWidth="10.0" prefWidth="340.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="418.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane>
+                                  <children>
+                                    <HBox fx:id="montuurNavigationBox" prefHeight="100.0" prefWidth="300.0" GridPane.columnIndex="1" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="423.0" minWidth="10.0" prefWidth="373.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="962.0" minWidth="10.0" prefWidth="363.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="498.0" minWidth="10.0" prefWidth="448.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="89.0" text="tot de" />
-                                    <TextField fx:id="totDeInput" maxWidth="60.0" onKeyTyped="#handleEmailTabSelected" onMouseClicked="#handleEmailTabSelected" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
-                                 </children>
-                              </GridPane>
-                              <TextField fx:id="voorlettersInput" editable="false" GridPane.columnIndex="2" />
-                              <TextField fx:id="achternaamInput" editable="false" GridPane.columnIndex="3" />
-                              <TextField fx:id="emailInput" editable="false" GridPane.columnIndex="4" />
-                              <TextField fx:id="emailsInput" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <TextField fx:id="emailssInput" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                           </children>
-                        </GridPane>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="34.0" prefWidth="331.0" text="de parameters van de verdeling" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
-                           <font>
-                              <Font size="19.0" />
-                           </font>
-                        </Label>
-                        <TextArea fx:id="emailBodyField" layoutX="14.0" layoutY="208.0" prefHeight="400.0" prefWidth="1170.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="208.0" />
-                        <Button layoutX="1046.0" layoutY="637.0" mnemonicParsing="false" onAction="#handleSendEmailButton" prefHeight="27.0" prefWidth="138.0" text="verzenden..." AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="22.0" />
-                        <TextField fx:id="emailSubjectField" layoutX="126.0" layoutY="163.0" prefHeight="27.0" prefWidth="1058.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="163.0" />
-                        <Label alignment="CENTER_RIGHT" layoutX="21.0" layoutY="168.0" prefHeight="17.0" prefWidth="86.0" text="subject" />
-                     </children>
-                  </AnchorPane>
-               </content></Tab>
-            <Tab text="artikelbeheer" />
-        </tabs>
-         <effect>
-            <InnerShadow />
-         </effect>
-      </TabPane>
-      <VBox fx:id="adminBox" layoutX="1212.0" layoutY="14.0" prefHeight="56.0" prefWidth="56.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                                  </rowConstraints>
+                                </GridPane>
+                              </children>
+                              <padding>
+                                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                              </padding>
+                            </VBox>
+                          </children>
+                        </AnchorPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </ScrollPane>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab fx:id="glazenTab" text="glazen">
+          <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+              <children>
+                <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="685.0" prefWidth="1100.0">
+                      <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <children>
+                            <Label prefHeight="17.0" prefWidth="1103.0" style="-fx-background-color: lightgray;" text="glas rechts" textFill="WHITE" />
+                            <GridPane>
+                              <children>
+                                <Label text="leverancier" GridPane.columnIndex="1" />
+                                <Label text="type glas" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="coating" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="kleur glas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="diameter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="prijs glas" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <GridPane GridPane.columnIndex="2">
+                                  <children>
+                                    <ComboBox fx:id="rLeverancierCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="277.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="290.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                  <children>
+                                    <ComboBox fx:id="rTypeGlasCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="277.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="290.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                  <children>
+                                    <ComboBox fx:id="rCoatingCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="277.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="290.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                  <children>
+                                    <ComboBox fx:id="rKleurGlasCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="368.0" minWidth="10.0" prefWidth="278.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="289.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                  <children>
+                                    <TextField fx:id="rDiameterInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="97.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="471.0" minWidth="10.0" prefWidth="470.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                  <children>
+                                    <TextField fx:id="rPrijsGlasInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="97.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="470.0" minWidth="10.0" prefWidth="470.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <Label fx:id="verkoop1Label" text="ID" textFill="#0000005f" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="260.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="145.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="567.0" minWidth="10.0" prefWidth="567.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                            <Label prefHeight="17.0" prefWidth="1104.0" style="-fx-background-color: lightgray;" text="glas links" textFill="WHITE" />
+                            <GridPane>
+                              <children>
+                                <Label text="leverancier" GridPane.columnIndex="1" />
+                                <Label text="type glas" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="coating" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="kleur glas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="diameter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="prijs glas" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <GridPane GridPane.columnIndex="2">
+                                  <children>
+                                    <ComboBox fx:id="lLeverancierCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="308.0" minWidth="10.0" prefWidth="274.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="294.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                  <children>
+                                    <ComboBox fx:id="lTypeGlasCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="274.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="294.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                  <children>
+                                    <ComboBox fx:id="lCoatingCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="274.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="294.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                  <children>
+                                    <ComboBox fx:id="lKleurGlasCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="368.0" minWidth="10.0" prefWidth="277.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="296.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                  <children>
+                                    <TextField fx:id="lDiameterInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="98.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="10.0" prefWidth="475.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                  <children>
+                                    <TextField fx:id="lPrijsGlasInput" maxWidth="100.0" prefHeight="27.0" prefWidth="98.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="98.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.0" minWidth="10.0" prefWidth="475.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <Label text="breedte" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <Label text="hoogte" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                <Label text="neusmaat" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                <Label text="soort glas" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                  <children>
+                                    <TextField fx:id="breedteInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="98.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.0" minWidth="10.0" prefWidth="475.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                  <children>
+                                    <TextField fx:id="hoogteInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="98.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.0" minWidth="10.0" prefWidth="475.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                  <children>
+                                    <TextField fx:id="neusmaatInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
+                                    <GridPane GridPane.columnIndex="1">
+                                      <children>
+                                        <TextField fx:id="kortingInput" maxWidth="100.0" prefHeight="27.0" GridPane.columnIndex="1" />
+                                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="187.0" text="korting" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="181.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="219.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="98.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="475.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                                <GridPane prefHeight="30.0" prefWidth="495.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                  <children>
+                                    <ComboBox fx:id="soortGlasCombo" prefWidth="150.0" />
+                                    <GridPane GridPane.columnIndex="1">
+                                      <children>
+                                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="62.0" text="totaal" />
+                                        <TextField fx:id="totaalInput" maxWidth="100.0" GridPane.columnIndex="1" />
+                                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="36.0" text="btw" GridPane.columnIndex="2" />
+                                        <TextField fx:id="btwInput" editable="false" maxWidth="100.0" prefHeight="27.0" prefWidth="100.0" GridPane.columnIndex="3" />
+                                      </children>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="71.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="101.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="40.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="139.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                  </children>
+                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="233.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="351.0" />
+                                  </columnConstraints>
+                                  <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                  </rowConstraints>
+                                </GridPane>
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="0.0" prefWidth="257.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="589.0" minWidth="10.0" prefWidth="152.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="584.0" minWidth="10.0" prefWidth="584.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="91.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="26.0" minHeight="10.0" prefHeight="11.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                            <GridPane prefHeight="86.0" prefWidth="1090.0">
+                              <children>
+                                <HBox fx:id="glazenNavigationBox" prefHeight="86.0" prefWidth="415.0" GridPane.columnIndex="1" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                          </children>
+                          <padding>
+                            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                          </padding>
+                        </VBox>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </ScrollPane>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab fx:id="mailingTab" onSelectionChanged="#handleEmailTabSelected" text="mailing">
+          <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+              <children>
+                <GridPane prefHeight="80.0" prefWidth="1171.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="60.0">
+                  <children>
+                    <Label prefHeight="17.0" prefWidth="121.0" text="selectie criteria" />
+                    <RadioButton fx:id="klantRB" mnemonicParsing="false" onAction="#handleKlantRBaction" prefHeight="18.0" prefWidth="159.0" text="geselecteerde klant" GridPane.columnIndex="1" />
+                    <RadioButton fx:id="listRB" mnemonicParsing="false" onAction="#handleListRBaction" text="geselecteerde lijst" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <RadioButton fx:id="ageRB" mnemonicParsing="false" onAction="#handleAgeRBaction" text="cliënten door leeftijd" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="95.0" text="van de" />
+                        <TextField fx:id="vanDeInput" maxWidth="60.0" onKeyTyped="#handleEmailTabSelected" onMouseClicked="#handleEmailTabSelected" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="102.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="161.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
+                    <GridPane prefHeight="27.0" prefWidth="167.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                      <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="89.0" text="tot de" />
+                        <TextField fx:id="totDeInput" maxWidth="60.0" onKeyTyped="#handleEmailTabSelected" onMouseClicked="#handleEmailTabSelected" prefHeight="27.0" prefWidth="92.0" GridPane.columnIndex="1" />
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="95.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="161.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
+                    <TextField fx:id="voorlettersInput" editable="false" GridPane.columnIndex="2" />
+                    <TextField fx:id="achternaamInput" editable="false" GridPane.columnIndex="3" />
+                    <TextField fx:id="emailInput" editable="false" GridPane.columnIndex="4" />
+                    <TextField fx:id="emailsInput" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                    <TextField fx:id="emailssInput" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  </children>
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="109.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="352.0" minWidth="10.0" prefWidth="167.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="487.0" minWidth="10.0" prefWidth="157.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="437.0" minWidth="10.0" prefWidth="155.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="601.0" minWidth="10.0" prefWidth="581.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                </GridPane>
+                <Label prefHeight="34.0" prefWidth="331.0" text="de parameters van de verdeling" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                  <font>
+                    <Font size="19.0" />
+                  </font>
+                </Label>
+                <TextArea fx:id="emailBodyField" prefHeight="400.0" prefWidth="1170.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="208.0" />
+                <Button fx:id="sendEmailButton" mnemonicParsing="false" onAction="#handleSendEmailButton" prefHeight="27.0" prefWidth="138.0" text="verzenden..." AnchorPane.bottomAnchor="33.0" AnchorPane.rightAnchor="22.0" />
+                <TextField fx:id="emailSubjectField" prefHeight="27.0" prefWidth="1058.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="163.0" />
+                <Label alignment="CENTER_RIGHT" layoutX="21.0" layoutY="168.0" prefHeight="17.0" prefWidth="86.0" text="subject" />
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="artikelbeheer" />
+      </tabs>
+    </TabPane>
+    <VBox fx:id="adminBox" prefHeight="56.0" prefWidth="56.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
   </children>
 </AnchorPane>

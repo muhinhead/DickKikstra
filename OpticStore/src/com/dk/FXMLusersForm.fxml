@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="380.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.dk.FXMLusersFormController">
+<AnchorPane id="AnchorPane" prefHeight="380.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.dk.FXMLusersFormController">
   <children>
     <GridPane prefHeight="185.0" prefWidth="538.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="26.0">
       <children>
@@ -58,7 +58,4 @@
     </GridPane>
     <HBox fx:id="buttonBox" prefHeight="100.0" prefWidth="367.0" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="231.0" />
   </children>
-  <stylesheets>
-    <URL value="@fxmldashboard2.css" />
-  </stylesheets>
 </AnchorPane>

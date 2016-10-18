@@ -140,6 +140,11 @@ public class FXMLDashboardController implements Initializable {
     private Label klntEmailLabel;
     @FXML
     private Label klntVerkoolDatumLabel;
+    
+    @FXML
+    private Label datumRefractieLbl;
+    @FXML
+    private Label oogmetingDoorLbl;
 
     @FXML
     private Label odSphLabel;
@@ -645,6 +650,7 @@ public class FXMLDashboardController implements Initializable {
         oogmetingTab.setDisable(true);
         montuurTab.setDisable(true);
         glazenTab.setDisable(true);
+        mailingTab.setDisable(true);
 
         ToggleGroup group = new ToggleGroup();
         klantRB.setSelected(true);
@@ -1738,6 +1744,8 @@ public class FXMLDashboardController implements Initializable {
         if (getBrilvoorschriftArray().size() > 0) {
             Brilvoorschrift bs = getBrilvoorschriftArray().get(getBrilvoorschriftArray().size() - 1);
             Date dt = bs.getDatumRefractie();
+            datumRefractieLbl.setText(OpticStore.dateFormat.format(dt));
+            oogmetingDoorLbl.setText(bs.getOogmetingDoor());
             odSphLabel.setText(bs.getOdSph().toString());
             odCylLabel.setText(bs.getOdCyl().toString());
             odAsLabel.setText(bs.getOdAs().toString());
