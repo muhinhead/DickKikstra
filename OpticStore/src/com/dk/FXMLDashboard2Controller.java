@@ -130,7 +130,7 @@ public class FXMLDashboard2Controller implements Initializable {
     private TextField emailField;
 
     @FXML
-    private TitledPane zoekenPane;
+    TitledPane zoekenPane;
     @FXML
     private AnchorPane innerAnchorPane;
 
@@ -373,7 +373,7 @@ public class FXMLDashboard2Controller implements Initializable {
     @FXML
     private Button anamneseButton;
     @FXML
-    private TextArea anamneseField;    
+    private TextArea anamneseField;
 
     @FXML
     private Label verkoopLabel;
@@ -440,7 +440,7 @@ public class FXMLDashboard2Controller implements Initializable {
     private TextField btwInput;
     @FXML
     private TextField diversenPrijsInput;
-    
+
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
     private int selectedKlantID = 0;
@@ -976,7 +976,7 @@ public class FXMLDashboard2Controller implements Initializable {
             anamneseField.setText(getCurrentBrilvoorschrift().getAnamnese());
         }
     }
-    
+
     private void loadLastBrilvoorschrift() throws RemoteException {
         if (getBrilvoorschriftArray().size() > 0) {
             Brilvoorschrift bs = getBrilvoorschriftArray().get(getBrilvoorschriftArray().size() - 1);
@@ -1011,8 +1011,7 @@ public class FXMLDashboard2Controller implements Initializable {
             osIodLabel.setText(bs.getOsIod().toString());
         }
     }
-    
-    
+
     private void loadLastVerkoopList(Klant klant) throws RemoteException {
         verkoopArray.clear();
         setCurrentVerkoop(null);
@@ -1089,7 +1088,7 @@ public class FXMLDashboard2Controller implements Initializable {
             totaalLabel.setText(vp.getTotaal() == null ? "" : vp.getTotaal().toString());
         }
     }
-    
+
     private void loadVerkoop() {
         if (getCurrentVerkoop() != null) {
             String num = " " + (verkoopIndex + 1) + "/" + verkoopArray.size();
@@ -1320,8 +1319,8 @@ public class FXMLDashboard2Controller implements Initializable {
         artikelbeheerPane.setVisible(true);
         setOnTop(artikelbeheerPane);
     }
-
-/**
+    
+    /**
      * @return the currentBrilvoorschrift
      */
     private Brilvoorschrift getCurrentBrilvoorschrift() {
@@ -1335,7 +1334,7 @@ public class FXMLDashboard2Controller implements Initializable {
         this.currentBrilvoorschrift = currentBrilvoorschrift;
         brilvoorschriftIndex = getBrilvoorschriftArray().indexOf(this.currentBrilvoorschrift);
     }
-    
+
     /**
      * @return the currentVerkoop
      */
@@ -1396,5 +1395,5 @@ public class FXMLDashboard2Controller implements Initializable {
             OpticStore.log(ex.getLocalizedMessage());
         }
         return "";
-    }    
+    }
 }
