@@ -165,6 +165,7 @@ public class DbConnection {
 
     public static void fixLocalDB(Connection connection) {
         sqlBatch(fixLocalDBsqls, connection,
+                
                 props.getProperty("LogDbFixes", "false").equalsIgnoreCase("true"));
     }
 

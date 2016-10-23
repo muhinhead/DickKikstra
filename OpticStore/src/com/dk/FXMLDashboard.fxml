@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import java.net.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
@@ -419,26 +420,34 @@
                               <children>
                                 <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="255.0" text="oogmeting door" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="255.0" text="datum refractie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <TextField fx:id="oogmetinggDoorInput" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                 <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
                                   <children>
-                                    <TextField fx:id="datumRefractieInput" prefHeight="27.0" prefWidth="132.0" promptText="DD-MM-JJJJ" />
+                                    <TextField fx:id="datumRefractieInput" prefHeight="27.0" prefWidth="161.0" promptText="DD-MM-JJJJ" />
                                   </children>
                                   <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="145.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="10.0" prefWidth="299.0" />
                                   </columnConstraints>
                                   <rowConstraints>
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                 </GridPane>
+                                <ComboBox fx:id="oogmetinggDoorCombo" editable="true" prefHeight="21.0" prefWidth="440.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                  <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                      <String fx:value="Item 1" />
+                                      <String fx:value="Item 2" />
+                                      <String fx:value="Item 3" />
+                                    </FXCollections>
+                                  </items>
+                                </ComboBox>
                               </children>
                               <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="258.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="180.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="209.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="106.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="444.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="132.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="209.0" />
                               </columnConstraints>
                               <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -694,12 +703,12 @@
                                 <Label text="randscherp" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                   <children>
-                                    <RadioButton alignment="BOTTOM_CENTER" mnemonicParsing="false" selected="true" text="ja">
+                                    <RadioButton fx:id="rRndsJa" alignment="BOTTOM_CENTER" mnemonicParsing="false" selected="true" text="ja">
                                       <toggleGroup>
                                         <ToggleGroup fx:id="x1" />
                                       </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="nee" toggleGroup="$x1" />
+                                    <RadioButton fx:id="rRndsNee" mnemonicParsing="false" text="nee" toggleGroup="$x1" />
                                   </children>
                                   <padding>
                                     <Insets left="10.0" right="10.0" />
@@ -888,12 +897,12 @@
                                 <Label text="randscherp" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                   <children>
-                                    <RadioButton alignment="BOTTOM_CENTER" mnemonicParsing="false" selected="true" text="ja">
+                                    <RadioButton fx:id="lRndsJa" alignment="BOTTOM_CENTER" mnemonicParsing="false" selected="true" text="ja">
                                       <toggleGroup>
                                         <ToggleGroup fx:id="x2" />
                                       </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="nee" toggleGroup="$x2" />
+                                    <RadioButton fx:id="lRndsNee" mnemonicParsing="false" text="nee" toggleGroup="$x2" />
                                   </children>
                                   <padding>
                                     <Insets left="10.0" right="10.0" />
