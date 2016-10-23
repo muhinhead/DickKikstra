@@ -99,7 +99,7 @@ public class FXutils {
         tf.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("|[-\\+]?|[-\\+]?\\d+\\.?|[-\\+]?\\d+\\.?\\d+")) {
+                if (!newValue.matches("|[-\\+]?|[-\\+]?\\d+\\,?|[-\\+]?\\d+\\,?\\d+")) {
                     tf.setText(oldValue);
                 }
             }

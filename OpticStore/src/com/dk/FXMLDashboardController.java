@@ -140,7 +140,7 @@ public class FXMLDashboardController implements Initializable {
     private Label klntEmailLabel;
     @FXML
     private Label klntVerkoolDatumLabel;
-    
+
     @FXML
     private Label datumRefractieLbl;
     @FXML
@@ -358,6 +358,9 @@ public class FXMLDashboardController implements Initializable {
     private HBox glazenNavigationBox;
 
     @FXML
+    private Label idMontuur;
+    
+    @FXML
     private Label verkoopLabel;
     @FXML
     private Label verkoop1Label;
@@ -564,6 +567,7 @@ public class FXMLDashboardController implements Initializable {
 
     private void clearTab3() {
         verkoopLabel.setText("");
+        idMontuur.setText("new");
         merkCombo.getEditor().setText("");
         modelCombo.getEditor().setText("");
         kleurCombo.getEditor().setText("");
@@ -1094,8 +1098,12 @@ public class FXMLDashboardController implements Initializable {
     private static Double ifNullDouble(TextField tf) {
         if (tf != null && tf.getText() != null) {
             try {
-                return Double.parseDouble(tf.getText());
-            } catch (NumberFormatException ne) {
+                if (tf.getText().isEmpty()) {
+                    return 0.0;
+                }
+                return Double.parseDouble(tf.getText().replace(",", "."));
+            } catch (Exception ne) {
+                OpticStore.log(ne);
                 tf.setText("0.0");
             }
         }
@@ -1138,10 +1146,22 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private static void fillFieldWithValue(TextField fld, Object val) {
+        fillFieldWithValue(fld, val, true);
+    }
+
+    private static void fillFieldWithValue(TextField fld, Object val, boolean noPlus) {
         if (val == null) {
             fld.setText("");
         } else if (val instanceof java.util.Date) {
             fld.setText(OpticStore.dateFormat.format(val));
+        } else if (val instanceof Integer) {
+            fld.setText(val.toString());
+        } else if (val instanceof Double) {
+            if (noPlus) {
+                fld.setText(OpticStore.decFormat.format(((Double) val).doubleValue()));
+            } else {
+                fld.setText(OpticStore.decSignedFormat.format(((Double) val).doubleValue()));
+            }
         } else {
             fld.setText(val.toString());
         }
@@ -1160,8 +1180,8 @@ public class FXMLDashboardController implements Initializable {
             fillFieldWithValue(odBasis1Input, getCurrentBrilvoorschrift().getOdBasis1());
             fillFieldWithValue(osBasisInput, getCurrentBrilvoorschrift().getOsBasis());
             fillFieldWithValue(osBasis1Input, getCurrentBrilvoorschrift().getOsBasis1());
-            fillFieldWithValue(odCylInput, getCurrentBrilvoorschrift().getOdCyl());
-            fillFieldWithValue(osCylInput, getCurrentBrilvoorschrift().getOsCyl());
+            fillFieldWithValue(odCylInput, getCurrentBrilvoorschrift().getOdCyl(),false);
+            fillFieldWithValue(osCylInput, getCurrentBrilvoorschrift().getOsCyl(),false);
             fillFieldWithValue(odHaInput, getCurrentBrilvoorschrift().getOdHa());
             fillFieldWithValue(osHaInput, getCurrentBrilvoorschrift().getOsHa());
             fillFieldWithValue(odIodInput, getCurrentBrilvoorschrift().getOdIod());
@@ -1176,8 +1196,8 @@ public class FXMLDashboardController implements Initializable {
             fillFieldWithValue(osPrInput, getCurrentBrilvoorschrift().getOsPr());
             fillFieldWithValue(odPr1Input, getCurrentBrilvoorschrift().getOdPr1());
             fillFieldWithValue(osPr1Input, getCurrentBrilvoorschrift().getOsPr1());
-            fillFieldWithValue(odSphInput, getCurrentBrilvoorschrift().getOdSph());
-            fillFieldWithValue(osSphInput, getCurrentBrilvoorschrift().getOsSph());
+            fillFieldWithValue(odSphInput, getCurrentBrilvoorschrift().getOdSph(),false);
+            fillFieldWithValue(osSphInput, getCurrentBrilvoorschrift().getOsSph(),false);
             fillFieldWithValue(odVisInput, getCurrentBrilvoorschrift().getOdVis());
             fillFieldWithValue(osVisInput, getCurrentBrilvoorschrift().getOsVis());
             fillFieldWithValue(oogmetinggDoorInput, getCurrentBrilvoorschrift().getOogmetingDoor());
@@ -1190,6 +1210,7 @@ public class FXMLDashboardController implements Initializable {
             String num = " " + (verkoopIndex + 1) + "/" + verkoopArray.size();
             verkoopLabel.setText(num);
             verkoop1Label.setText(num);
+            idMontuur.setText(getCurrentVerkoop().getPK_ID().toString());
             merkCombo.getEditor().setText(getCurrentVerkoop().getMontuurMerk());
             modelCombo.getEditor().setText(getCurrentVerkoop().getMontuurModel());
             kleurCombo.getEditor().setText(getCurrentVerkoop().getMontuurKleur());
@@ -1271,6 +1292,7 @@ public class FXMLDashboardController implements Initializable {
         }
         getCurrentVerkoop().setKorting(ifNullDouble(kortingInput));
         setCurrentVerkoop((Verkoop) OpticStore.getExchanger().saveDbObject(getCurrentVerkoop()));
+        loadVerkoop();
         fillLastVerkoop(verkoopArray.get(verkoopArray.size() - 1));
     }
 
@@ -1558,7 +1580,7 @@ public class FXMLDashboardController implements Initializable {
                 if (isThere) {
                     sb.append(" and ");
                 }
-                sb.append("to_char(geboortedatum,'"+OpticStore.dateFormat.toPattern().toUpperCase()+"') like '" + gebortedatumField.getText() + "%'");
+                sb.append("to_char(geboortedatum,'" + OpticStore.dateFormat.toPattern().toUpperCase() + "') like '" + gebortedatumField.getText() + "%'");
                 isThere = true;
             }
             if (!telefonField.getText().isEmpty()) {

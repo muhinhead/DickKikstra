@@ -71,14 +71,16 @@ public class DbConnection {
             }
         }
     }
-    private static final int DB_VERSION_ID = 2;
-    public static final String DB_VERSION = "0.2";
+    private static final int DB_VERSION_ID = 3;
+    public static final String DB_VERSION = "0.3";
     private static boolean isFirstTime = true;
     private static Properties props = new Properties();
     private static String[] createLocalDBsqls = loadDDLscript("crebas.sql", ";");
     private static ArrayList<ConnectionWithFlag> connections = new ArrayList<ConnectionWithFlag>();
     private static String[] fixLocalDBsqls = new String[]{
-        "update dbversion set version_id = " + DB_VERSION_ID + ",version = '" + DB_VERSION + "'"
+        "update dbversion set version_id = " + DB_VERSION_ID + ",version = '" + DB_VERSION + "'",
+        "alter table verkoop add r_randscherp tinyint",
+        "alter table verkoop add l_randscherp tinyint"
     };
 
     public static String getLogin() {

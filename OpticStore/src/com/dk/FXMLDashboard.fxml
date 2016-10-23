@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
@@ -30,10 +31,13 @@
 <AnchorPane id="AnchorPane" prefHeight="730.0" prefWidth="1293.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.dk.FXMLDashboardController">
   <children>
     <HBox fx:id="logoutBox" prefHeight="56.0" prefWidth="56.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-    <TabPane prefHeight="730.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="0.0">
+    <TabPane prefHeight="730.0" prefWidth="1300.0" side="TOP" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="0.0">
       <effect>
         <InnerShadow />
       </effect>
+      <stylesheets>
+        <URL value="@fxmldashboard.css" />
+      </stylesheets>
       <tabs>
         <Tab text="klant">
           <content>
@@ -102,7 +106,7 @@
                         </AnchorPane>
                       </content>
                     </TitledPane>
-                    <TitledPane animated="false" text="bijzonderheden">
+                    <TitledPane animated="false" text="brilvoorschrift en verkoop">
                       <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                           <children>
@@ -477,20 +481,18 @@
                                 <Label prefHeight="17.0" prefWidth="1201.0" style="-fx-background-color: lightgray;" text="montuurgegevens" textFill="WHITE" />
                                 <GridPane>
                                   <children>
-                                    <Label text="merk" GridPane.columnIndex="1" />
-                                    <Label text="model" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label text="kleur" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label text="maat" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label text="prijs montuur" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Label text="montuur type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <Label text="materiaal" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <Label text="diversen" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                    <Label text="id montuur" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                    <Label text="datum van aankoop" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                    <ComboBox fx:id="merkCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" />
-                                    <ComboBox fx:id="modelCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <ComboBox fx:id="kleurCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                    <Label text="model" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="kleur" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="maat" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="prijs montuur" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label text="montuur type" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label text="materiaal" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Label text="diversen" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Label text="id montuur" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                    <Label text="datum van aankoop" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                    <ComboBox fx:id="modelCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="kleurCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
                                       <children>
                                         <TextField fx:id="maatInput" prefHeight="27.0" prefWidth="152.0" />
                                       </children>
@@ -502,7 +504,7 @@
                                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                     </GridPane>
-                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
                                       <children>
                                         <TextField fx:id="prijsMontuurInput" prefHeight="27.0" prefWidth="148.0" />
                                       </children>
@@ -514,10 +516,10 @@
                                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                     </GridPane>
-                                    <ComboBox fx:id="montuurTypeCombo" prefHeight="27.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                    <ComboBox fx:id="materiallCombo" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                    <ComboBox fx:id="diversenCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                    <ComboBox fx:id="montuurTypeCombo" prefHeight="27.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="materiallCombo" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                    <ComboBox fx:id="diversenCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
                                       <children>
                                         <TextField fx:id="idMontuurInput" prefHeight="27.0" />
                                       </children>
@@ -530,7 +532,7 @@
                                       </rowConstraints>
                                     </GridPane>
                                     <Label fx:id="verkoopLabel" text="ID" textFill="#0000005c" />
-                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="11">
                                       <children>
                                         <TextField fx:id="montuurDatumInput" prefHeight="27.0" promptText="DD-MM-JJJJ" />
                                       </children>
@@ -542,7 +544,11 @@
                                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                     </GridPane>
-                                    <TextField fx:id="diversenPrijsInput" maxWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                                    <TextField fx:id="diversenPrijsInput" maxWidth="80.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                                    <ComboBox fx:id="merkCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label text="merk" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Id" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                    <Label fx:id="idMontuur" text="" GridPane.columnIndex="2" GridPane.rowIndex="0" />
                                   </children>
                                   <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="471.0" minWidth="10.0" prefWidth="249.0" />
@@ -551,6 +557,7 @@
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="418.0" />
                                   </columnConstraints>
                                   <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -610,7 +617,7 @@
                                 <Label text="coating" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <Label text="kleur glas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                 <Label text="diameter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <Label text="prijs glas" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label text="prijs glas" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                 <GridPane GridPane.columnIndex="2">
                                   <children>
                                     <ComboBox fx:id="rLeverancierCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
@@ -671,7 +678,7 @@
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                 </GridPane>
-                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="6">
                                   <children>
                                     <TextField fx:id="rPrijsGlasInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
                                   </children>
@@ -684,6 +691,20 @@
                                   </rowConstraints>
                                 </GridPane>
                                 <Label fx:id="verkoop1Label" text="ID" textFill="#0000005f" />
+                                <Label text="randscherp" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                  <children>
+                                    <RadioButton alignment="BOTTOM_CENTER" mnemonicParsing="false" selected="true" text="ja">
+                                      <toggleGroup>
+                                        <ToggleGroup fx:id="x1" />
+                                      </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="nee" toggleGroup="$x1" />
+                                  </children>
+                                  <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                  </padding>
+                                </HBox>
                               </children>
                               <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="260.0" />
@@ -692,6 +713,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               </columnConstraints>
                               <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -708,7 +730,7 @@
                                 <Label text="coating" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <Label text="kleur glas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                 <Label text="diameter" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <Label text="prijs glas" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label text="prijs glas" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                 <GridPane GridPane.columnIndex="2">
                                   <children>
                                     <ComboBox fx:id="lLeverancierCombo" editable="true" prefHeight="27.0" prefWidth="277.0" />
@@ -769,7 +791,7 @@
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                 </GridPane>
-                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="6">
                                   <children>
                                     <TextField fx:id="lPrijsGlasInput" maxWidth="100.0" prefHeight="27.0" prefWidth="98.0" />
                                   </children>
@@ -781,11 +803,11 @@
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                 </GridPane>
-                                <Label text="breedte" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                <Label text="hoogte" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                <Label text="neusmaat" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                <Label text="soort glas" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                <Label text="breedte" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                <Label text="hoogte" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                <Label text="neusmaat" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                <Label text="soort glas" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
                                   <children>
                                     <TextField fx:id="breedteInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
                                   </children>
@@ -797,7 +819,7 @@
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                 </GridPane>
-                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
                                   <children>
                                     <TextField fx:id="hoogteInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
                                   </children>
@@ -809,7 +831,7 @@
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                 </GridPane>
-                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                <GridPane GridPane.columnIndex="2" GridPane.rowIndex="10">
                                   <children>
                                     <TextField fx:id="neusmaatInput" maxWidth="100.0" prefHeight="27.0" prefWidth="90.0" />
                                     <GridPane GridPane.columnIndex="1">
@@ -834,7 +856,7 @@
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                 </GridPane>
-                                <GridPane prefHeight="30.0" prefWidth="495.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                <GridPane prefHeight="30.0" prefWidth="495.0" GridPane.columnIndex="2" GridPane.rowIndex="11">
                                   <children>
                                     <ComboBox fx:id="soortGlasCombo" prefWidth="150.0" />
                                     <GridPane GridPane.columnIndex="1">
@@ -863,6 +885,20 @@
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   </rowConstraints>
                                 </GridPane>
+                                <Label text="randscherp" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                  <children>
+                                    <RadioButton alignment="BOTTOM_CENTER" mnemonicParsing="false" selected="true" text="ja">
+                                      <toggleGroup>
+                                        <ToggleGroup fx:id="x2" />
+                                      </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton mnemonicParsing="false" text="nee" toggleGroup="$x2" />
+                                  </children>
+                                  <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                  </padding>
+                                </HBox>
                               </children>
                               <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="0.0" prefWidth="257.0" />
@@ -871,6 +907,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="91.0" />
                               </columnConstraints>
                               <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Properties;
@@ -58,6 +59,8 @@ public class OpticStore extends Application {
             + "geboortedatum \"geboortedatum\","
             + "email \"e-mail\" from klant order by klant_id";
     static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    static final DecimalFormat decSignedFormat = new DecimalFormat("+#,##0.00;-#");
+    static final DecimalFormat decFormat = new DecimalFormat("#,##0.00;-#");
     private static Logger logger;
     private static FileHandler fh;
     private static IMessageSender exchanger;
