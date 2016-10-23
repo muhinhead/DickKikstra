@@ -44,13 +44,13 @@
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <panes>
-                    <TitledPane fx:id="zoekenPane" animated="false" text="zoeken en bewerken">
+                <TabPane prefHeight="701.0" prefWidth="1206.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <tabs>
+                    <Tab text="zoeken en bewerken">
                       <content>
-                        <AnchorPane fx:id="innerAnchorPane" minHeight="550.0" minWidth="1100.0" prefWidth="1100.0">
+                        <AnchorPane id="Content" fx:id="innerAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                           <children>
-                            <GridPane prefHeight="437.0" prefWidth="305.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="15.0">
+                            <GridPane prefHeight="437.0" prefWidth="305.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
                               <children>
                                 <Label contentDisplay="TOP" prefHeight="17.0" prefWidth="87.0" text="id klant" />
                                 <Label text="aanhef" GridPane.rowIndex="1" />
@@ -102,16 +102,16 @@
                                 <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                             </GridPane>
-                            <VBox fx:id="searchClientBox" prefHeight="183.0" prefWidth="85.0" spacing="30.0" AnchorPane.leftAnchor="335.0" AnchorPane.topAnchor="27.0" />
+                            <VBox fx:id="searchClientBox" prefHeight="183.0" prefWidth="85.0" spacing="30.0" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="10.0" />
                           </children>
                         </AnchorPane>
                       </content>
-                    </TitledPane>
-                    <TitledPane animated="false" text="brilvoorschrift en verkoop">
+                    </Tab>
+                    <Tab text="brilvoorschrift en verkoop">
                       <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                           <children>
-                            <ScrollPane prefHeight="620.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <ScrollPane prefHeight="672.0" prefWidth="1206.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                               <content>
                                 <VBox fx:id="detailsVbox" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="320.0" prefWidth="1200.0">
                                   <children>
@@ -200,6 +200,9 @@
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                       </columnConstraints>
+                                      <padding>
+                                        <Insets left="10.0" fx:id="x3" />
+                                      </padding>
                                       <rowConstraints>
                                         <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -227,7 +230,7 @@
                                         <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                     </GridPane>
-                                    <GridPane fx:id="glazenGridPane">
+                                    <GridPane fx:id="glazenGridPane" VBox.margin="$x3">
                                       <children>
                                         <Label prefHeight="17.0" prefWidth="347.0" style="-fx-background-color: lightgray;" text="glazen" textFill="WHITE" />
                                         <Label prefHeight="17.0" prefWidth="137.0" style="-fx-background-color: lightgray;" text="leverancier" textFill="WHITE" GridPane.columnIndex="1" />
@@ -239,11 +242,11 @@
                                         <Label prefHeight="17.0" prefWidth="210.0" style="-fx-background-color: lightgray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" />
                                         <Label prefHeight="17.0" prefWidth="197.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="3" />
                                         <Label prefHeight="17.0" prefWidth="147.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="6" />
-                                        <Label prefHeight="17.0" prefWidth="182.0" style="-fx-background-color: lightgray;" text="breedte" textFill="WHITE" GridPane.rowIndex="3" />
-                                        <Label prefHeight="17.0" prefWidth="148.0" style="-fx-background-color: lightgray;" text="hoogte" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                        <Label prefHeight="17.0" prefWidth="143.0" style="-fx-background-color: lightgray;" text="neusmaat" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                                        <Label prefHeight="17.0" prefWidth="159.0" text="rechts" GridPane.rowIndex="1" />
-                                        <Label prefHeight="17.0" prefWidth="156.0" text="links" GridPane.rowIndex="2" />
+                                        <Label prefHeight="17.0" prefWidth="46.0" style="-fx-background-color: lightgray;" text="breedte" textFill="WHITE" GridPane.rowIndex="3" />
+                                        <Label prefHeight="17.0" prefWidth="44.0" style="-fx-background-color: lightgray;" text="hoogte" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <Label prefHeight="17.0" prefWidth="56.0" style="-fx-background-color: lightgray;" text="neusmaat" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                        <Label prefHeight="17.0" prefWidth="107.0" text="rechts" GridPane.rowIndex="1" />
+                                        <Label prefHeight="17.0" prefWidth="107.0" text="links" GridPane.rowIndex="2" />
                                         <Label fx:id="montuurgegevensLabel" text="montuurgegevens" GridPane.rowIndex="4" />
                                         <Label prefHeight="17.0" prefWidth="155.0" style="-fx-background-color: lightgray;" text="merk" textFill="WHITE" GridPane.rowIndex="5" />
                                         <Label prefHeight="17.0" prefWidth="181.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -255,13 +258,10 @@
                                         <Label prefHeight="17.0" prefWidth="149.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
                                         <Label prefHeight="17.0" prefWidth="158.0" style="-fx-background-color: lightgray;" text="prijs montuur" textFill="WHITE" GridPane.columnIndex="8" GridPane.rowIndex="5" />
                                         <Label prefHeight="17.0" prefWidth="203.0" style="-fx-background-color: lightgray;" text="btw" textFill="WHITE" GridPane.columnIndex="9" GridPane.rowIndex="5" />
-                                        <Label prefHeight="17.0" prefWidth="183.0" style="-fx-background-color: lightgray;" text="diversen" textFill="WHITE" GridPane.rowIndex="7" />
-                                        <Label prefHeight="17.0" prefWidth="219.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                        <Label prefHeight="17.0" prefWidth="185.0" style="-fx-background-color: lightgray;" text="soort glas" textFill="WHITE" GridPane.rowIndex="8" />
-                                        <Label prefHeight="17.0" prefWidth="183.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                        <Label prefHeight="17.0" prefWidth="252.0" style="-fx-background-color: lightgray;" text="montuur type" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                                        <Label prefHeight="17.0" prefWidth="151.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-                                        <Label prefHeight="17.0" prefWidth="157.0" style="-fx-background-color: lightgray;" text="materiaal" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+                                        <Label prefHeight="17.0" prefWidth="56.0" style="-fx-background-color: lightgray;" text="diversen" textFill="WHITE" GridPane.rowIndex="7" />
+                                        <Label prefHeight="17.0" prefWidth="56.0" style="-fx-background-color: lightgray;" text="soort glas" textFill="WHITE" GridPane.rowIndex="8" />
+                                        <Label prefHeight="17.0" prefWidth="78.0" style="-fx-background-color: lightgray;" text="montuur type" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                                        <Label prefHeight="17.0" prefWidth="56.0" style="-fx-background-color: lightgray;" text="materiaal" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="8" />
                                         <Label fx:id="r_leverancierLabel" prefHeight="17.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                         <Label fx:id="l_leverancierLabel" prefHeight="17.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                         <Label fx:id="r_typeglasLabel" prefHeight="17.0" prefWidth="206.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
@@ -281,9 +281,6 @@
                                         <Label fx:id="neusmaatLabel" prefHeight="17.0" prefWidth="208.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
                                         <Label fx:id="merkLabel" prefHeight="17.0" prefWidth="159.0" GridPane.rowIndex="6" />
                                         <Label fx:id="modelLabel" prefHeight="17.0" prefWidth="224.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                        <Label fx:id="diversenLabel" prefHeight="17.0" prefWidth="197.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                        <Label fx:id="soortglasLabel" prefHeight="17.0" prefWidth="163.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                                        <Label fx:id="montuurtypeLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
                                         <Label fx:id="materiaalLabel" prefHeight="17.0" prefWidth="154.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
                                         <Label fx:id="kleurLabel" prefHeight="17.0" prefWidth="193.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
                                         <Label fx:id="maatLabel" prefHeight="17.0" prefWidth="228.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
@@ -296,6 +293,9 @@
                                         <Label fx:id="totaalBtwLabel" prefHeight="17.0" prefWidth="131.0" GridPane.columnIndex="9" GridPane.rowIndex="10" />
                                         <Label fx:id="diversePrijsLabel" prefHeight="17.0" prefWidth="122.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
                                         <Label fx:id="diverseBtwLabel" prefHeight="17.0" prefWidth="102.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
+                                        <Label fx:id="diversenLabel" prefHeight="17.0" prefWidth="197.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                        <Label fx:id="soortglasLabel" prefHeight="17.0" prefWidth="163.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                        <Label fx:id="montuurtypeLabel" prefHeight="17.0" prefWidth="170.0" GridPane.columnIndex="4" GridPane.rowIndex="8" />
                                       </children>
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -330,9 +330,9 @@
                           </children>
                         </AnchorPane>
                       </content>
-                    </TitledPane>
-                  </panes>
-                </Accordion>
+                    </Tab>
+                  </tabs>
+                </TabPane>
               </children>
             </AnchorPane>
           </content>
