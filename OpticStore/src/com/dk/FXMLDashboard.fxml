@@ -1024,7 +1024,145 @@
             </AnchorPane>
           </content>
         </Tab>
-        <Tab text="artikelbeheer" />
+        <Tab text="artikelbeheer">
+          <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+              <children>
+                <HBox fx:id="artikelBeheerOutBox" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <children>
+                    <VBox prefHeight="701.0" prefWidth="310.0">
+                      <children>
+                        <Label id="brilvoorschriftLabel" alignment="BASELINE_CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: lightgray;" text="de datum van verkoop" textAlignment="JUSTIFY" textFill="WHITE" />
+                        <HBox prefHeight="35.0" prefWidth="310.0" style="-fx-background-color: lightgray;">
+                          <children>
+                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="69.0" style="-fx-background-color: lightgray;" text="von:" textFill="WHITE" />
+                            <TextField prefWidth="81.0" promptText="DD-MM-JJJJ" />
+                            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="46.0" style="-fx-background-color: lightgray;" text="tot:" textFill="WHITE" />
+                            <TextField prefWidth="81.0" promptText="DD-MM-JJJJ" />
+                            <Label alignment="CENTER_RIGHT" prefHeight="16.000091552734375" prefWidth="62.0" style="-fx-background-color: lightgray;" text="" textFill="WHITE" />
+                          </children>
+                        </HBox>
+                        <Label id="brilvoorschriftLabel" alignment="BASELINE_CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: lightgray;" text="montuur" textAlignment="JUSTIFY" textFill="WHITE" />
+                        <GridPane style="-fx-background-color: lightgray;">
+                          <children>
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="merk" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="model" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="kleur" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="maat" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="prijs montuur" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="montuur type" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="materiaal" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="diversen" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="id montuur" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                            <ComboBox id="merkCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                            <ComboBox id="modelCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <ComboBox id="modelCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            <TextField id="maatInput" prefHeight="27.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <children>
+                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="27.0" style="-fx-background-color: lightgray;" text="von:" textFill="WHITE" />
+                                <TextField id="prijsMontuurInput" prefHeight="23.0" prefWidth="66.0" />
+                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="46.0" style="-fx-background-color: lightgray;" text="tot:" textFill="WHITE" />
+                                <TextField id="prijsMontuurInput" prefHeight="23.0" prefWidth="66.0" />
+                              </children>
+                            </HBox>
+                            <ComboBox id="montuurTypeCombo" prefHeight="27.0" prefWidth="216.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                            <ComboBox id="materiallCombo" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                            <ComboBox id="diversenCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                            <TextField id="idMontuurInput" prefHeight="27.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                          </children>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="89.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="221.0" />
+                          </columnConstraints>
+                          <padding>
+                            <Insets left="10.0" right="10.0" />
+                          </padding>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                        <Label id="brilvoorschriftLabel" alignment="BASELINE_CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: lightgray;" text="glazen" textAlignment="JUSTIFY" textFill="WHITE" />
+                        <GridPane style="-fx-background-color: lightgray;">
+                          <children>
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="leverancier" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="type glas" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="coating" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="kleur glas" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="diameter" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="randscherp" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="prijs glas" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="diversen" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                            <Label prefWidth="84.0" style="-fx-background-color: lightgray;" text="id montuur" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                            <ComboBox id="merkCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                            <ComboBox id="modelCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                            <ComboBox id="modelCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            <TextField id="maatInput" prefHeight="27.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <children>
+                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="27.0" style="-fx-background-color: lightgray;" text="von:" textFill="WHITE" />
+                                <TextField id="prijsMontuurInput" prefHeight="23.0" prefWidth="66.0" />
+                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="46.0" style="-fx-background-color: lightgray;" text="tot:" textFill="WHITE" />
+                                <TextField id="prijsMontuurInput" prefHeight="23.0" prefWidth="66.0" />
+                              </children>
+                            </HBox>
+                            <ComboBox id="diversenCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                            <TextField id="idMontuurInput" prefHeight="27.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <children>
+                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="27.0" style="-fx-background-color: lightgray;" text="von:" textFill="WHITE" />
+                                <TextField id="prijsMontuurInput" prefHeight="23.0" prefWidth="66.0" />
+                                <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="46.0" style="-fx-background-color: lightgray;" text="tot:" textFill="WHITE" />
+                                <TextField id="prijsMontuurInput" prefHeight="23.0" prefWidth="66.0" />
+                              </children>
+                            </HBox>
+                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <children>
+                                <RadioButton mnemonicParsing="false" text="ja">
+                                  <toggleGroup>
+                                    <ToggleGroup fx:id="janeeelke" />
+                                  </toggleGroup>
+                                </RadioButton>
+                                <RadioButton mnemonicParsing="false" text="nee" toggleGroup="$janeeelke" />
+                                <RadioButton mnemonicParsing="false" selected="true" text="elke" toggleGroup="$janeeelke" />
+                              </children>
+                            </HBox>
+                          </children>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="89.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="221.0" />
+                          </columnConstraints>
+                          <padding>
+                            <Insets left="10.0" right="10.0" />
+                          </padding>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
       </tabs>
     </TabPane>
     <VBox fx:id="adminBox" prefHeight="56.0" prefWidth="56.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />

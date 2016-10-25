@@ -454,6 +454,9 @@ public class FXMLDashboardController implements Initializable {
     private TextArea emailBodyField;
     @FXML
     private TextField emailSubjectField;
+    
+    @FXML
+    private HBox artikelBeheerOutBox;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
