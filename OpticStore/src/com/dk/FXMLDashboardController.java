@@ -77,6 +77,8 @@ public class FXMLDashboardController implements Initializable {
 
     @FXML
     private AnchorPane innerAnchorPane;
+    @FXML
+    private AnchorPane innerSrcAnchorPane;
     //private BorderPane rightTablePane;
 
     @FXML
@@ -501,8 +503,10 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private TextField emailSubjectField;
 
+//    @FXML
+//    private HBox artikelBeheerOutBox;
     @FXML
-    private HBox artikelBeheerOutBox;
+    private HBox srcBtnBox;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
@@ -525,6 +529,7 @@ public class FXMLDashboardController implements Initializable {
         }
     }
     public static Node adminNode;
+    private TableGridPanel srcGrid;
 
     private void clearKlantForm(boolean withDeselect) {
         if (searchFields == null) {
@@ -864,6 +869,34 @@ public class FXMLDashboardController implements Initializable {
         });
         delClientNode.setDisable(true);
         searchClientBox.getChildren().add(delClientNode);
+
+        searchClientNode = FXutils.createButton(getClass(), "search.png", new Runnable() {
+            @Override
+            public void run() {
+                searchVerkoopList();
+            }
+        });
+        srcBtnBox.getChildren().add(searchClientNode);
+        clearClientNode = FXutils.createButton(getClass(), "clear.png", new Runnable() {
+            @Override
+            public void run() {
+                clearSrcForm(true);
+            }
+
+        });
+        srcBtnBox.getChildren().add(clearClientNode);
+
+        try {
+            //innerSrcAnchorPane
+            srcGrid = new TableGridPanel(OpticStore.getExchanger(), OpticStore.VERKOOPLIST);
+            innerSrcAnchorPane.setTopAnchor(srcGrid, 10.0);
+            innerSrcAnchorPane.setLeftAnchor(srcGrid, 400.0);
+            innerSrcAnchorPane.setRightAnchor(srcGrid, 0.0);
+            innerSrcAnchorPane.setBottomAnchor(srcGrid, 10.0);
+            innerSrcAnchorPane.getChildren().add(srcGrid);
+        } catch (RemoteException ex) {
+            OpticStore.logAndShowErrorMessage(ex);
+        }
 
         try {
             klantGrid = new TableGridPanel(OpticStore.getExchanger(), OpticStore.KLANTLIST);
@@ -1961,5 +1994,13 @@ public class FXMLDashboardController implements Initializable {
             OpticStore.log(ex.getLocalizedMessage());
         }
         return "";
+    }
+
+    private void clearSrcForm(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void searchVerkoopList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

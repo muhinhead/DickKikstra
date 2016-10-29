@@ -48,24 +48,24 @@
                   <tabs>
                     <Tab text="zoeken en bewerken">
                       <content>
-                        <AnchorPane id="Content" fx:id="innerAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane id="Content" fx:id="innerAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightgray;">
                           <children>
-                            <GridPane prefHeight="437.0" prefWidth="305.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
+                            <GridPane prefHeight="437.0" prefWidth="305.0" style="-fx-background-color: lightgray;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                               <children>
-                                <Label contentDisplay="TOP" prefHeight="17.0" prefWidth="87.0" text="id klant" />
-                                <Label text="aanhef" GridPane.rowIndex="1" />
-                                <Label text="voorletters" GridPane.rowIndex="2" />
-                                <Label text="tussenvoegsel" GridPane.rowIndex="3" />
-                                <Label text="achternaam" GridPane.rowIndex="4" />
-                                <Label text="adres" GridPane.rowIndex="5" />
-                                <Label text="huisnummer" GridPane.rowIndex="6" />
-                                <Label text="postcode" GridPane.rowIndex="7" />
-                                <Label text="plaats" GridPane.rowIndex="8" />
-                                <Label text="land" GridPane.rowIndex="9" />
-                                <Label text="geboortedatum" GridPane.rowIndex="10" />
-                                <Label text="telefoon" GridPane.rowIndex="11" />
-                                <Label text="mobiel" GridPane.rowIndex="12" />
-                                <Label text="e-mail" GridPane.rowIndex="13" />
+                                <Label contentDisplay="TOP" prefHeight="17.0" prefWidth="87.0" text="id klant" textFill="WHITE" />
+                                <Label text="aanhef" textFill="WHITE" GridPane.rowIndex="1" />
+                                <Label text="voorletters" textFill="WHITE" GridPane.rowIndex="2" />
+                                <Label text="tussenvoegsel" textFill="WHITE" GridPane.rowIndex="3" />
+                                <Label text="achternaam" textFill="WHITE" GridPane.rowIndex="4" />
+                                <Label text="adres" textFill="WHITE" GridPane.rowIndex="5" />
+                                <Label text="huisnummer" textFill="WHITE" GridPane.rowIndex="6" />
+                                <Label text="postcode" textFill="WHITE" GridPane.rowIndex="7" />
+                                <Label text="plaats" textFill="WHITE" GridPane.rowIndex="8" />
+                                <Label text="land" textFill="WHITE" GridPane.rowIndex="9" />
+                                <Label text="geboortedatum" textFill="WHITE" GridPane.rowIndex="10" />
+                                <Label text="telefoon" textFill="WHITE" GridPane.rowIndex="11" />
+                                <Label text="mobiel" textFill="WHITE" GridPane.rowIndex="12" />
+                                <Label text="e-mail" textFill="WHITE" GridPane.rowIndex="13" />
                                 <TextField fx:id="klantIDfield" maxWidth="70.0" promptText="123456" GridPane.columnIndex="1" />
                                 <TextField fx:id="aanhefField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                 <TextField fx:id="voorlettersField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -1026,7 +1026,7 @@
         </Tab>
         <Tab text="artikelbeheer">
           <content>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane fx:id="innerSrcAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lightgray;">
               <children>
                 <HBox fx:id="artikelBeheerOutBox" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
@@ -1150,6 +1150,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                         </GridPane>
+                        <HBox fx:id="srcBtnBox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" />
                       </children>
                     </VBox>
                   </children>
