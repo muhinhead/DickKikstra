@@ -266,6 +266,10 @@ public class FXMLDashboardController implements Initializable {
     private ComboBox oogmetinggDoorCombo;
     @FXML
     private TextField datumRefractieInput;
+    @FXML
+    private TextField srcDate1Input;
+    @FXML
+    private TextField srcDate2Input;
 
 ///////    
     @FXML
@@ -368,21 +372,41 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private ComboBox merkCombo;
     @FXML
+    private ComboBox srcMerkCombo;
+    @FXML
     private ComboBox modelCombo;
+    @FXML
+    private ComboBox srcModelCombo;
     @FXML
     private ComboBox kleurCombo;
     @FXML
+    private ComboBox srcKleurCombo;
+    @FXML
     private TextField maatInput;
+    @FXML
+    private TextField srcMaatInput;
     @FXML
     private TextField prijsMontuurInput;
     @FXML
+    private TextField srcPrijs1MontuurInput;
+    @FXML
+    private TextField srcPrijs2MontuurInput;
+    @FXML
     private ComboBox montuurTypeCombo;
+    @FXML
+    private ComboBox srcMontuurTypeCombo;
     @FXML
     private ComboBox materiallCombo;
     @FXML
+    private ComboBox srcMateriallCombo;
+    @FXML
     private ComboBox diversenCombo;
     @FXML
+    private ComboBox srcDiversenCombo;
+    @FXML
     private TextField idMontuurInput;
+    @FXML
+    private TextField srcIdMontuurInput;
     @FXML
     private TextField montuurDatumInput;
 
@@ -391,17 +415,25 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private ComboBox lLeverancierCombo;
     @FXML
+    private ComboBox srcLeverancierCombo;
+    @FXML
     private ComboBox rTypeGlasCombo;
     @FXML
     private ComboBox lTypeGlasCombo;
+    @FXML
+    private ComboBox srcTypeGlasCombo;
     @FXML
     private ComboBox rCoatingCombo;
     @FXML
     private ComboBox lCoatingCombo;
     @FXML
+    private ComboBox srcCoatingCombo;
+    @FXML
     private ComboBox rKleurGlasCombo;
     @FXML
     private ComboBox lKleurGlasCombo;
+    @FXML
+    private ComboBox srcKleurGlasCombo;
     @FXML
     private ComboBox soortGlasCombo;
 
@@ -413,15 +445,29 @@ public class FXMLDashboardController implements Initializable {
     private RadioButton lRndsJa;
     @FXML
     private RadioButton lRndsNee;
+    @FXML
+    private RadioButton srcRndsJa;
+    @FXML
+    private RadioButton srcRndsNee;
+    @FXML
+    private RadioButton srcRndsElke;
 
     @FXML
     private TextField rDiameterInput;
     @FXML
     private TextField lDiameterInput;
     @FXML
+    private TextField srcDiameter1Input;
+    @FXML
+    private TextField srcDiameter2Input;
+    @FXML
     private TextField rPrijsGlasInput;
     @FXML
     private TextField lPrijsGlasInput;
+    @FXML
+    private TextField srcPrijs1GlasInput;
+    @FXML
+    private TextField srcPrijs2GlasInput;
     @FXML
     private TextField breedteInput;
     @FXML
@@ -454,7 +500,7 @@ public class FXMLDashboardController implements Initializable {
     private TextArea emailBodyField;
     @FXML
     private TextField emailSubjectField;
-    
+
     @FXML
     private HBox artikelBeheerOutBox;
 
@@ -548,7 +594,7 @@ public class FXMLDashboardController implements Initializable {
             osSphInput, osCylInput, osAsInput, osAddInput, osNabijInput,
             osPrInput, osBasisInput, osPr1Input, osBasis1Input,
             osVisInput, osPdDnInput, osLhInput, osHaInput, osIodInput
-            //oogmetinggDoorInput
+        //oogmetinggDoorInput
         }) {
             tf.setText("");
         }
@@ -681,7 +727,10 @@ public class FXMLDashboardController implements Initializable {
 
         fisrtPane = zoekenPane;
 
-        for (ComboBox cb : new ComboBox[]{merkCombo, modelCombo, kleurCombo, diversenCombo}) {
+        for (ComboBox cb : new ComboBox[]{
+            merkCombo, modelCombo, kleurCombo, diversenCombo,
+            srcMerkCombo, srcModelCombo, srcKleurCombo, srcDiversenCombo
+        }) {
             new AutoCompleteComboBoxListener(cb);
             cb.getItems().clear();
         }
@@ -697,6 +746,9 @@ public class FXMLDashboardController implements Initializable {
             //oogmetinggDoorInput,
             rDiameterInput, lDiameterInput,
             rPrijsGlasInput, lPrijsGlasInput,
+            srcPrijs1MontuurInput, srcPrijs2MontuurInput,
+            srcDiameter1Input, srcDiameter2Input,
+            srcPrijs1GlasInput, srcPrijs2GlasInput,
             breedteInput, hoogteInput, neusmaatInput, kortingInput, diversenPrijsInput,
             vanDeInput, totDeInput
         });
@@ -956,10 +1008,20 @@ public class FXMLDashboardController implements Initializable {
         montuurTypeCombo.getItems().add("correctie");
         montuurTypeCombo.getItems().add("zon");
 
+        srcMontuurTypeCombo.getItems().add("--elke--");
+        srcMontuurTypeCombo.getItems().add("correctie");
+        srcMontuurTypeCombo.getItems().add("zon");
+
         materiallCombo.getItems().add("metaal");
         materiallCombo.getItems().add("kunststof");
         materiallCombo.getItems().add("nylor");
         materiallCombo.getItems().add("randloos");
+
+        srcMateriallCombo.getItems().add("--elke--");
+        srcMateriallCombo.getItems().add("metaal");
+        srcMateriallCombo.getItems().add("kunststof");
+        srcMateriallCombo.getItems().add("nylor");
+        srcMateriallCombo.getItems().add("randloos");
 
         soortGlasCombo.getItems().add("enkelvoudig");
         soortGlasCombo.getItems().add("multifocaal");
@@ -1086,20 +1148,21 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private void fillCombos() {
-        fillCombo(oogmetinggDoorCombo, "select distinct oogmeting_door from brilvoorschrift",false);
-        fillCombo(merkCombo, "select distinct montuur_merk from verkoop order by montuur_merk", false);
-        fillCombo(modelCombo, "select distinct montuur_model from verkoop order by montuur_model", false);
-        fillCombo(kleurCombo, "select distinct montuur_kleur from verkoop order by montuur_kleur", false);
-        fillCombo(diversenCombo, "select distinct diverse from verkoop order by diverse", false);
-        fillCombos(new ComboBox[]{lLeverancierCombo, rLeverancierCombo},
+        fillCombo(oogmetinggDoorCombo, "select distinct oogmeting_door from brilvoorschrift", false);
+        fillCombos(new ComboBox[]{merkCombo, srcMerkCombo}, "select distinct montuur_merk from verkoop order by montuur_merk", false);
+        fillCombos(new ComboBox[]{modelCombo, srcModelCombo}, "select distinct montuur_model from verkoop order by montuur_model", false);
+        fillCombos(new ComboBox[]{kleurCombo, srcKleurCombo}, "select distinct montuur_kleur from verkoop order by montuur_kleur", false);
+        //fillCombos(new ComboBox[]{srcModelCombo, srcKleurCombo}, "select distinct montuur_model from verkoop order by montuur_model", false);
+        fillCombos(new ComboBox[]{diversenCombo, srcDiversenCombo}, "select distinct diverse from verkoop order by diverse", false);
+        fillCombos(new ComboBox[]{lLeverancierCombo, rLeverancierCombo, srcLeverancierCombo},
                 "select distinct l_reverancier from verkoop "
                 + "union select distinct r_leverancier from verkoop", false);
-        fillCombos(new ComboBox[]{lTypeGlasCombo, rTypeGlasCombo}, "select distinct l_type_glas from verkoop "
+        fillCombos(new ComboBox[]{lTypeGlasCombo, rTypeGlasCombo, srcTypeGlasCombo}, "select distinct l_type_glas from verkoop "
                 + "union select distinct r_type_glas from verkoop", false);
-        fillCombos(new ComboBox[]{lCoatingCombo, rCoatingCombo}, "select distinct l_type_glas from verkoop "
-                + "union select distinct r_type_glas from verkoop", false);
-        fillCombos(new ComboBox[]{lKleurGlasCombo, rKleurGlasCombo}, "select distinct r_coating from verkoop "
+        fillCombos(new ComboBox[]{lCoatingCombo, rCoatingCombo, srcCoatingCombo}, "select distinct l_coating from verkoop "
                 + "union select distinct r_coating from verkoop", false);
+        fillCombos(new ComboBox[]{lKleurGlasCombo, rKleurGlasCombo, srcKleurGlasCombo}, "select distinct l_kleur_glazen from verkoop "
+                + "union select distinct r_kleur_glazen from verkoop", false);
     }
 
     private static Integer ifNullInteger(TextField tf) {
@@ -1152,7 +1215,6 @@ public class FXMLDashboardController implements Initializable {
             DbObject[] recs = OpticStore.getExchanger().getDbObjects(Verkoop.class,
                     "klant_id=" + klant.getKlantId(), "verkoop_id");
             for (DbObject rec : recs) {
-                //verkoopArray.add(new Verkoop((Verkoop) rec,NDS));
                 verkoopArray.add((Verkoop) rec);
             }
             if (verkoopArray.size() > 0) {
