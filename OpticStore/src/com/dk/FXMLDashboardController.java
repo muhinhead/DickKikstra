@@ -13,6 +13,7 @@ import com.dk.orm.dbobject.DbObject;
 import com.dk.orm.dbobject.ForeignKeyViolationException;
 import com.dk.util.AutoCompleteComboBoxListener;
 import com.dk.util.FXutils;
+import com.dk.util.SelectModifier;
 import com.dk.util.TableGridPanel;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.io.InputStream;
@@ -48,6 +49,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
@@ -592,45 +594,38 @@ public class FXMLDashboardController implements Initializable {
 
     private void clearTab2() {
         vidLabel.setText("");
-        for (TextField tf : new TextField[]{
+        FXutils.clearTextFields(new TextInputControl[]{
             odSphInput, odCylInput, odAsInput, odAddInput, odNabijInput,
             odPrInput, odBasisInput, odPr1Input, odBasis1Input,
             odVisInput, odPdDnInput, odLhInput, odHaInput, odIodInput,
             osSphInput, osCylInput, osAsInput, osAddInput, osNabijInput,
             osPrInput, osBasisInput, osPr1Input, osBasis1Input,
-            osVisInput, osPdDnInput, osLhInput, osHaInput, osIodInput
-        //oogmetinggDoorInput
-        }) {
-            tf.setText("");
-        }
-        oogmetinggDoorCombo.getEditor().setText("");
+            osVisInput, osPdDnInput, osLhInput, osHaInput, osIodInput,
+            oogmetinggDoorCombo.getEditor(),
+            anamneseField
+        });
+//        oogmetinggDoorCombo.getEditor().setText("");
         datumRefractieInput.setText(OpticStore.dateFormat.format(Calendar.getInstance().getTime()));
-        anamneseField.setText("");
     }
 
     private void clearTab4() {
         verkoop1Label.setText("");
-        rLeverancierCombo.getEditor().setText("");
-        lLeverancierCombo.getEditor().setText("");
-        rTypeGlasCombo.getEditor().setText("");
-        lTypeGlasCombo.getEditor().setText("");
-        rCoatingCombo.getEditor().setText("");
-        lCoatingCombo.getEditor().setText("");
-        rKleurGlasCombo.getEditor().setText("");
-        lKleurGlasCombo.getEditor().setText("");
+        FXutils.clearTextFields(new TextInputControl[]{
+            rLeverancierCombo.getEditor(), lLeverancierCombo.getEditor(),
+            rTypeGlasCombo.getEditor(), lTypeGlasCombo.getEditor(),
+            rCoatingCombo.getEditor(), lCoatingCombo.getEditor(),
+            rKleurGlasCombo.getEditor(), lKleurGlasCombo.getEditor(),
+            breedteInput, hoogteInput, neusmaatInput,});
+        soortGlasCombo.setValue("");
         rDiameterInput.setText("0");
-        rRndsNee.setSelected(true);
-        lRndsNee.setSelected(true);
         lDiameterInput.setText("0");
         rPrijsGlasInput.setText("0.0");
         lPrijsGlasInput.setText("0.0");
-        breedteInput.setText("");
-        hoogteInput.setText("");
-        neusmaatInput.setText("");
-        soortGlasCombo.setValue("");
         kortingInput.setText("0.0");
         totaalInput.setText("0.0");
         btwInput.setText("0.0");
+        rRndsNee.setSelected(true);
+        lRndsNee.setSelected(true);
     }
 
     private void clearTab3() {
@@ -732,13 +727,10 @@ public class FXMLDashboardController implements Initializable {
 
         fisrtPane = zoekenPane;
 
-        for (ComboBox cb : new ComboBox[]{
+        FXutils.setAutyoCompleteCombos(new ComboBox[]{
             merkCombo, modelCombo, kleurCombo, diversenCombo,
             srcMerkCombo, srcModelCombo, srcKleurCombo, srcDiversenCombo
-        }) {
-            new AutoCompleteComboBoxListener(cb);
-            cb.getItems().clear();
-        }
+        });
         fillCombos();
 
         FXutils.RestrictNumbersFields(new TextField[]{
@@ -773,9 +765,6 @@ public class FXMLDashboardController implements Initializable {
                     Dialogs.DialogResponse resp
                             = Dialogs.showCustomDialog(OpticStore.mainStage,
                                     (Pane) usersPane, "", "Users", Dialogs.DialogOptions.OK, myCallback);
-//                    if (resp.equals(Dialogs.DialogResponse.OK)) {
-//                        //TODO: save text
-//                    }
                 } catch (Exception ex) {
                     OpticStore.logAndShowErrorMessage(ex.getLocalizedMessage());
                 }
@@ -1514,7 +1503,7 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private void handleListRBaction() {
         emailInput.setText("");
-        emailsInput.setText(getCurListEmails(klantGrid.getTableBody(), 6));
+        emailsInput.setText(SelectModifier.getCurListEmails(klantGrid.getTableBody(), 6));
         emailssInput.setText("");
     }
 
@@ -1522,7 +1511,7 @@ public class FXMLDashboardController implements Initializable {
     private void handleAgeRBaction() {
         emailInput.setText("");
         emailsInput.setText("");
-        emailssInput.setText(getAgeRangeEmails());
+        emailssInput.setText(SelectModifier.getAgeRangeEmails(vanDeInput, totDeInput));
     }
 
     @FXML
@@ -1612,123 +1601,10 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private String addWhereCondition() {
-        if (!klantIDfield.getText().isEmpty()
-                || !aanhefField.getText().isEmpty()
-                || !voorlettersField.getText().isEmpty()
-                || !tussenvoegselField.getText().isEmpty()
-                || !achternaamField.getText().isEmpty()
-                || !adresField.getText().isEmpty()
-                || !huisnummerField.getText().isEmpty()
-                || !postcodeField.getText().isEmpty()
-                || !plaatsField.getText().isEmpty()
-                || !landField.getText().isEmpty()
-                || !gebortedatumField.getText().isEmpty()
-                || !telefonField.getText().isEmpty()
-                || !mobileField.getText().isEmpty()
-                || !emailField.getText().isEmpty()) {
-
-            StringBuilder sb = new StringBuilder(OpticStore.KLANTLIST.substring(0, OpticStore.KLANTLIST.indexOf(" order by")) + " where ");
-            boolean isThere = false;
-            if (!klantIDfield.getText().isEmpty()) {
-                sb.append("klant_id = " + klantIDfield.getText());
-                isThere = true;
-            }
-            if (!aanhefField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(aanhef) like '" + aanhefField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!voorlettersField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(voorletters) like '" + voorlettersField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!tussenvoegselField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(tussenvoegsel) like '" + tussenvoegselField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!achternaamField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(achternaam) like '" + achternaamField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!adresField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(adres) like '" + adresField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!huisnummerField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(huisnummer) like '" + huisnummerField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!postcodeField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(postcode) like '" + postcodeField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!plaatsField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(plaats) like '" + plaatsField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!landField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(land) like '" + landField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!gebortedatumField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("to_char(geboortedatum,'" + OpticStore.dateFormat.toPattern().toUpperCase() + "') like '" + gebortedatumField.getText() + "%'");
-                isThere = true;
-            }
-            if (!telefonField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(telefoon) like '" + telefonField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!mobileField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(mobiel) like '" + mobileField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            if (!emailField.getText().isEmpty()) {
-                if (isThere) {
-                    sb.append(" and ");
-                }
-                sb.append("UPPER(email) like '" + emailField.getText().toUpperCase() + "%'");
-                isThere = true;
-            }
-            sb.append(OpticStore.KLANTLIST.substring(OpticStore.KLANTLIST.indexOf(" order by")));
-            return sb.toString();
-        } else {
-            return OpticStore.KLANTLIST;
-        }
+        return SelectModifier.modifyKlantCondition(klantIDfield, aanhefField,
+                voorlettersField, tussenvoegselField, achternaamField,
+                adresField, huisnummerField, postcodeField, plaatsField,
+                landField, gebortedatumField, telefonField, mobileField, emailField);
     }
 
     private void loadKlantFrom(int selectedKlantID) {
@@ -1792,9 +1668,8 @@ public class FXMLDashboardController implements Initializable {
     }
 
     private String getLastSellDate(Integer klantId) throws RemoteException {
-        DbObject[] recs = OpticStore.getExchanger().getDbObjects(Verkoop.class, "klant_id=" + klantId, "verkoopdatum desc");
-        if (recs.length > 0) {
-            Verkoop vk = (Verkoop) recs[0];
+        Verkoop vk = SelectModifier.getLastVerkoop(klantId);
+        if (vk != null) {
             fillLastVerkoop(vk);
             Date dt = vk.getVerkoopdatum();
             return dt == null ? "" : OpticStore.dateFormat.format(dt);
@@ -1954,46 +1829,6 @@ public class FXMLDashboardController implements Initializable {
      */
     public static ArrayList<Brilvoorschrift> getBrilvoorschriftArray() {
         return brilvoorschriftArray;
-    }
-
-    private String getCurListEmails(Vector[] body, int col) {
-        StringBuilder sb = new StringBuilder();
-        Set set = new HashSet();
-        //Vector[] body = klantGrid.getTableBody();
-        Vector lines = body[1];
-        for (int i = 0; i < lines.size(); i++) {
-            Vector line = (Vector) lines.get(i);
-            set.add(line.get(col));
-        }
-        for (Object o : set) {
-            if (sb.length() > 0) {
-                sb.append(",");
-            }
-            sb.append(o.toString());
-        }
-        return sb.toString();
-    }
-
-    private String getAgeRangeEmails() {
-        StringBuilder condition = new StringBuilder();
-        if (vanDeInput.getText() != null && vanDeInput.getText().length() > 0) {
-            condition.append("months_between(now(),geboortedatum)/12 >= " + vanDeInput.getText());
-        }
-        if (totDeInput.getText() != null && totDeInput.getText().length() > 0) {
-            if (condition.length() > 0) {
-                condition.append(" and ");
-            }
-            condition.append("months_between(now(),geboortedatum)/12 <= " + totDeInput.getText());
-        }
-        if (condition.length() > 0) {
-            condition.insert(0, "select distinct email from klant where ");
-        }
-        try {
-            return getCurListEmails(OpticStore.getExchanger().getTableBody(condition.toString()), 0);
-        } catch (RemoteException ex) {
-            OpticStore.log(ex.getLocalizedMessage());
-        }
-        return "";
     }
 
     private void clearSrcForm(boolean b) {

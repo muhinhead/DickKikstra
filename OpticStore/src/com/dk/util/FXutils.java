@@ -13,7 +13,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.ColorAdjustBuilder;
 import javafx.scene.effect.Reflection;
@@ -94,7 +96,7 @@ public class FXutils {
     public static Node createButton(Class cls, String iconName, final Runnable action) {
         return createButton(cls, iconName, action, false);
     }
-    
+
     public static void RestrictNumbersOnly(final TextField tf) {
         tf.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -110,6 +112,23 @@ public class FXutils {
         for (TextField tf : tl) {
             if (tf != null) {
                 RestrictNumbersOnly(tf);
+            }
+        }
+    }
+
+    public static void setAutyoCompleteCombos(ComboBox[] cbs) {
+        for (ComboBox cb : cbs) {
+            if (cb != null) {
+                new AutoCompleteComboBoxListener(cb);
+                cb.getItems().clear();
+            }
+        }
+    }
+    
+    public static void clearTextFields(TextInputControl[] tl) {
+        for (TextInputControl tc : tl) {
+            if (tc != null) {
+                tc.setText("");
             }
         }
     }

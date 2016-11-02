@@ -59,9 +59,9 @@ public class OpticStore extends Application {
             + "geboortedatum \"geboortedatum\","
             + "email \"e-mail\" from klant order by klant_id";
     public static final String VERKOOPLIST = "select * from verkoop";
-    static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    static final DecimalFormat decSignedFormat = new DecimalFormat("+#,##0.00;-#");
-    static final DecimalFormat decFormat = new DecimalFormat("#,##0.00;-#");
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    public static final DecimalFormat decSignedFormat = new DecimalFormat("+#,##0.00;-#");
+    public static final DecimalFormat decFormat = new DecimalFormat("#,##0.00;-#");
     private static Logger logger;
     private static FileHandler fh;
     private static IMessageSender exchanger;
