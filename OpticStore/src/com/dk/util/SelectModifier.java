@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.dk.util;
 
 import com.dk.OpticStore;
@@ -14,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 /**
@@ -42,75 +38,75 @@ public class SelectModifier {
         StringBuilder sb = new StringBuilder(OpticStore.KLANTLIST.substring(0,
                 orderByPos) + " where ");
         boolean isThere = false;
-        if (!klantIDfield.getText().isEmpty()) {
+        if (!klantIDfield.getText().trim().isEmpty()) {
             sb.append("klant_id = " + klantIDfield.getText());
             isThere = true;
         }
-        if (!aanhefField.getText().isEmpty()) {
+        if (!aanhefField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(aanhef) like '" + aanhefField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(aanhef) like '" + aanhefField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!voorlettersField.getText().isEmpty()) {
+        if (!voorlettersField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(voorletters) like '" + voorlettersField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(voorletters) like '" + voorlettersField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!tussenvoegselField.getText().isEmpty()) {
+        if (!tussenvoegselField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(tussenvoegsel) like '" + tussenvoegselField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(tussenvoegsel) like '" + tussenvoegselField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!achternaamField.getText().isEmpty()) {
+        if (!achternaamField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(achternaam) like '" + achternaamField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(achternaam) like '" + achternaamField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!adresField.getText().isEmpty()) {
+        if (!adresField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(adres) like '" + adresField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(adres) like '" + adresField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!huisnummerField.getText().isEmpty()) {
+        if (!huisnummerField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(huisnummer) like '" + huisnummerField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(huisnummer) like '" + huisnummerField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!postcodeField.getText().isEmpty()) {
+        if (!postcodeField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(postcode) like '" + postcodeField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(postcode) like '" + postcodeField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!plaatsField.getText().isEmpty()) {
+        if (!plaatsField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(plaats) like '" + plaatsField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(plaats) like '" + plaatsField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!landField.getText().isEmpty()) {
+        if (!landField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(land) like '" + landField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(land) like '" + landField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!gebortedatumField.getText().isEmpty()) {
+        if (!gebortedatumField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
             sb.append("to_char(geboortedatum,'"
-                    + OpticStore.dateFormat.toPattern().toUpperCase() + "') like '"
+                    + OpticStore.dateFormat.toPattern().trim().toUpperCase() + "') like '"
                     + gebortedatumField.getText() + "%'");
             isThere = true;
         }
-        if (!telefonField.getText().isEmpty()) {
+        if (!telefonField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(telefoon) like '" + telefonField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(telefoon) like '" + telefonField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!mobileField.getText().isEmpty()) {
+        if (!mobileField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(mobiel) like '" + mobileField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(mobiel) like '" + mobileField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
-        if (!emailField.getText().isEmpty()) {
+        if (!emailField.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("UPPER(email) like '" + emailField.getText().toUpperCase() + "%'");
+            sb.append("UPPER(email) like '" + emailField.getText().trim().toUpperCase() + "%'");
             isThere = true;
         }
         if (isThere) {
@@ -119,6 +115,10 @@ public class SelectModifier {
         } else {
             return OpticStore.KLANTLIST;
         }
+    }
+
+    private static boolean isEmpty(ComboBox cb) {
+        return (cb.getValue() == null || cb.getValue().toString().trim().isEmpty() || cb.getValue().toString().equals("--elke--"));
     }
 
     public static String modifyVerkoopCondition(TextField srcDate1Input,
@@ -130,103 +130,151 @@ public class SelectModifier {
             ComboBox srcDiversenCombo, TextField srcIdMontuurInput,
             ComboBox srcLeverancierCombo, ComboBox srcTypeGlasCombo,
             ComboBox srcCoatingCombo, ComboBox srcKleurGlasCombo,
-            TextField srcDiameter1Input, TextField srcDiameter2Input) {
+            TextField srcDiameter1Input, TextField srcDiameter2Input,
+            RadioButton srcRndsJa, RadioButton srcRndsNee,
+            TextField srcPrijs1GlasInput, TextField srcPrijs2GlasInput) {
         int orderByPos = OpticStore.VERKOOPLIST.toLowerCase().indexOf(" order by");
-        StringBuilder sb = new StringBuilder(
-                OpticStore.VERKOOPLIST.substring(0, orderByPos > 0 ? orderByPos : 2048) + " where ");
+        StringBuilder sb = new StringBuilder();
+        if (orderByPos > 0) {
+            OpticStore.VERKOOPLIST.substring(0, orderByPos);
+        } else {
+            sb.append(OpticStore.VERKOOPLIST);
+        }
+        sb.append(" where ");
+
         boolean isThere = false;
-        if (!srcDate1Input.getText().isEmpty()) {
+        if (!srcDate1Input.getText().trim().isEmpty()) {
             sb.append("verkoopdatum >= to_date('" + srcDate1Input.getText() + "','"
-                    + OpticStore.dateFormat.toPattern().toUpperCase() + "') ");
+                    + OpticStore.dateFormat.toPattern().trim().toUpperCase() + "') ");
             isThere = true;
         }
-        if (!srcDate2Input.getText().isEmpty()) {
+        if (!srcDate2Input.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
             sb.append("verkoopdatum <= to_date('" + srcDate2Input.getText() + "','"
-                    + OpticStore.dateFormat.toPattern().toUpperCase() + "') ");
+                    + OpticStore.dateFormat.toPattern().trim().toUpperCase() + "') ");
             isThere = true;
         }
-        if (!srcMerkCombo.getEditor().getText().isEmpty()) {
+        if (!srcMerkCombo.getEditor().getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("montuur_merk like '" + srcMerkCombo.getEditor().getText() + "%'");
+            sb.append("UPPER(montuur_merk) like '" + srcMerkCombo.getEditor().getText().trim().toUpperCase() + "%'");
+            isThere = true;
         }
-        if (!srcModelCombo.getEditor().getText().isEmpty()) {
+        if (!srcModelCombo.getEditor().getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("montuur_model like '" + srcModelCombo.getEditor().getText() + "%'");
+            sb.append("UPPER(montuur_model) like '" + srcModelCombo.getEditor().getText().trim().toUpperCase() + "%'");
+            isThere = true;
         }
-        if (!srcKleurCombo.getEditor().getText().isEmpty()) {
+        if (!srcKleurCombo.getEditor().getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("montuur_kleur like '" + srcKleurCombo.getEditor().getText() + "%'");
+            sb.append("UPPER(montuur_kleur) like '" + srcKleurCombo.getEditor().getText().trim().toUpperCase() + "%'");
+            isThere = true;
         }
-        if (!srcMaatInput.getText().isEmpty()) {
+        if (!srcMaatInput.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("montuur_maat like '" + srcMaatInput.getText() + "%'");
+            sb.append("UPPER(montuur_maat) like '" + srcMaatInput.getText().trim().toUpperCase() + "%'");
+            isThere = true;
         }
-        if (!srcPrijs1MontuurInput.getText().isEmpty()) {
+        if (!srcPrijs1MontuurInput.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
             sb.append("montuur_prijs >= " + srcPrijs1MontuurInput.getText());
+            isThere = true;
         }
-        if (!srcPrijs2MontuurInput.getText().isEmpty()) {
+        if (!srcPrijs2MontuurInput.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
             sb.append("montuur_prijs <= " + srcPrijs2MontuurInput.getText());
+            isThere = true;
         }
-        if (!srcMontuurTypeCombo.getValue().toString().isEmpty()) {
+        if (!isEmpty(srcMontuurTypeCombo)) {
             sb.append(isThere ? " and " : "");
             sb.append("montuur_type = '" + srcMontuurTypeCombo.getValue().toString() + "'");
+            isThere = true;
         }
-        if (!srcMateriallCombo.getValue().toString().isEmpty()) {
+        if (!isEmpty(srcMateriallCombo)) {
             sb.append(isThere ? " and " : "");
-            sb.append("material = '" + srcMateriallCombo.getValue().toString() + "'");
+            sb.append("materiaal = '" + srcMateriallCombo.getValue().toString() + "'");
+            isThere = true;
         }
-        if (!srcDiversenCombo.getEditor().getText().isEmpty()) {
+        if (!isEmpty(srcDiversenCombo)) {
             sb.append(isThere ? " and " : "");
-            sb.append("diverse like '" + srcDiversenCombo.getEditor().getText() + "%'");
+            sb.append("UPPER(diverse) like '" + srcDiversenCombo.getEditor().getText().trim().toUpperCase() + "%'");
+            isThere = true;
         }
-        if (!srcIdMontuurInput.getText().isEmpty()) {
+        if (!srcIdMontuurInput.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
-            sb.append("id_montuur like '" + srcIdMontuurInput.getText() + "%'");
+            sb.append("UPPER(id_montuur) like '" + srcIdMontuurInput.getText().trim().toUpperCase() + "%'");
+            isThere = true;
         }
-        if (!srcLeverancierCombo.getEditor().getText().isEmpty()) {
+        if (!srcLeverancierCombo.getEditor().getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
             String leverancier = srcLeverancierCombo.getEditor().getText();
-            sb.append("(r_leverancier like '" + leverancier + "%' or l_leverancier like '" + leverancier + "%')");
+            sb.append("(UPPER(r_leverancier) like '" + leverancier.trim().toUpperCase() + "%' or UPPER(l_leverancier) like '" + leverancier.trim().toUpperCase() + "%')");
+            isThere = true;
         }
-        if (!srcTypeGlasCombo.getEditor().getText().isEmpty()) {
+        if (!isEmpty(srcTypeGlasCombo)) {
             sb.append(isThere ? " and " : "");
             String typeglas = srcTypeGlasCombo.getEditor().getText();
-            sb.append("(r_type_glas like '" + typeglas + "%' or l_type_glas like '" + typeglas + "%')");
+            sb.append("(UPPER(r_type_glas) like '" + typeglas.trim().toUpperCase() + "%' or UPPER(l_type_glas) like '" + typeglas.trim().toUpperCase() + "%')");
+            isThere = true;
         }
-        if (!srcCoatingCombo.getEditor().getText().isEmpty()) {
+        if (!isEmpty(srcCoatingCombo)) {
             sb.append(isThere ? " and " : "");
             String coating = srcCoatingCombo.getEditor().getText();
-            sb.append("(r_coating like '" + coating + "%' or l_coating like '" + coating + "%')");
+            sb.append("(UPPER(r_coating) like '" + coating.trim().toUpperCase() + "%' or UPPER(l_coating) like '" + coating.trim().toUpperCase() + "%')");
+            isThere = true;
         }
-        if (!srcKleurCombo.getEditor().getText().isEmpty()) {
+        if (!isEmpty(srcKleurCombo)) {
             sb.append(isThere ? " and " : "");
             String kleurglass = srcKleurCombo.getEditor().getText();
-            sb.append("(r_kleur_glazen like '" + kleurglass + "%' or l_kleur_glazen like '" + kleurglass + "%')");
+            sb.append("(UPPER(r_kleur_glazen) like '" + kleurglass.trim().toUpperCase() + "%' or UPPER(l_kleur_glazen) like '" + kleurglass.trim().toUpperCase() + "%')");
+            isThere = true;
         }
-        if (!srcDiameter1Input.getText().isEmpty() && !srcDiameter2Input.getText().isEmpty()) {
+        if (!srcDiameter1Input.getText().trim().isEmpty() && !srcDiameter2Input.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
             sb.append("((r_diameter between " + srcDiameter1Input.getText().replace(",", ".")
                     + " and " + srcDiameter2Input.getText().replace(",", ".") + ")");
             sb.append(" or ");
             sb.append("(l_diameter between " + srcDiameter1Input.getText().replace(",", ".")
                     + " and " + srcDiameter2Input.getText().replace(",", ".") + "))");
-        } else if (!srcDiameter1Input.getText().isEmpty()) {
+            isThere = true;
+        } else if (!srcDiameter1Input.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
             sb.append("(r_diameter >= " + srcDiameter1Input.getText().replace(",", ".")
-                    + "l_diameter >= " + srcDiameter1Input.getText().replace(",", ".") + ")");
-        }
-        if (!srcDiameter2Input.getText().isEmpty()) {
+                    + " or l_diameter >= " + srcDiameter1Input.getText().replace(",", ".") + ")");
+            isThere = true;
+        } else if (!srcDiameter2Input.getText().trim().isEmpty()) {
             sb.append(isThere ? " and " : "");
             sb.append("(r_diameter <= " + srcDiameter2Input.getText().replace(",", ".")
-                    + "l_diameter <= " + srcDiameter2Input.getText().replace(",", ".") + ")");
+                    + " or l_diameter <= " + srcDiameter2Input.getText().replace(",", ".") + ")");
+            isThere = true;
+        }
+        if (srcRndsJa.isSelected()) {
+            sb.append(isThere ? " and " : "");
+            sb.append("(r_randscherp=1 or l_randscherp=1)");
+            isThere = true;
+        } else if (srcRndsNee.isSelected()) {
+            sb.append(isThere ? " and " : "");
+            sb.append("(r_randscherp=0 and l_randscherp=0)");
+            isThere = true;
+        }
+        if (!srcPrijs1GlasInput.getText().trim().isEmpty() && !srcPrijs2GlasInput.getText().trim().isEmpty()) {
+            sb.append(isThere ? " and " : "");
+            sb.append("(r_prijs_glas between " + srcPrijs1GlasInput.getText() + " and " + srcPrijs2GlasInput.getText() + ")"
+                    + " or (l_prijs_glas between " + srcPrijs1GlasInput.getText() + " and " + srcPrijs2GlasInput.getText() + ")");
+            isThere = true;
+        } else if (!srcPrijs1GlasInput.getText().trim().isEmpty()) {
+            sb.append(isThere ? " and " : "");
+            sb.append("(r_prijs_glas>=" + srcPrijs1GlasInput.getText() + " or l_prijs_glas>=" + srcPrijs1GlasInput.getText() + ")");
+            isThere = true;
+        } else if (!srcPrijs2GlasInput.getText().trim().isEmpty()) {
+            sb.append(isThere ? " and " : "");
+            sb.append("(r_prijs_glas<=" + srcPrijs2GlasInput.getText() + " or l_prijs_glas<=" + srcPrijs2GlasInput.getText() + ")");
+            isThere = true;
         }
         if (isThere) {
             if (orderByPos > 0) {
                 sb.append(OpticStore.KLANTLIST.substring(orderByPos));
             }
+            System.out.println("!!:" + sb.toString());
             return sb.toString();
         } else {
             return OpticStore.VERKOOPLIST;
@@ -274,7 +322,8 @@ public class SelectModifier {
         return "";
     }
 
-    public static Verkoop getLastVerkoop(Integer klantId) throws RemoteException {
+    public static Verkoop
+            getLastVerkoop(Integer klantId) throws RemoteException {
         DbObject[] recs = OpticStore.getExchanger().getDbObjects(
                 Verkoop.class, "klant_id=" + klantId, "verkoopdatum desc");
         if (recs.length > 0) {

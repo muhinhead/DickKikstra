@@ -32,7 +32,7 @@
 <AnchorPane id="AnchorPane" prefHeight="730.0" prefWidth="1293.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.dk.FXMLDashboardController">
   <children>
     <HBox fx:id="logoutBox" prefHeight="56.0" prefWidth="56.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-    <TabPane prefHeight="730.0" prefWidth="1300.0" side="TOP" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="0.0">
+    <TabPane fx:id="mainTabPane" prefHeight="730.0" prefWidth="1300.0" side="TOP" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="0.0">
       <effect>
         <InnerShadow />
       </effect>
@@ -40,13 +40,13 @@
         <URL value="@fxmldashboard.css" />
       </stylesheets>
       <tabs>
-        <Tab text="klant">
+        <Tab fx:id="klantTab" text="klant">
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <TabPane prefHeight="701.0" prefWidth="1206.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <TabPane fx:id="klantTabPane" prefHeight="701.0" prefWidth="1206.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <tabs>
-                    <Tab text="zoeken en bewerken">
+                    <Tab fx:id="zoekenTab" text="zoeken en bewerken">
                       <content>
                         <AnchorPane id="Content" fx:id="innerAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightgray;">
                           <children>
@@ -1131,6 +1131,8 @@
                               </children>
                             </HBox>
                             <ComboBox id="modelCombo" fx:id="srcKleurGlasCombo" editable="true" prefHeight="27.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                            <Label fx:id="rowsFoundLabel" contentDisplay="CENTER" text="0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                            <Label id="rowsFoundLabel" contentDisplay="CENTER" text="Rows found:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
                           </children>
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="89.0" />

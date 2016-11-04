@@ -11,13 +11,11 @@ import com.dk.orm.Verkoop;
 import com.dk.orm.dbobject.ComboItem;
 import com.dk.orm.dbobject.DbObject;
 import com.dk.orm.dbobject.ForeignKeyViolationException;
-import com.dk.util.AutoCompleteComboBoxListener;
 import com.dk.util.FXutils;
 import com.dk.util.SelectModifier;
 import com.dk.util.TableGridPanel;
 import com.sun.javafx.collections.ObservableListWrapper;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.sql.Connection;
@@ -26,13 +24,10 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.HostServices;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -47,6 +42,7 @@ import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
@@ -67,6 +63,7 @@ public class FXMLDashboardController implements Initializable {
 
     private static final String FILL_THIS_FIELD = "dit veld invullen";
     private static final String graylabelStyle = "-fx-background-color: gray;";
+    private static final String ELKE = "--elke--";
 
     @FXML
     private HBox logoutBox;
@@ -266,7 +263,6 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private TextField osIodInput;
     @FXML
-    //private TextField oogmetinggDoorInput;
     private ComboBox oogmetinggDoorCombo;
     @FXML
     private TextField datumRefractieInput;
@@ -275,7 +271,16 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private TextField srcDate2Input;
 
-///////    
+    @FXML
+    private TabPane mainTabPane;
+    @FXML
+    private TabPane klantTabPane;
+    
+    @FXML
+    private Tab zoekenTab;
+    @FXML
+    private Tab klantTab;
+    
     @FXML
     private Tab oogmetingTab;
     @FXML
@@ -352,15 +357,12 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private Button anamneseButton;
     @FXML
-    private TitledPane zoekenPane;
-    @FXML
     private TextArea anamneseField;
     @FXML
     private HBox navigationBox;
     @FXML
     private Label vidLabel;
-    //@FXML
-    //private Label montuurDatum;
+
     @FXML
     private HBox montuurNavigationBox;
     @FXML
@@ -486,8 +488,7 @@ public class FXMLDashboardController implements Initializable {
     private TextField btwInput;
     @FXML
     private TextField diversenPrijsInput;
-//    @FXML
-//    private BorderPane mailingBorderPane;
+
     @FXML
     private RadioButton klantRB;
     @FXML
@@ -505,17 +506,18 @@ public class FXMLDashboardController implements Initializable {
     @FXML
     private TextField emailSubjectField;
 
-//    @FXML
-//    private HBox artikelBeheerOutBox;
     @FXML
     private HBox srcBtnBox;
+    @FXML
+    private Label rowsFoundLabel;
 
     private TextField[] searchFields = null;
     private TableGridPanel klantGrid = null;
     private int selectedKlantID = 0;
+    private int selectedVorkoopID = 0;
     private Node editClientNode;
     private Node delClientNode;
-    private static TitledPane fisrtPane;
+    //private static Tab fisrtPane;
 
     private Brilvoorschrift currentBrilvoorschrift = null;
     private static ArrayList<Brilvoorschrift> brilvoorschriftArray = new ArrayList<Brilvoorschrift>();
@@ -525,13 +527,13 @@ public class FXMLDashboardController implements Initializable {
     private static ArrayList<Verkoop> verkoopArray = new ArrayList<Verkoop>();
     private int verkoopIndex;
 
-    static void expandeFirst() {
-        if (fisrtPane != null) {
-            fisrtPane.setExpanded(true);
-        }
-    }
+//    static void expandeFirst() {
+//        if (fisrtPane != null) {
+//            fisrtPane.setExpanded(true);
+//        }
+//    }
     public static Node adminNode;
-    private TableGridPanel srcGrid;
+    private TableGridPanel srcVerkoopGrid;
 
     private void clearKlantForm(boolean withDeselect) {
         if (searchFields == null) {
@@ -548,7 +550,6 @@ public class FXMLDashboardController implements Initializable {
                 tf.setText("");
             }
         }
-
         //clearTab2();
         for (Label lbl : new Label[]{klntIdLabel, klntNameLabel, klntAdresLabel,
             klntPostCodePlaatsLabel, klntteleFoonLabel, klntMobielLabel,
@@ -615,7 +616,8 @@ public class FXMLDashboardController implements Initializable {
             rTypeGlasCombo.getEditor(), lTypeGlasCombo.getEditor(),
             rCoatingCombo.getEditor(), lCoatingCombo.getEditor(),
             rKleurGlasCombo.getEditor(), lKleurGlasCombo.getEditor(),
-            breedteInput, hoogteInput, neusmaatInput,});
+            breedteInput, hoogteInput, neusmaatInput
+        });
         soortGlasCombo.setValue("");
         rDiameterInput.setText("0");
         lDiameterInput.setText("0");
@@ -725,7 +727,7 @@ public class FXMLDashboardController implements Initializable {
         listRB.setToggleGroup(group);
         ageRB.setToggleGroup(group);
 
-        fisrtPane = zoekenPane;
+        //fisrtPane = zoekenPane;
 
         FXutils.setAutyoCompleteCombos(new ComboBox[]{
             merkCombo, modelCombo, kleurCombo, diversenCombo,
@@ -784,7 +786,7 @@ public class FXMLDashboardController implements Initializable {
         Node searchClientNode = FXutils.createButton(getClass(), "search.png", new Runnable() {
             @Override
             public void run() {
-                String newSelect = addWhereCondition();
+                String newSelect = addWhereKlantCondition();
                 try {
                     klantGrid.reload(newSelect);
                 } catch (RemoteException ex) {
@@ -862,14 +864,20 @@ public class FXMLDashboardController implements Initializable {
         searchClientNode = FXutils.createButton(getClass(), "search.png", new Runnable() {
             @Override
             public void run() {
-                searchVerkoopList();
+                String newSelect = addWhereVerkoopCondition();
+                try {
+                    srcVerkoopGrid.reload(newSelect);
+                    rowsFoundLabel.setText("" + srcVerkoopGrid.getTableBody()[1].size());
+                } catch (RemoteException ex) {
+                    OpticStore.logAndShowErrorMessage(ex);
+                }
             }
         });
         srcBtnBox.getChildren().add(searchClientNode);
         clearClientNode = FXutils.createButton(getClass(), "clear.png", new Runnable() {
             @Override
             public void run() {
-                clearSrcForm(true);
+                clearSrcForm();
             }
 
         });
@@ -877,12 +885,40 @@ public class FXMLDashboardController implements Initializable {
 
         try {
             //innerSrcAnchorPane
-            srcGrid = new TableGridPanel(OpticStore.getExchanger(), OpticStore.VERKOOPLIST);
-            innerSrcAnchorPane.setTopAnchor(srcGrid, 10.0);
-            innerSrcAnchorPane.setLeftAnchor(srcGrid, 400.0);
-            innerSrcAnchorPane.setRightAnchor(srcGrid, 0.0);
-            innerSrcAnchorPane.setBottomAnchor(srcGrid, 10.0);
-            innerSrcAnchorPane.getChildren().add(srcGrid);
+            srcVerkoopGrid = new TableGridPanel(OpticStore.getExchanger(), OpticStore.VERKOOPLIST);
+            rowsFoundLabel.setText("" + srcVerkoopGrid.getTableBody()[1].size());
+            innerSrcAnchorPane.setTopAnchor(srcVerkoopGrid, 10.0);
+            innerSrcAnchorPane.setLeftAnchor(srcVerkoopGrid, 400.0);
+            innerSrcAnchorPane.setRightAnchor(srcVerkoopGrid, 0.0);
+            innerSrcAnchorPane.setBottomAnchor(srcVerkoopGrid, 10.0);
+            innerSrcAnchorPane.getChildren().add(srcVerkoopGrid);
+            srcVerkoopGrid.getTableView().getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+
+                @Override
+                public void changed(ObservableValue ov, Object oldSelection, Object newSelection) {
+                    if (newSelection == null) {
+                        selectedVorkoopID = 0;
+                    } else {
+                        ObservableListWrapper itm = (ObservableListWrapper) newSelection;
+                        selectedVorkoopID = Integer.parseInt(itm.get(0).toString().trim());
+                    }
+                }
+            });
+            srcVerkoopGrid.getTableView().setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                        try {
+                            Verkoop vk = (Verkoop) OpticStore.getExchanger().loadDbObjectOnID(Verkoop.class, selectedVorkoopID);
+                            mainTabPane.getSelectionModel().selectFirst();
+                            klantTabPane.getSelectionModel().selectFirst();
+                            loadKlantFrom(vk.getKlantId());
+                        } catch (RemoteException ex) {
+                            OpticStore.logAndShowErrorMessage(ex);
+                        }
+                    }
+                }
+            });
         } catch (RemoteException ex) {
             OpticStore.logAndShowErrorMessage(ex);
         }
@@ -1030,7 +1066,7 @@ public class FXMLDashboardController implements Initializable {
         montuurTypeCombo.getItems().add("correctie");
         montuurTypeCombo.getItems().add("zon");
 
-        srcMontuurTypeCombo.getItems().add("--elke--");
+        srcMontuurTypeCombo.getItems().add(ELKE);
         srcMontuurTypeCombo.getItems().add("correctie");
         srcMontuurTypeCombo.getItems().add("zon");
 
@@ -1039,7 +1075,7 @@ public class FXMLDashboardController implements Initializable {
         materiallCombo.getItems().add("nylor");
         materiallCombo.getItems().add("randloos");
 
-        srcMateriallCombo.getItems().add("--elke--");
+        srcMateriallCombo.getItems().add(ELKE);
         srcMateriallCombo.getItems().add("metaal");
         srcMateriallCombo.getItems().add("kunststof");
         srcMateriallCombo.getItems().add("nylor");
@@ -1600,11 +1636,20 @@ public class FXMLDashboardController implements Initializable {
         return klid;
     }
 
-    private String addWhereCondition() {
+    private String addWhereKlantCondition() {
         return SelectModifier.modifyKlantCondition(klantIDfield, aanhefField,
                 voorlettersField, tussenvoegselField, achternaamField,
                 adresField, huisnummerField, postcodeField, plaatsField,
                 landField, gebortedatumField, telefonField, mobileField, emailField);
+    }
+
+    private String addWhereVerkoopCondition() {
+        return SelectModifier.modifyVerkoopCondition(srcDate1Input, srcDate2Input,
+                srcMerkCombo, srcModelCombo, srcKleurCombo, srcMaatInput,
+                srcPrijs1MontuurInput, srcPrijs2MontuurInput, srcMontuurTypeCombo,
+                srcMateriallCombo, srcDiversenCombo, srcIdMontuurInput, srcLeverancierCombo,
+                srcTypeGlasCombo, srcCoatingCombo, srcKleurGlasCombo, srcDiameter1Input,
+                srcDiameter2Input, srcRndsJa, srcRndsNee, srcPrijs1GlasInput, srcPrijs2GlasInput);
     }
 
     private void loadKlantFrom(int selectedKlantID) {
@@ -1831,11 +1876,20 @@ public class FXMLDashboardController implements Initializable {
         return brilvoorschriftArray;
     }
 
-    private void clearSrcForm(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void searchVerkoopList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void clearSrcForm() {
+        FXutils.clearTextFields(new TextInputControl[]{
+            srcDate1Input, srcDate2Input, srcMaatInput,
+            srcIdMontuurInput,
+            srcPrijs1MontuurInput, srcPrijs2MontuurInput,
+            srcDiameter1Input, srcDiameter2Input,
+            srcPrijs1GlasInput, srcPrijs2GlasInput,
+            srcMerkCombo.getEditor(), srcModelCombo.getEditor(),
+            srcKleurCombo.getEditor(), srcDiversenCombo.getEditor(),
+            srcLeverancierCombo.getEditor(), srcTypeGlasCombo.getEditor(),
+            srcCoatingCombo.getEditor(), srcKleurGlasCombo.getEditor()
+        });
+        srcRndsElke.setSelected(true);
+        srcMontuurTypeCombo.setValue("");
+        srcMateriallCombo.setValue("");
     }
 }
