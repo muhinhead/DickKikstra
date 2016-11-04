@@ -275,12 +275,12 @@ public class FXMLDashboardController implements Initializable {
     private TabPane mainTabPane;
     @FXML
     private TabPane klantTabPane;
-    
+
     @FXML
     private Tab zoekenTab;
     @FXML
     private Tab klantTab;
-    
+
     @FXML
     private Tab oogmetingTab;
     @FXML
@@ -728,7 +728,6 @@ public class FXMLDashboardController implements Initializable {
         ageRB.setToggleGroup(group);
 
         //fisrtPane = zoekenPane;
-
         FXutils.setAutyoCompleteCombos(new ComboBox[]{
             merkCombo, modelCombo, kleurCombo, diversenCombo,
             srcMerkCombo, srcModelCombo, srcKleurCombo, srcDiversenCombo
@@ -912,7 +911,7 @@ public class FXMLDashboardController implements Initializable {
                             Verkoop vk = (Verkoop) OpticStore.getExchanger().loadDbObjectOnID(Verkoop.class, selectedVorkoopID);
                             mainTabPane.getSelectionModel().selectFirst();
                             klantTabPane.getSelectionModel().selectFirst();
-                            loadKlantFrom(vk.getKlantId());
+                            loadKlantFrom(vk.getKlantId(),vk.getPK_ID().intValue());
                         } catch (RemoteException ex) {
                             OpticStore.logAndShowErrorMessage(ex);
                         }
@@ -1266,17 +1265,23 @@ public class FXMLDashboardController implements Initializable {
         loadBrilvoorschrift();
     }
 
-    private void loadLastVerkoopList(Klant klant) throws RemoteException {
+    private void loadVerkoopList(Klant klant, int verkoopID) throws RemoteException {
         verkoopArray.clear();
         setCurrentVerkoop(null);
         if (klant != null) {
             DbObject[] recs = OpticStore.getExchanger().getDbObjects(Verkoop.class,
                     "klant_id=" + klant.getKlantId(), "verkoop_id");
+            int n = 0;
+            int pos = verkoopArray.size() - 1;
             for (DbObject rec : recs) {
                 verkoopArray.add((Verkoop) rec);
+                if (verkoopID == rec.getPK_ID().intValue()) {
+                    pos = n;
+                }
+                n++;
             }
             if (verkoopArray.size() > 0) {
-                setCurrentVerkoop(verkoopArray.get(verkoopArray.size() - 1));
+                setCurrentVerkoop(verkoopArray.get(pos));
             }
         }
         loadLastVerkoop();
@@ -1651,8 +1656,12 @@ public class FXMLDashboardController implements Initializable {
                 srcTypeGlasCombo, srcCoatingCombo, srcKleurGlasCombo, srcDiameter1Input,
                 srcDiameter2Input, srcRndsJa, srcRndsNee, srcPrijs1GlasInput, srcPrijs2GlasInput);
     }
-
+    
     private void loadKlantFrom(int selectedKlantID) {
+        loadKlantFrom(selectedKlantID, 0);
+    }
+    
+    private void loadKlantFrom(int selectedKlantID, int verkoopID) {
         try {
             clearKlantForm(false);
             Klant klant = (Klant) OpticStore.getExchanger().loadDbObjectOnID(Klant.class, selectedKlantID);
@@ -1695,7 +1704,7 @@ public class FXMLDashboardController implements Initializable {
                 klntPostCodePlaatsLabel.setText(postPlaats);
                 klntVerkoolDatumLabel.setText(getLastSellDate(klant.getKlantId()));
                 loadLastBrilvoorschriftList(klant);
-                loadLastVerkoopList(klant);
+                loadVerkoopList(klant, verkoopID);
                 oogmetingTab.setDisable(false);
                 montuurTab.setDisable(false);
                 glazenTab.setDisable(false);
