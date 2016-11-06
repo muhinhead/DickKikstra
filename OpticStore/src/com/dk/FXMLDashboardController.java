@@ -1272,7 +1272,7 @@ public class FXMLDashboardController implements Initializable {
             DbObject[] recs = OpticStore.getExchanger().getDbObjects(Verkoop.class,
                     "klant_id=" + klant.getKlantId(), "verkoop_id");
             int n = 0;
-            int pos = verkoopArray.size() - 1;
+            int pos = recs.length - 1;
             for (DbObject rec : recs) {
                 verkoopArray.add((Verkoop) rec);
                 if (verkoopID == rec.getPK_ID().intValue()) {
