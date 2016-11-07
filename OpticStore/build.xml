@@ -2,7 +2,7 @@
     <description>Builds, tests, and runs the project OpticStore.</description>
     <import file="nbproject/build-impl.xml"/>
 
-    <!--
+<!-- BUILD BUNDLE SECTION --> 
     <property environment="env" />
     <taskdef name="bundleapp"
              classname="com.oracle.appbundler.AppBundlerTask"   
@@ -18,7 +18,7 @@
             <classpath file="dist/OpticStore.jar" />
         </bundleapp>
     </target>
-    -->
+
     <!--
 
     There exist several targets which are by default empty and which can be 
